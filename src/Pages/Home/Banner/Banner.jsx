@@ -1,34 +1,31 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-
+import banner1 from "../../../assets/Banner/banner1.jpg";
+import banner2 from "../../../assets/Banner/banner2.jpg";
+import banner3 from "../../../assets/Banner/banner3.jpg";
+import banner4 from "../../../assets/Banner/banner4.jpg";
+import banner5 from "../../../assets/Banner/banner5.jpg";
 const Banner = () => {
   return (
-    <Carousel>
-      {/* <div>
-        <img src={} />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src={} />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src={} />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src={} />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src={} />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src={banner6} />
-        <p className="legend">Legend 1</p>
-      </div> */}
-    </Carousel>
+    <div className="mt-16">
+      <Carousel autoPlay infiniteLoop interval={2000}>
+        <div>
+          <img src={banner1} className="rounded-lg" />
+        </div>
+        <div>
+          <img src={banner2} className="rounded-lg" />
+        </div>
+        <div>
+          <img src={banner3} className="rounded-lg" />
+        </div>
+        <div>
+          <img src={banner4} className="rounded-lg" />
+        </div>
+        <div>
+          <img src={banner5} className="rounded-lg" />
+        </div>
+      </Carousel>
+    </div>
   );
 };
 
