@@ -1,15 +1,23 @@
 import { useFormik } from "formik";
+import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
+  const { createUser } = useAuth();
   const formik = useFormik({
     initialValues: {
+      name: "",
       email: "",
       password: "",
     },
-    onSubmit: (values, { resetForm }) => {
-      const 
-      console.log(values);
-      resetForm();
+    onSubmit: async (data, { resetForm }) => {
+      const { email, password } = data;
+      try {
+        const result = await createUser(email, password);
+        console.log("User created successfully:", result.user);
+        resetForm();
+      } catch (error) {
+        console.error("Error creating user:", error);
+      }
     },
   });
   return (
@@ -28,7 +36,7 @@ const SignUp = () => {
               type="text"
               name="name"
               onChange={formik.handleChange}
-              value={formik.values.email}
+              value={formik.values.name}
               className="input text-purple-600 bg-white input-primary w-full"
               required
             />
@@ -53,6 +61,7 @@ const SignUp = () => {
             <input
               type="password"
               name="password"
+              autoComplete=""
               onChange={formik.handleChange}
               value={formik.values.password}
               className="input bg-white text-purple-600 input-primary w-full"
