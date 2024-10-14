@@ -1,12 +1,47 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import auth from "../Firebase/firebase.config";
-import { onAuthStateChanged } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth/web-extension";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // social login
+  const googleProvider = new GoogleAuthProvider();
+
+  const googleSignIn = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  //  Sign Up auth
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // Login auth
+  const loginUser = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // logout auth
+  const logout = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
+  // Hold current user Info
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("Current User Info inside onAuthStateChange", currentUser);
@@ -19,6 +54,11 @@ const AuthProvider = ({ children }) => {
 
   const authInformation = {
     user,
+    loading,
+    createUser,
+    loginUser,
+    logout,
+    googleSignIn,
   };
 
   return (
