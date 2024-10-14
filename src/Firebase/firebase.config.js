@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAKM7YlLnAON1pR4Mq4ydJZj_XZJvkIcHY",
-  authDomain: "stydy-flow.firebaseapp.com",
-  projectId: "stydy-flow",
-  storageBucket: "stydy-flow.appspot.com",
-  messagingSenderId: "982639800981",
-  appId: "1:982639800981:web:ef053c64a642f43ca1a19c",
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase
