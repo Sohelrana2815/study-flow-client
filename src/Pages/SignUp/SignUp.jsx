@@ -1,8 +1,9 @@
 import { useFormik } from "formik";
 import useAuth from "../../Hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -10,9 +11,13 @@ const SignUp = () => {
       password: "",
     },
     onSubmit: async (data, { resetForm }) => {
-      const { email, password } = data;
+      const { email, password, name } = data;
       try {
         const result = await createUser(email, password);
+        if (result.user) {
+          const updateProfile = await updateUserProfile(name);
+          console.log(updateProfile);
+        }
         console.log("User created successfully:", result.user);
         resetForm();
       } catch (error) {
@@ -25,6 +30,12 @@ const SignUp = () => {
       <h2 className="text-center font-serif text-purple-500 text-4xl">
         REACT FORMIK FORM
       </h2>
+      <p className="text-center mt-10">
+        Already have an account ?{" "}
+        <Link to="/login">
+          <button className="font-serif btn-link text-lg">Login</button>
+        </Link>
+      </p>
       <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
         <form onSubmit={formik.handleSubmit}>
@@ -48,6 +59,7 @@ const SignUp = () => {
             <input
               type="email"
               name="email"
+              placeholder="anything@gmail.com"
               onChange={formik.handleChange}
               value={formik.values.email}
               className="input text-purple-600 bg-white input-primary w-full"
