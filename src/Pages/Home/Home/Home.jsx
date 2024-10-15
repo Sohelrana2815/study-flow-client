@@ -1,4 +1,5 @@
 import AddStudyTasks from "../../StudyTasksComponent/AddStudyTasks";
+import StudyTasks from "../../StudyTasksComponent/StudyTasks";
 import Banner from "../Banner/Banner";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Banner />
       <AddStudyTasks />
+      <StudyTasks />
     </div>
   );
 };

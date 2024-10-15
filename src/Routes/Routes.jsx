@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import StudyTasksForm from "../Pages/StudyTasksComponent/StudyTasksForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path: "studyTasksForm",
-        element: <StudyTasksForm />,
+        element: (
+          <PrivateRoute>
+            <StudyTasksForm />
+          </PrivateRoute>
+        ),
       },
     ],
   },

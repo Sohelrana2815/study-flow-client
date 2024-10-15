@@ -1,37 +1,66 @@
-import axios from "axios";
 import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAuth from "../../Hooks/useAuth";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const StudyTasksForm = () => {
+  // axiosPublic hook
+
+  const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
+
   const formik = useFormik({
     initialValues: {
       taskTitle: "",
-      data: "",
+      date: "",
       subject: "",
       priority: "medium",
       estimatedTime: "",
       description: "",
-      image: "",
+      image: null,
     },
     onSubmit: async (data, { resetForm }) => {
-      try {
-        const response = await axios.post(
-          "http://localhost:5000/studyTasks",
-          data
-        );
-        if (response.data.insertedId) {
-          console.log("Task added", response.data);
-          toast.success("Task added successfully!", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-        }
+      // console.log(data);
 
-        resetForm();
+      try {
+        const formData = new FormData();
+        formData.append("image", data.image);
+
+        const res = await axiosPublic.post(image_hosting_api, formData, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        console.log(res.data);
+
+        if (res.data.success && user && user?.email) {
+          const studyTask = {
+            email: user.email,
+            taskTitle: data.taskTitle,
+            date: data.date,
+            subject: data.subject,
+            priority: data.priority,
+            estimatedTime: data.estimatedTime,
+            description: data.description,
+            image: res.data.data.display_url,
+          };
+          const studyRes = await axiosPublic.post("/studyTasks", studyTask);
+          if (studyRes.data.insertedId) {
+            toast.success("Task added successfully!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+            resetForm();
+          }
+        }
       } catch (error) {
         console.error("Error adding task", error);
       }
@@ -67,9 +96,9 @@ const StudyTasksForm = () => {
                   </label>
                   <input
                     type="date"
-                    name="data"
+                    name="date"
                     onChange={formik.handleChange}
-                    value={formik.values.data}
+                    value={formik.values.date}
                     className="input input-bordered"
                     required
                   />
@@ -142,17 +171,20 @@ const StudyTasksForm = () => {
                   </label>
                   <input
                     type="file"
-                    accept="image/*"
                     name="image"
-                    onChange={formik.handleChange}
-                    value={formik.values.image}
+                    onChange={(event) => {
+                      formik.setFieldValue(
+                        "image",
+                        event.currentTarget.files[0]
+                      );
+                    }}
                     className="file-input w-full max-w-xs"
                     required
                   />
                 </div>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-green-500 text-white">
+                <button className="btn bg-green-500 text-white" type="submit">
                   Add This Task
                 </button>
               </div>
