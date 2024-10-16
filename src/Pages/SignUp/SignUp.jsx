@@ -1,9 +1,12 @@
 import { useFormik } from "formik";
 import useAuth from "../../Hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const { createUser, updateUserProfile } = useAuth();
   const formik = useFormik({
     initialValues: {
@@ -18,6 +21,7 @@ const SignUp = () => {
         if (result.user) {
           const updateProfile = await updateUserProfile(name);
           console.log(updateProfile);
+          navigate(from, { replace: true });
         }
         console.log("User created successfully:", result.user);
         resetForm();

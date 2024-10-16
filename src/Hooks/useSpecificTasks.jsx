@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
-import useAxiosPublic from "./useAxiosPublic";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useSpecificTasks = () => {
-  const axiosPublic = useAxiosPublic();
-  const [specificTasks, setSpecificTasks] = useState([]);
-
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  useEffect(() => {
-    const fetchSpecificTasks = async () => {
-      try {
-        const res = await axiosPublic.get(`/studyTasks?email=${user.email}`);
-        setSpecificTasks(res.data);
-      } catch (error) {
-        console.error("Error while fetching", error);
-      }
-    };
-    fetchSpecificTasks();
-  }, [axiosPublic, user]);
-
-  return [specificTasks];
+  const { data: task = [], refetch } = useQuery({
+    queryKey: ["cart", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/tasks?email=${user.email}`);
+      return res.data;
+    },
+  });
+  return [task, refetch];
 };
 
 export default useSpecificTasks;

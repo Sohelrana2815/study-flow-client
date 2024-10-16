@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -10,7 +10,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const StudyTasksForm = () => {
   // axiosPublic hook
 
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
   const formik = useFormik({
@@ -30,7 +30,7 @@ const StudyTasksForm = () => {
         const formData = new FormData();
         formData.append("image", data.image);
 
-        const res = await axiosPublic.post(image_hosting_api, formData, {
+        const res = await axiosSecure.post(image_hosting_api, formData, {
           headers: {
             "content-type": "multipart/form-data",
           },
@@ -48,7 +48,7 @@ const StudyTasksForm = () => {
             description: data.description,
             image: res.data.data.display_url,
           };
-          const studyRes = await axiosPublic.post("/studyTasks", studyTask);
+          const studyRes = await axiosSecure.post("/tasks", studyTask);
           if (studyRes.data.insertedId) {
             toast.success("Task added successfully!", {
               position: "top-right",
