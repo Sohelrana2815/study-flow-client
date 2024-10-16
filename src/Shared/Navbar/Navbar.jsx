@@ -3,7 +3,7 @@ import { IoBookSharp, IoMenuSharp } from "react-icons/io5";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 const Navbar = () => {
-  const { logout, user } = useAuth();
+  const { logout, user, loading } = useAuth();
 
   const handleLogout = () => {
     Swal.fire({
@@ -48,68 +48,83 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <IoMenuSharp className="text-3xl" />
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            {navLinks}
-          </ul>
-        </div>
-        <Link>
-          <p className="btn btn-ghost text-xl">
-            <IoBookSharp className="text-green-500 text-2xl" />
-            Study Flow
-          </p>
-        </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
-      </div>
-      <div className="navbar-end">
-        {user ? (
-          <div>
-            {/*  */}
-
-            <div className="dropdown dropdown-end">
+    <>
+      {loading ? (
+        <span className="loading loading-bars loading-lg"></span>
+      ) : (
+        <div className="navbar bg-base-100">
+          <div className="navbar-start">
+            <div className="dropdown">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
+                className="btn btn-ghost lg:hidden"
               >
-                <div className="avatar placeholder">
-                  <div className="bg-neutral text-neutral-content w-10 rounded-full">
-                    <p>
-                      {user?.displayName
-                        ? user.displayName.slice(0, 1).toUpperCase()
-                        : ""}
-                    </p>
-                  </div>
-                </div>
+                <IoMenuSharp className="text-3xl" />
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box  z-[1] mt-3 w-52 p-2 shadow "
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
-                <li>
-                  <a className="hover:bg-success hover:text-white" onClick={handleLogout}>Logout</a>
-                </li>
+                {navLinks}
               </ul>
             </div>
-            {/*  */}
+            <Link>
+              <p className="btn btn-ghost text-xl">
+                <IoBookSharp className="text-green-500 text-2xl" />
+                Study Flow
+              </p>
+            </Link>
           </div>
-        ) : (
-          <Link to="/login">
-            <button className="font-serif btn">Sign In</button>
-          </Link>
-        )}
-      </div>
-    </div>
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+          </div>
+          <div className="navbar-end">
+            {user ? (
+              <div>
+                {/*  */}
+
+                <div className="dropdown dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="avatar placeholder">
+                      <div className="bg-neutral text-neutral-content w-10 rounded-full">
+                        <p>
+                          {user?.displayName
+                            ? user.displayName.slice(0, 1).toUpperCase()
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box  z-[1] mt-3 w-52 p-2 shadow "
+                  >
+                    <li>
+                      <a
+                        className="hover:bg-success hover:text-white"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                {/*  */}
+              </div>
+            ) : (
+              <Link to="/login">
+                <button className="font-serif btn">Sign In</button>
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

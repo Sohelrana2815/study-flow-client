@@ -11,14 +11,14 @@ const useSpecificTasks = () => {
   useEffect(() => {
     const fetchSpecificTasks = async () => {
       try {
-        const res = await axiosPublic.get(`/studyTasks?email=${user?.email}`);
+        const res = await axiosPublic.get(`/studyTasks?email=${user.email}`);
         setSpecificTasks(res.data);
       } catch (error) {
         console.error("Error while fetching", error);
       }
     };
     fetchSpecificTasks();
-  }, [axiosPublic, user?.email]);
+  }, [axiosPublic, user]);
 
   return [specificTasks];
 };

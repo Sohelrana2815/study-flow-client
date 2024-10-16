@@ -1,9 +1,16 @@
 import { useFormik } from "formik";
 import useAuth from "../../Hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log("Login Page - location state:", location.state);
+  const from = location.state?.from?.pathname || "/";
+
   // Formik hook , initial form values and a submit function for
   // grab form data when submitted
 
@@ -17,7 +24,17 @@ const Login = () => {
       try {
         const result = await loginUser(email, password);
         console.log("User created successfully:", result.user);
-        resetForm();
+        if (result.user) {
+          resetForm();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged in Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        }
       } catch (error) {
         console.error("Error creating user:", error);
       }
@@ -32,7 +49,7 @@ const Login = () => {
         </h2>
         <p className="text-center mt-10">
           New To Study Flow ?{" "}
-          <Link to='/signUp'>
+          <Link to="/signUp">
             <button className="font-serif btn-link text-lg">Sign Up</button>
           </Link>
         </p>
@@ -71,6 +88,8 @@ const Login = () => {
               Login
             </button>
           </form>
+
+          <SocialLogin />
         </div>
       </div>
     </>

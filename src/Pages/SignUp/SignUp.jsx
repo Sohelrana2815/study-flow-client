@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -84,6 +85,7 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
+        <SocialLogin />
       </div>
     </div>
   );
