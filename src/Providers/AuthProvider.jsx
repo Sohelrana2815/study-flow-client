@@ -10,13 +10,14 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-// import useAxiosPublic from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   // social login
   const googleProvider = new GoogleAuthProvider();
@@ -56,15 +57,12 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("Current User Info inside onAuthStateChange", currentUser);
       setUser(currentUser);
-      // if (currentUser) {
-      //   const userInfo = { email: currentUser.email };
-      // }
       setLoading(false);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInformation = {
     user,

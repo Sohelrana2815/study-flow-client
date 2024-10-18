@@ -6,6 +6,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import StudyTasksForm from "../Pages/StudyTasksComponent/StudyTasksForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import CreateAssignments from "../Pages/CreateAssignments/CreateAssignments";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         path: "signUp",
         element: <SignUp />,
       },
+
       {
         path: "studyTasksForm",
         element: (
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
             <StudyTasksForm />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "createAssignments",
+        element: <CreateAssignments />,
       },
     ],
   },
