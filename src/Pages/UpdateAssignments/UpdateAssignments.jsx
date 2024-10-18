@@ -1,24 +1,27 @@
-import { useFormik } from "formik";
-import toast, { Toaster } from "react-hot-toast"; // toast
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useLoaderData } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-const CreateAssignments = () => {
+import { useFormik } from "formik";
+import toast, { Toaster } from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
+const UpdateAssignments = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
+  const { title, _id, description, marks, imageURL, difficultyLevel, date } =
+    useLoaderData(); // Destructure the loaded data
+
   const formik = useFormik({
     initialValues: {
-      title: "",
-      description: "",
-      marks: "",
-      imageURL: "",
-      difficultyLevel: "medium",
-      date: new Date(), // Initialize with the current date
+      title: title || "",
+      description: description || "",
+      marks: marks || "",
+      imageURL: imageURL || "",
+      difficultyLevel: difficultyLevel || "medium",
+      date: date || new Date(), // Initialize with the loaded date or current date
     },
     onSubmit: async (data, { resetForm }) => {
       console.log(data);
-
       try {
         console.log("Form submitted successfully!");
         if (user && user?.email) {
@@ -31,21 +34,20 @@ const CreateAssignments = () => {
             difficultyLevel: data.difficultyLevel,
             date: data.date,
           };
-
-          const assignmentRes = await axiosPublic.post(
-            "/assignments",
+          const assignmentRes = await axiosPublic.patch(
+            `/assignments/${_id}`,
             assignment
           );
 
-          if (assignmentRes.data?.insertedId) {
-            toast.success("Assignment submitted successfully!");
+          if (assignmentRes.data?.modifiedCount > 0) {
+            toast.success("Assignment Updated successfully!");
             resetForm();
           } else {
-            toast.error("Submission failed. Please check your details.");
+            toast.error("Update failed. Please check your details.");
           }
         }
       } catch (error) {
-        console.error("Error submitting form : ", error);
+        console.error("Error Updating  form: ", error);
       }
     },
   });
@@ -61,7 +63,7 @@ const CreateAssignments = () => {
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
             <form onSubmit={formik.handleSubmit} className="card-body">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/*assignment title  */}
+                {/* Assignment Title */}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Title</span>
@@ -76,7 +78,7 @@ const CreateAssignments = () => {
                     required
                   />
                 </div>
-                {/*assignment Description  */}
+                {/* Assignment Description */}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Description</span>
@@ -91,7 +93,7 @@ const CreateAssignments = () => {
                     required
                   />
                 </div>
-                {/*  assignment marks */}
+                {/* Assignment Marks */}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Marks</span>
@@ -109,7 +111,6 @@ const CreateAssignments = () => {
                       if (value > 100) {
                         value = 100;
                       }
-
                       formik.setFieldValue("marks", value);
                     }}
                     value={formik.values.marks}
@@ -119,8 +120,7 @@ const CreateAssignments = () => {
                     required
                   />
                 </div>
-                {/* assignment Thumbnail image url */}
-
+                {/* Assignment Thumbnail Image URL */}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Image URL</span>
@@ -135,8 +135,7 @@ const CreateAssignments = () => {
                     required
                   />
                 </div>
-                {/*   assignment difficulty level */}
-
+                {/* Assignment Difficulty Level */}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">
@@ -154,8 +153,7 @@ const CreateAssignments = () => {
                     <option value="hard">Hard</option>
                   </select>
                 </div>
-
-                {/* Due date */}
+                {/* Due Date */}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Due Date</span>
@@ -170,10 +168,9 @@ const CreateAssignments = () => {
                   />
                 </div>
               </div>
-
               <div className="form-control mt-6">
                 <button type="submit" className="btn text-white btn-primary">
-                  Submit This Assignment
+                  Update Assignment
                 </button>
               </div>
             </form>
@@ -184,4 +181,4 @@ const CreateAssignments = () => {
   );
 };
 
-export default CreateAssignments;
+export default UpdateAssignments;

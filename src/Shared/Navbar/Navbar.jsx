@@ -37,6 +37,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/createAssignments">Create Assignments</NavLink>
       </li>
+      <li>
+        <NavLink to="/assignments">All Assignments</NavLink>
+      </li>
       {user ? null : (
         <>
           <li>

@@ -7,6 +7,8 @@ import StudyTasksForm from "../Pages/StudyTasksComponent/StudyTasksForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import CreateAssignments from "../Pages/CreateAssignments/CreateAssignments";
+import Assignments from "../Pages/Assignments/Assignments";
+import UpdateAssignments from "../Pages/UpdateAssignments/UpdateAssignments";
 
 const router = createBrowserRouter([
   {
@@ -36,8 +38,18 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "assignments",
+        element: <Assignments />,
+      },
+      {
         path: "createAssignments",
         element: <CreateAssignments />,
+      },
+      {
+        path: "updateAssignment/:id",
+        element: <UpdateAssignments />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/assignments/${params.id}`),
       },
     ],
   },
