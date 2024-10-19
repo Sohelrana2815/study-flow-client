@@ -52,7 +52,6 @@ const CreateAssignments = () => {
 
   return (
     <>
-      <Toaster />
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col w-full">
           <div className="text-center lg:text-left ">
@@ -180,6 +179,7 @@ const CreateAssignments = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };

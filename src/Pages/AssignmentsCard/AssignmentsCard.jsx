@@ -30,7 +30,9 @@ const AssignmentsCard = ({ assignment }) => {
         <p>Date : {date}</p>
         <p>Id : {_id}</p>
         <div className="flex gap-2">
-          <button className="btn btn-sm btn-success">View Assignment</button>
+          <Link to={`/assignmentDetails/${assignment._id}`}>
+            <button className="btn btn-sm btn-success">View Assignment</button>
+          </Link>
           <button
             onClick={() => handleDeleteAssignment(assignment)}
             className="btn btn-sm bg-red-600 text-white"

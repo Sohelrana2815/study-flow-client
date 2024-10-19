@@ -7,6 +7,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const UpdateAssignments = () => {
   const axiosPublic = useAxiosPublic();
+
   const { user } = useAuth();
   const { title, _id, description, marks, imageURL, difficultyLevel, date } =
     useLoaderData(); // Destructure the loaded data

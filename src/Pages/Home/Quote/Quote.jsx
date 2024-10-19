@@ -13,6 +13,7 @@ const Quote = () => {
   return (
     <div className="text-center h-20 mt-10">
       <h2></h2>
+
       {user ? (
         <SectionTitle
           strings={phrases}
