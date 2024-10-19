@@ -1,36 +1,50 @@
 import { useFormik } from "formik";
 import { useLoaderData } from "react-router-dom";
-import PropTypes from "prop-types";
-
+import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const AssignmentDetails = () => {
   const assignmentData = useLoaderData();
+
+  const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
+
+  const { title, imageURL, description, marks, difficultyLevel, date } =
+    assignmentData;
+
   const formik = useFormik({
     initialValues: {
       pdfLink: "",
       quickNote: "",
     },
-    onSubmit: (data, { resetForm }) => {
-      console.log("Submitting Assignment : ", data);
-
-      // Close the modal after submission
-
-      document.getElementById("assignment_modal").close();
-
-      resetForm();
+    onSubmit: async (data, { resetForm }) => {
+      console.log("Submitting Assignment: ", data);
+      try {
+        if (user && user?.email) {
+          const submittedAssignment = {
+            email: user?.email,
+            pdfLink: data.pdfLink,
+            quickNote: data.quickNote,
+            name: user?.displayName,
+            status: "pending",
+          };
+          const submittedAssignmentRes = await axiosPublic.post(
+            "/submittedAssignments",
+            submittedAssignment
+          );
+          console.log(submittedAssignmentRes.data);
+        }
+        // Close the modal after submission
+        document.getElementById("assignment_modal").close();
+        resetForm();
+      } catch (error) {
+        console.error("Error while submitting the assignment", error);
+      }
     },
   });
-
-  const {
-    title,
-    imageURL,
-    description,
-    marks,
-    difficultyLevel,
-    date,
-    email,
-    _id,
-  } = assignmentData;
-
+  // Check if assignmentData is loaded
+  if (!assignmentData) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
@@ -109,7 +123,6 @@ const AssignmentDetails = () => {
               >
                 Close
               </button>
-              <button></button>
               {/* Submit Button */}
               <button
                 type="submit"
@@ -124,16 +137,5 @@ const AssignmentDetails = () => {
     </div>
   );
 };
-AssignmentDetails.propTypes = {
-  assignmentData: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    imageURL: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    marks: PropTypes.number.isRequired,
-    difficultyLevel: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired, // Assuming this is a string (e.g., ISO format). Change if it's a Date object.
-    email: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
-  }).isRequired,
-};
+
 export default AssignmentDetails;

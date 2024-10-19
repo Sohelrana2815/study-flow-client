@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 const AssignmentsCard = ({ assignment }) => {
   const {
     title,
@@ -47,18 +46,5 @@ const AssignmentsCard = ({ assignment }) => {
     </div>
   );
 };
-// Define prop types
-AssignmentsCard.propTypes = {
-  assignment: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    imageURL: PropTypes.string,
-    difficultyLevel: PropTypes.oneOf(["easy", "medium", "hard"]).isRequired,
-    email: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
-    date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
-      .isRequired, // Can be a string or Date object
-    marks: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  }).isRequired,
-};
+
 export default AssignmentsCard;
