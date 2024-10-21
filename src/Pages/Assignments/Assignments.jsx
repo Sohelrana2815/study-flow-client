@@ -11,8 +11,14 @@ const Assignments = () => {
     refetch();
   };
 
-  console.log(assignments);
+  const handleDelete = () => {
+    refetch(); // Call refetch after deleting an assignment
+  };
 
+  console.log(assignments);
+  if (!assignments) {
+    return <p>No Assignment.....</p>;
+  }
   return (
     <>
       <div className="mb-4">
@@ -31,7 +37,11 @@ const Assignments = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {assignments.map((assignment) => (
-          <AssignmentsCard key={assignment._id} assignment={assignment} />
+          <AssignmentsCard
+            key={assignment._id}
+            onDelete={handleDelete}
+            assignment={assignment}
+          />
         ))}
       </div>
     </>

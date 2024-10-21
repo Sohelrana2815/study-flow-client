@@ -10,3 +10,4 @@ const useAxiosPublic = () => {
 
 export default useAxiosPublic;
 //http://study-flow-server.vercel.app/
+// http://localhost:500

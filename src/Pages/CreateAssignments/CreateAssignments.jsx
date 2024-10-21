@@ -24,6 +24,7 @@ const CreateAssignments = () => {
         if (user && user?.email) {
           const assignment = {
             email: user.email,
+            name: user.displayName,
             title: data.title,
             description: data.description,
             marks: data.marks,

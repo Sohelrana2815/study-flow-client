@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import toast, { Toaster } from "react-hot-toast";
 
 const GiveMark = () => {
   const axiosPublic = useAxiosPublic();
@@ -22,54 +23,59 @@ const GiveMark = () => {
       `/updateSpecificSubmittedAssignment/${_id}`,
       assignmentResult
     );
-    console.log(res.data);
+    if (res.data.modifiedCount > 0) {
+      toast.success("Assignment Result Submitted!");
+    }
   };
 
   return (
-    <div>
-      <div className="border-2 border-green-500 p-4 w-1/2 mx-auto  rounded-xl">
-        <h2 className="text-lg text-center">
-          Assignment Doc Link :{" "}
-          <a href={pdfLink} className="link link-info">
-            {pdfLink.slice(0, 16)}
-          </a>
-        </h2>
-        <h2 className="text-lg text-center">
-          Quick Note About Assignment : {quickNote}
-        </h2>
-      </div>
-      <form
-        onSubmit={handleScoreSubmit}
-        className="card card-body flex flex-col justify-center items-center"
-      >
-        <div>
-          <span>
-            <label className="label">Give Mark</label>
-          </span>
-          <input
-            type="text"
-            name="obtainedMark"
-            placeholder="Give Assignment Mark"
-            className="input input-bordered"
-          />
+    <>
+      <div>
+        <div className="border-2 border-green-500 p-4 w-1/2 mx-auto  rounded-xl">
+          <h2 className="text-lg text-center">
+            Assignment Doc Link :{" "}
+            <a href={pdfLink} className="link link-info">
+              {pdfLink.slice(0, 16)}
+            </a>
+          </h2>
+          <h2 className="text-lg text-center">
+            Quick Note About Assignment : {quickNote}
+          </h2>
         </div>
-        <div>
-          <span>
-            <label className="label">Give Feedback</label>
-          </span>
-          <textarea
-            name="feedback"
-            placeholder="Give Feedback "
-            className="textarea textarea-bordered"
-          ></textarea>
+        <form
+          onSubmit={handleScoreSubmit}
+          className="card card-body flex flex-col justify-center items-center"
+        >
           <div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
+            <span>
+              <label className="label">Give Mark</label>
+            </span>
+            <input
+              type="text"
+              name="obtainedMark"
+              placeholder="Give Assignment Mark"
+              className="input input-bordered"
+            />
           </div>
-        </div>
-      </form>
-    </div>
+          <div>
+            <span>
+              <label className="label">Give Feedback</label>
+            </span>
+            <textarea
+              name="feedback"
+              placeholder="Give Feedback "
+              className="textarea textarea-bordered"
+            ></textarea>
+            <div>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <Toaster />
+    </>
   );
 };
 

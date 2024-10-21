@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-const AssignmentsCard = ({ assignment }) => {
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+const AssignmentsCard = ({ assignment, onDelete }) => {
+  const axiosSecure = useAxiosSecure();
   const {
     title,
     description,
@@ -11,8 +14,67 @@ const AssignmentsCard = ({ assignment }) => {
     marks,
   } = assignment;
 
-  const handleDeleteAssignment = async (assignment) => {
-    console.log(assignment);
+  const handleDeleteAssignment = (assignment) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/deleteMyAssignment/${assignment.email}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              onDelete();
+            } else {
+              // Handle the case where deletion didn't occur, maybe due to a missing record
+              Swal.fire({
+                title: "Error!",
+                text: "The file could not be deleted. It might not exist.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((error) => {
+            // Handle error based on response status
+            if (error.response) {
+              // Check if the server responded with a status code
+              if (
+                error.response.status === 403 ||
+                error.response.status === 401
+              ) {
+                Swal.fire({
+                  title: "Error!",
+                  text: `You don't have permission to delete ${assignment?.name}'s Assignment.`,
+                  icon: "error",
+                });
+              } else {
+                Swal.fire({
+                  title: "Error!",
+                  text: "An error occurred while trying to delete the file.",
+                  icon: "error",
+                });
+              }
+            } else {
+              // If no response was received, this is an unexpected error
+              Swal.fire({
+                title: "Error!",
+                text: "No response received from the server.",
+                icon: "error",
+              });
+            }
+          });
+      }
+    });
   };
 
   return (
