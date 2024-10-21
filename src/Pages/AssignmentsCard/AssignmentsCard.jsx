@@ -1,18 +1,10 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { FaEye, FaPen, FaTrashCan } from "react-icons/fa6";
 const AssignmentsCard = ({ assignment, onDelete }) => {
   const axiosSecure = useAxiosSecure();
-  const {
-    title,
-    description,
-    imageURL,
-    difficultyLevel,
-    email,
-    _id,
-    date,
-    marks,
-  } = assignment;
+  const { title, imageURL, email } = assignment;
 
   const handleDeleteAssignment = (assignment) => {
     Swal.fire({
@@ -82,28 +74,29 @@ const AssignmentsCard = ({ assignment, onDelete }) => {
       <figure className="px-10 pt-10">
         <img src={imageURL} alt="Shoes" className="rounded-xl" />
       </figure>
-      <div className="card-body items-center text-center">
-        <h2 className="card-title">Title:{title}</h2>
-        <p>Description : {description}</p>
-        <p>Difficulty : {difficultyLevel}</p>
-        <p>Email : {email}</p>
-        <p>Marks : {marks}</p>
-        <p>Date : {date}</p>
-        <p>Id : {_id}</p>
-        <div className="flex gap-2">
+      <div className="card-body">
+        <h2 className="card-title">Title : {title}</h2>
+        <p>Author : {email}</p>
+        <div className="flex justify-evenly">
           <Link to={`/assignmentDetails/${assignment._id}`}>
-            <button className="btn btn-sm btn-success">View Assignment</button>
+            <button className="btn  btn-success">
+              <FaEye />
+            </button>
           </Link>
+
           <button
             onClick={() => handleDeleteAssignment(assignment)}
-            className="btn btn-sm bg-red-600 text-white"
+            className="btn bg-red-600 text-white"
           >
-            Delete Assignment
+            <FaTrashCan />
           </button>
+
+          <Link to={`/updateAssignment/${assignment._id}`}>
+            <button className="btn  btn-warning">
+              <FaPen />
+            </button>
+          </Link>
         </div>
-        <Link to={`/updateAssignment/${assignment._id}`}>
-          <button className="btn btn-sm btn-warning">Update Assignment</button>
-        </Link>
       </div>
     </div>
   );
