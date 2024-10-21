@@ -10,7 +10,9 @@ import CreateAssignments from "../Pages/CreateAssignments/CreateAssignments";
 import Assignments from "../Pages/Assignments/Assignments";
 import UpdateAssignments from "../Pages/UpdateAssignments/UpdateAssignments";
 import AssignmentDetails from "../Pages/AssignmentDetails/AssignmentDetails";
-import MySubmittedAssignment from "../Pages/MySubmittedAssignment/MySubmittedAssignment";
+import MySubmittedAssignments from "../Pages/MySubmittedAssignments/MySubmittedAssignments";
+import PendingAssignment from "../Pages/PendingAssignment/PendingAssignment";
+import GiveMark from "../Pages/GiveMark/GiveMark";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +61,7 @@ const router = createBrowserRouter([
         path: "updateAssignment/:id",
         element: <UpdateAssignments />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/assignments/${params.id}`),
+          fetch(`http://localhost:5000/specificAssignment/${params.id}`),
       },
       {
         path: "assignmentDetails/:id",
@@ -69,15 +71,27 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/assignments/${params.id}`),
+          fetch(`http://localhost:5000/specificAssignment/${params.id}`),
       },
       {
-        path: "mySubmittedAssignment",
+        path: "mySubmittedAssignments",
         element: (
           <PrivateRoute>
-            <MySubmittedAssignment />
+            <MySubmittedAssignments />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "pendingAssignments",
+        element: <PendingAssignment />,
+      },
+      {
+        path: "giveMark/:id",
+        element: <GiveMark />,
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:5000/specificSubmittedAssignment/${params.id}`
+          ),
       },
     ],
   },

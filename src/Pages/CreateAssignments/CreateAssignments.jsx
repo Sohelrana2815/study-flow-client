@@ -32,12 +32,9 @@ const CreateAssignments = () => {
             date: data.date,
           };
 
-          const assignmentRes = await axiosPublic.post(
-            "/assignments",
-            assignment
-          );
+          const res = await axiosPublic.post("/addAssignment", assignment);
 
-          if (assignmentRes.data?.insertedId) {
+          if (res.data?.insertedId) {
             toast.success("Assignment submitted successfully!");
             resetForm();
           } else {

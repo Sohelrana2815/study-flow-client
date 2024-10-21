@@ -40,6 +40,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/assignments">All Assignments</NavLink>
       </li>
+      <li>
+        <NavLink to="/pendingAssignments">Pending Assignments</NavLink>
+      </li>
       {user ? null : (
         <>
           <li>
@@ -112,6 +115,11 @@ const Navbar = () => {
                     >
                       Logout
                     </a>
+                  </li>
+                  <li>
+                    <Link to={"/mySubmittedAssignments"}>
+                      <p>My Submitted Assignment</p>
+                    </Link>
                   </li>
                 </ul>
               </div>

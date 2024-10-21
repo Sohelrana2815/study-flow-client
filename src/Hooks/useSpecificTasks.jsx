@@ -9,7 +9,7 @@ const useSpecificTasks = () => {
   const { data: task = [], refetch } = useQuery({
     queryKey: ["task", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/tasks?email=${user.email}`);
+      const res = await axiosPublic.get(`/myStudyTasks?email=${user.email}`);
       return res.data;
     },
   });

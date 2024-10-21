@@ -8,7 +8,7 @@ const useAssignments = (difficultyLevel) => {
     queryKey: ["assignment", difficultyLevel],
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/assignments?difficultyLevel=${difficultyLevel}`
+        `/assignmentLevel?difficultyLevel=${difficultyLevel}`
       );
       return res.data;
     },

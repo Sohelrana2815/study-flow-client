@@ -22,7 +22,7 @@ const StudyTasksCard = ({ singleTask }) => {
       confirmButtonText: "Yes Completed!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.patch(`/tasks/${task._id}`).then((res) => {
+        axiosPublic.patch(`/updateStudyTask/${task._id}`).then((res) => {
           if (res.data.modifiedCount > 0) {
             refetch();
             Swal.fire({
@@ -48,7 +48,7 @@ const StudyTasksCard = ({ singleTask }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/tasks/${id}`).then((res) => {
+        axiosPublic.delete(`/deleteStudyTask/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
@@ -75,7 +75,7 @@ const StudyTasksCard = ({ singleTask }) => {
   } = singleTask;
 
   return (
-    <div className="card card-compact bg-base-100 w-full shadow-xl">
+    <div className="card card-compact  bg-base-100 w-full shadow-xl">
       <figure className="h-48 overflow-hidden">
         {" "}
         {/* Fixed height for images */}

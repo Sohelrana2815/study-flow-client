@@ -48,7 +48,7 @@ const StudyTasksForm = () => {
             description: data.description,
             image: res.data.data.display_url,
           };
-          const studyRes = await axiosPublic.post("/tasks", studyTask);
+          const studyRes = await axiosPublic.post("/addStudyTask", studyTask);
           if (studyRes.data.insertedId) {
             toast.success("Task added successfully!", {
               position: "top-right",
