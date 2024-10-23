@@ -56,14 +56,13 @@ const AssignmentDetails = () => {
   }
   return (
     <>
-      <Toaster />
       <div className="hero bg-base-200 min-h-screen px-5">
         <div className="hero-content flex-col ">
-          <p className="flex items-center gap-2 text-green-500 text-lg">
+          <p className="flex items-center gap-2 text-[#091057] text-lg">
             {" "}
             Mark : {marks}
           </p>
-          <p className="text-warning">
+          <p className="text-[#024CAA] text-lg font-semibold">
             Difficulty Level : {difficultyLevel.toUpperCase()}
           </p>
           <img
@@ -71,12 +70,14 @@ const AssignmentDetails = () => {
             className="max-w-xs lg:max-w-lg md:max-w-md rounded-lg shadow-2xl"
           />
           <div>
-            <h1 className="text-xl font-bold">Title : {title}</h1>
+            <h1 className="text-xl font-bold text-[#091057]">
+              Title : {title}
+            </h1>
             <div className="space-y-5 mt-6">
-              <p>{description.slice(0, 600)}....</p>
+              <p className="text-[#091057]">{description.slice(0, 600)}....</p>
 
-              <p>
-                Posted date :<span className="text-info"> {date}</span>
+              <p className="text-[#091057]">
+                Posted date :<span className="text-[#091057]"> {date}</span>
               </p>
               <button
                 className="btn bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-all duration-300 text-white rounded-lg"
@@ -154,6 +155,7 @@ const AssignmentDetails = () => {
           </div>
         </dialog>
       </div>
+      <Toaster />
     </>
   );
 };

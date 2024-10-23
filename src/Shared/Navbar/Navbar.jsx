@@ -32,27 +32,16 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="about">About</NavLink>
+        <NavLink to="about">404 Page</NavLink>
       </li>
-      <li>
-        <NavLink to="/createAssignments">Create Assignments</NavLink>
-      </li>
+      {user ? (
+        <li>
+          <NavLink to="/createAssignments">Create Assignments</NavLink>
+        </li>
+      ) : null}
       <li>
         <NavLink to="/assignments">All Assignments</NavLink>
       </li>
-      <li>
-        <NavLink to="/pendingAssignments">Pending Assignments</NavLink>
-      </li>
-      {user ? null : (
-        <>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
-          <li>
-            <NavLink to="/signUp">Sign Up</NavLink>
-          </li>
-        </>
-      )}
     </>
   );
 
@@ -62,7 +51,7 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <IoMenuSharp className="lg:text-3xl text-lg" />
+              <IoMenuSharp className="md:text-2xl text-xl" />
             </div>
             <ul
               tabIndex={0}
@@ -71,12 +60,14 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <Link>
-            <div className="btn btn-ghost text-xl">
-              <div className="flex items-center">
-                <IoBookSharp className="text-green-500 text-sm lg:text-2xl" />
-                <span className="text-sm ml-2 "> Study Flow</span>
-              </div>
+          <Link to="/">
+            <div className="flex items-center gap-4">
+              <p>
+                <IoBookSharp className="text-[#161D6F] md:text-2xl " />
+              </p>
+              <p className="text-sm md:text-xl text-[#001F3F] lg:text-2xl lg:ml-4 font-semibold font-serif ">
+                Study Flow
+              </p>
             </div>
           </Link>
         </div>
@@ -97,9 +88,13 @@ const Navbar = () => {
                   <div className="avatar placeholder">
                     <div className="bg-neutral text-neutral-content w-10 rounded-full">
                       <p>
-                        {user?.displayName
-                          ? user.displayName.slice(0, 1).toUpperCase()
-                          : ""}
+                        {user?.photoURL ? (
+                          <>
+                            <img src={user.photoURL} />
+                          </>
+                        ) : (
+                          <>{user.displayName.slice(0, 1).toUpperCase()}</>
+                        )}
                       </p>
                     </div>
                   </div>
@@ -109,17 +104,28 @@ const Navbar = () => {
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box  z-[1] mt-3 w-52 p-2 shadow "
                 >
                   <li>
+                    <Link
+                      className="hover:bg-gradient-to-r from-[#A0D683] to-[#4CAF50] hover:text-white"
+                      to={"/mySubmittedAssignments"}
+                    >
+                      <p>My Submitted Assignment</p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="hover:bg-gradient-to-r from-[#A0D683] to-[#4CAF50] hover:text-white"
+                      to={"/pendingAssignments"}
+                    >
+                      <p>Pending Assignments</p>
+                    </Link>
+                  </li>
+                  <li>
                     <a
-                      className="hover:bg-success hover:text-white"
+                      className="hover:bg-gradient-to-r from-[#C62E2E] to-[#4b0082] hover:text-white"
                       onClick={handleLogout}
                     >
                       Logout
                     </a>
-                  </li>
-                  <li>
-                    <Link to={"/mySubmittedAssignments"}>
-                      <p>My Submitted Assignment</p>
-                    </Link>
                   </li>
                 </ul>
               </div>

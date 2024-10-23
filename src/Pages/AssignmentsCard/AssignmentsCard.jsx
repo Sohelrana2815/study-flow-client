@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { FaEye, FaPen, FaTrashCan } from "react-icons/fa6";
+import SkeletonWrapper from "../../Utility/SkeletonWrapper";
+import useLoading from "../../Hooks/useLoading";
 const AssignmentsCard = ({ assignment, onDelete }) => {
   const axiosSecure = useAxiosSecure();
-  const { title, imageURL, email } = assignment;
+  const { title, imageURL, name } = assignment;
+  const loading = useLoading();
 
   const handleDeleteAssignment = (assignment) => {
     Swal.fire({
@@ -70,33 +73,46 @@ const AssignmentsCard = ({ assignment, onDelete }) => {
   };
 
   return (
-    <div className="card bg-base-100 w-96 shadow-xl">
+    <div className="card bg-base-100  shadow-xl">
       <figure className="px-10 pt-10">
-        <img src={imageURL} alt="Shoes" className="rounded-xl" />
+        <SkeletonWrapper loading={loading} width={370} height={180}>
+          <img src={imageURL} alt="Shoes" className="rounded-xl" />
+        </SkeletonWrapper>
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Title : {title}</h2>
-        <p>Author : {email}</p>
-        <div className="flex justify-evenly">
-          <Link to={`/assignmentDetails/${assignment._id}`}>
-            <button className="btn  btn-success">
-              <FaEye />
-            </button>
-          </Link>
+        <h2 className="card-title text-[#091057]">
+          <SkeletonWrapper loading={loading} height={30} width={120}>
+            Title : {title}
+          </SkeletonWrapper>
+        </h2>
+        <p className="text-[#091057]">
+          <SkeletonWrapper loading={loading} width={100} height={25}>
+            Author : {name}
+          </SkeletonWrapper>
+        </p>
 
-          <button
-            onClick={() => handleDeleteAssignment(assignment)}
-            className="btn bg-red-600 text-white"
-          >
-            <FaTrashCan />
-          </button>
+        <SkeletonWrapper loading={loading} height={20} width={150}>
+          <div className="flex justify-evenly">
+            <Link to={`/assignmentDetails/${assignment._id}`}>
+              <button className="btn  bg-gradient-to-r from-[#091057] to-[#0d6efd] text-white">
+                <FaEye />
+              </button>
+            </Link>
 
-          <Link to={`/updateAssignment/${assignment._id}`}>
-            <button className="btn  btn-warning">
-              <FaPen />
+            <button
+              onClick={() => handleDeleteAssignment(assignment)}
+              className="btn bg-gradient-to-r from-[#C62E2E] to-[#2C2C2C] text-white"
+            >
+              <FaTrashCan />
             </button>
-          </Link>
-        </div>
+
+            <Link to={`/updateAssignment/${assignment._id}`}>
+              <button className="btn  bg-gradient-to-r from-[#A0D683] to-[#4CAF50]">
+                <FaPen />
+              </button>
+            </Link>
+          </div>
+        </SkeletonWrapper>
       </div>
     </div>
   );

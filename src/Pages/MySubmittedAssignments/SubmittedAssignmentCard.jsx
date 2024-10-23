@@ -2,13 +2,15 @@ import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useSubmittedAssignment from "../../Hooks/useSubmittedAssignment";
+import SkeletonWrapper from "../../Utility/SkeletonWrapper";
+import useLoading from "../../Hooks/useLoading";
 const SubmittedAssignmentCard = ({ submittedAssignment }) => {
   const axiosPublic = useAxiosPublic();
   const [, refetch] = useSubmittedAssignment();
 
   const { title, marks, status, feedback, imageURL, obtainedMark, _id } =
     submittedAssignment;
-
+  const loading = useLoading();
   const handleDeleteMarkedAssignment = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -38,20 +40,29 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
     <>
       {status === "pending" ? (
         <>
-          <div className="card bg-base-100 w-96 shadow-xl">
+          <div className="card bg-base-100 shadow-xl">
             <figure>
-              <img src={imageURL} alt="Shoes" />
+              <SkeletonWrapper loading={loading} width={380} height={180}>
+                <img src={imageURL} alt="Shoes" />
+              </SkeletonWrapper>
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{title}</h2>
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline badge-lg">
-                  Assignment Marks : {marks}
+              <h2 className="card-title">
+                <SkeletonWrapper loading={loading} width={300} height={20}>
+                  {title}
+                </SkeletonWrapper>
+              </h2>
+              <SkeletonWrapper loading={loading} width={300} height={30}>
+                <div className="card-actions justify-between">
+                  <div className="badge badge-outline text-[#091057] font-semibold  badge-lg">
+                    Assignment Marks : {marks}
+                  </div>
+                  <div className="badge badge-outline md:mt-0 mt-2 badge-lg bg-gradient-to-r from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent ">
+                    {status}
+                    <span className="loading loading-ball loading-lg  text-[#EC8305]"></span>
+                  </div>
                 </div>
-                <div className="badge badge-outline badge-lg text-red-500 ">
-                  {status}.....
-                </div>
-              </div>
+              </SkeletonWrapper>
             </div>
           </div>
         </>

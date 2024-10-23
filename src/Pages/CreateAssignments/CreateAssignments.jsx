@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 const CreateAssignments = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
@@ -50,10 +51,15 @@ const CreateAssignments = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Create Assignment Page</title>
+      </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col w-full">
           <div className="text-center lg:text-left ">
-            <h1 className="text-5xl font-bold">Create An Assignment</h1>
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-semibold text-[#091057] font-serif">
+              Create An Assignment
+            </h1>
           </div>
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
             <form onSubmit={formik.handleSubmit} className="card-body">
@@ -162,14 +168,17 @@ const CreateAssignments = () => {
                     onChange={(date) => formik.setFieldValue("date", date)}
                     dateFormat="dd/MM/yyyy" // you can customize
                     placeholderText="Select Due Date"
-                    className="input input-bordered"
+                    className="input input-bordered w-full"
                     required
                   />
                 </div>
               </div>
 
               <div className="form-control mt-6">
-                <button type="submit" className="btn text-white btn-primary">
+                <button
+                  type="submit"
+                  className="btn text-white bg-gradient-to-r from-[#091057] to-[#0d6efd]"
+                >
                   Submit This Assignment
                 </button>
               </div>

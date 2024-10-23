@@ -44,7 +44,7 @@ const UpdateAssignments = () => {
             toast.success("Assignment Updated successfully!");
             resetForm();
           } else {
-            toast.error("Update failed. Please check your details.");
+            toast.error("Update failed. Please check it and try again.");
           }
         }
       } catch (error) {
@@ -55,11 +55,12 @@ const UpdateAssignments = () => {
 
   return (
     <>
-      <Toaster />
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col w-full">
           <div className="text-center lg:text-left ">
-            <h1 className="text-5xl font-bold">Update An Assignment</h1>
+            <h1 className="lg:text-3xl font-serif md:text-2xl font-bold text-[#091057] ">
+              Update An Assignment
+            </h1>
           </div>
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
             <form onSubmit={formik.handleSubmit} className="card-body">
@@ -170,7 +171,10 @@ const UpdateAssignments = () => {
                 </div>
               </div>
               <div className="form-control mt-6">
-                <button type="submit" className="btn text-white btn-primary">
+                <button
+                  type="submit"
+                  className="btn text-white bg-gradient-to-r from-[#0d6efd] to-black"
+                >
                   Update Assignment
                 </button>
               </div>
@@ -178,6 +182,7 @@ const UpdateAssignments = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };

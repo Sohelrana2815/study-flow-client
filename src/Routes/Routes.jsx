@@ -48,6 +48,7 @@ const router = createBrowserRouter([
             <Assignments />
           </PrivateRoute>
         ),
+        loader: () => fetch("http://localhost:5000/assignmentsCount"),
       },
       {
         path: "createAssignments",
@@ -83,7 +84,11 @@ const router = createBrowserRouter([
       },
       {
         path: "pendingAssignments",
-        element: <PendingAssignment />,
+        element: (
+          <PrivateRoute>
+            <PendingAssignment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "giveMark/:id",
