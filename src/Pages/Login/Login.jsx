@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import { useState } from "react";
 
 const Login = () => {
   const { loginUser } = useAuth();
@@ -10,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   console.log("Login Page - location state:", location.state);
   const from = location.state?.from?.pathname || "/";
-
+  const [error, setError] = useState("");
   // Formik hook , initial form values and a submit function for
   // grab form data when submitted
 
@@ -37,6 +38,7 @@ const Login = () => {
         }
       } catch (error) {
         console.error("Error creating user:", error);
+        setError("Invalid email or password. Please try again.");
       }
     },
   });
@@ -84,6 +86,7 @@ const Login = () => {
                 required
               />
             </div>
+            {error && <p className="text-red-500 text-center">{error}</p>}
             <button type="submit" className="btn text-white btn-primary w-full">
               Login
             </button>

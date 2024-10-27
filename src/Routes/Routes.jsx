@@ -48,7 +48,7 @@ const router = createBrowserRouter([
             <Assignments />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/assignmentsCount"),
+        loader: () => fetch("https://study-flow-server.vercel.app/assignmentsCount"),
       },
       {
         path: "createAssignments",
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
         path: "updateAssignment/:id",
         element: <UpdateAssignments />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/specificAssignment/${params.id}`),
+          fetch(`https://study-flow-server.vercel.app/specificAssignment/${params.id}`),
       },
       {
         path: "assignmentDetails/:id",
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/specificAssignment/${params.id}`),
+          fetch(`https://study-flow-server.vercel.app/specificAssignment/${params.id}`),
       },
       {
         path: "mySubmittedAssignments",
@@ -92,10 +92,14 @@ const router = createBrowserRouter([
       },
       {
         path: "giveMark/:id",
-        element: <GiveMark />,
+        element: (
+          <PrivateRoute>
+            <GiveMark />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/specificSubmittedAssignment/${params.id}`
+            `https://study-flow-server.vercel.app/specificSubmittedAssignment/${params.id}`
           ),
       },
     ],

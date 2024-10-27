@@ -8,13 +8,13 @@ import { Helmet } from "react-helmet";
 
 const Assignments = () => {
   const { count } = useLoaderData();
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
   const loading = useLoading();
 
   const numberOfPages = Math.ceil(count / itemsPerPage);
 
-  const pages = [...Array(numberOfPages).keys()];
+  const pages = [...Array(numberOfPages).keys()].map((num) => num + 1);
 
   const [difficultyLevel, setDifficultyLevel] = useState("");
   const [assignments, refetch] = useAssignments(
@@ -35,17 +35,17 @@ const Assignments = () => {
   const handleItemsPerPage = (e) => {
     const value = parseInt(e.target.value);
     setItemsPerPage(value);
-    setCurrentPage(0);
+    setCurrentPage(1);
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 0) {
+    if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
   const handleNextPage = () => {
-    if (currentPage < pages.length - 1) {
+    if (currentPage < pages.length) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -119,10 +119,10 @@ const Assignments = () => {
             value={itemsPerPage}
             onChange={handleItemsPerPage}
           >
+            <option value="3">3</option>
             <option value="6">6</option>
+            <option value="9">9</option>
             <option value="12">12</option>
-            <option value="18">18</option>
-            <option value="24">24</option>
           </select>
         </SkeletonWrapper>
       </div>

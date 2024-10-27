@@ -7,7 +7,7 @@ const useAssignments = (difficultyLevel, currentPage, itemsPerPage) => {
     queryKey: ["assignment", difficultyLevel, currentPage, itemsPerPage],
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/assignmentLevel?difficultyLevel=${difficultyLevel}&currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`
+        `/assignmentLevel?difficultyLevel=${difficultyLevel}&currentPage=${currentPage-1}&itemsPerPage=${itemsPerPage}`
       );
       return res.data;
     },

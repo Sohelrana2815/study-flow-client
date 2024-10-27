@@ -13,7 +13,7 @@ const PrivateRoute = ({ children }) => {
     return children;
   }
   console.log("Redirecting to login, from:", location);
-  return <Navigate to="/login" state={{ from: location }} />;
+  return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 PrivateRoute.propTypes = {

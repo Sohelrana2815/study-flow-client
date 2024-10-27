@@ -1,12 +1,11 @@
 import { useFormik } from "formik";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast, { Toaster } from "react-hot-toast";
-import { FaCheckCircle } from "react-icons/fa";
 const AssignmentDetails = () => {
   const assignmentData = useLoaderData();
-
+  const navigate = useNavigate();
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
@@ -41,6 +40,9 @@ const AssignmentDetails = () => {
             // Close the modal after submission
             document.getElementById("assignment_modal").close();
             resetForm();
+            setTimeout(() => {
+              navigate("/mySubmittedAssignments");
+            }, 1500);
           } else {
             toast.error("Failed to submit the assignment");
           }

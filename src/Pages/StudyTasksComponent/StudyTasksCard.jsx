@@ -3,14 +3,12 @@ import { LuClock2 } from "react-icons/lu";
 import { TbCategoryPlus } from "react-icons/tb";
 import { GiLevelEndFlag } from "react-icons/gi";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import useSpecificTasks from "../../Hooks/useSpecificTasks";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useLoading from "../../Hooks/useLoading";
 import "react-loading-skeleton/dist/skeleton.css";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
-const StudyTasksCard = ({ singleTask }) => {
-  const [, refetch] = useSpecificTasks();
+const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   const axiosPublic = useAxiosPublic();
   const loading = useLoading();
   const handleCompleted = (task) => {
@@ -26,10 +24,9 @@ const StudyTasksCard = ({ singleTask }) => {
       if (result.isConfirmed) {
         axiosPublic.patch(`/updateStudyTask/${task._id}`).then((res) => {
           if (res.data.modifiedCount > 0) {
-            refetch();
+            onUpdate();
             Swal.fire({
-              title: "Updated!",
-              text: ` is new admin`,
+              title: "Great Job!",
               icon: "success",
             });
           }
@@ -42,7 +39,6 @@ const StudyTasksCard = ({ singleTask }) => {
     console.log(id);
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -52,11 +48,11 @@ const StudyTasksCard = ({ singleTask }) => {
       if (result.isConfirmed) {
         axiosPublic.delete(`/deleteStudyTask/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
-            refetch();
+            onDelete();
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Removed successfully!",
               showConfirmButton: false,
               timer: 1500,
             });

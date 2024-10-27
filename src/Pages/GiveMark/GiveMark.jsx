@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import toast, { Toaster } from "react-hot-toast";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
 import useLoading from "../../Hooks/useLoading";
+import Swal from "sweetalert2";
 
 const GiveMark = () => {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const submittedAssignment = useLoaderData();
   const { pdfLink, quickNote, _id, marks } = useLoaderData();
@@ -26,7 +27,14 @@ const GiveMark = () => {
       assignmentResult
     );
     if (res.data.modifiedCount > 0) {
-      toast.success("Assignment Result Submitted!");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Assignment's Mark submitted successfully! ",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+      navigate("/pendingAssignments");
     }
   };
 
@@ -99,7 +107,6 @@ const GiveMark = () => {
           </div>
         </div>
       </div>
-      <Toaster />
     </>
   );
 };

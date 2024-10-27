@@ -2,7 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import { IoBookSharp, IoMenuSharp } from "react-icons/io5";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import usePendingAssignment from "../../Hooks/usePendingAssignment";
+import useSubmittedAssignment from "../../Hooks/useSubmittedAssignment";
 const Navbar = () => {
+  const [pendingAssignments] = usePendingAssignment();
+  const [submittedAssignments] = useSubmittedAssignment();
   const { logout, user, loading } = useAuth();
 
   const handleLogout = () => {
@@ -30,9 +34,6 @@ const Navbar = () => {
     <>
       <li>
         <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="about">404 Page</NavLink>
       </li>
       {user ? (
         <li>
@@ -87,7 +88,7 @@ const Navbar = () => {
                 >
                   <div className="avatar placeholder">
                     <div className="bg-neutral text-neutral-content w-10 rounded-full">
-                      <p>
+                      <div>
                         {user?.photoURL ? (
                           <>
                             <img src={user.photoURL} />
@@ -95,7 +96,7 @@ const Navbar = () => {
                         ) : (
                           <>{user.displayName.slice(0, 1).toUpperCase()}</>
                         )}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -118,6 +119,9 @@ const Navbar = () => {
                     >
                       <p>Pending Assignments</p>
                     </Link>
+                  </li>
+                  <li>
+                    <NavLink to="about">404 Page</NavLink>
                   </li>
                   <li>
                     <a

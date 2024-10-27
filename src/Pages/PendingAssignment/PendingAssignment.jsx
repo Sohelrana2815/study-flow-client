@@ -18,7 +18,7 @@ const PendingAssignment = () => {
         It will be an Admin Page Soon....
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-16 px-5">
-      <Helmet>
+        <Helmet>
           <title>Pending Assignments </title>
         </Helmet>
         {pendingAssignments.map((pendingAssignment) => (

@@ -1,5 +1,5 @@
 import DatePicker from "react-datepicker";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { useFormik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
@@ -7,6 +7,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const UpdateAssignments = () => {
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const { user } = useAuth();
   const { title, _id, description, marks, imageURL, difficultyLevel, date } =
@@ -41,8 +42,13 @@ const UpdateAssignments = () => {
           );
 
           if (res.data?.modifiedCount > 0) {
-            toast.success("Assignment Updated successfully!");
+            toast.success("Assignment Updated successfully!", {
+              duration: 2000,
+            });
             resetForm();
+            setTimeout(() => {
+              navigate("/assignments");
+            }, 2000);
           } else {
             toast.error("Update failed. Please check it and try again.");
           }
