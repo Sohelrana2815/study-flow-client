@@ -40,13 +40,13 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
     <>
       {status === "pending" ? (
         <>
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-base-100 shadow-xl  dark:shadow-green-500">
             <figure>
               <SkeletonWrapper loading={loading} width={380} height={180}>
                 <img src={imageURL} alt="Shoes" />
               </SkeletonWrapper>
             </figure>
-            <div className="card-body">
+            <div className="card-body dark:bg-gray-900 dark:rounded-b-lg">
               <h2 className="card-title">
                 <SkeletonWrapper loading={loading} width={300} height={20}>
                   {title}
@@ -54,12 +54,12 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
               </h2>
               <SkeletonWrapper loading={loading} width={300} height={30}>
                 <div className="card-actions justify-between">
-                  <div className="badge badge-outline text-[#091057] font-semibold  badge-lg">
+                  <div className="badge badge-outline text-[#091057] dark:text-white  font-semibold  badge-lg">
                     Assignment Marks : {marks}
                   </div>
-                  <div className="badge badge-outline md:mt-0 mt-2 badge-lg bg-gradient-to-r from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent ">
-                    {status}
-                    <span className="loading loading-ball loading-lg  text-[#EC8305]"></span>
+                  <div className="badge badge-outline md:mt-0 mt-2 badge-lg bg-gradient-to-r  from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent ">
+                    <span className="dark:text-sky-200"> {status}</span>
+                    <span className="loading loading-ball loading-lg  text-[#EC8305] dark:text-white"></span>
                   </div>
                 </div>
               </SkeletonWrapper>

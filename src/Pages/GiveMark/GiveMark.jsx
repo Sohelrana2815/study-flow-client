@@ -40,23 +40,23 @@ const GiveMark = () => {
 
   return (
     <>
-      <div className="hero bg-base-200 min-h-screen">
+      <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-xl">
         <div className="hero-content flex-col w-full">
           <SkeletonWrapper loading={loading} width={240} height={50}>
-            <h2 className="text-center text-[#091057] border border-[#091057] p-2 rounded-xl">
+            <h2 className="text-center text-[#091057] border border-[#091057] p-2 rounded-xl dark:text-white dark:border-white">
               Assignment Marks : {marks}
             </h2>
           </SkeletonWrapper>
 
           <SkeletonWrapper loading={loading} width={500} height={50}>
-            <div className="text-center">
-              <span className="text-xl text-[#091057] text-center">
+            <div className="text-center ">
+              <span className="text-xl text-[#091057] text-center dark:text-white">
                 Assignment Doc :{" "}
               </span>
-              <a href={pdfLink} className="text-xl link text-[#091057]">
+              <a href={pdfLink} className="text-xl link dark:text-white text-[#091057]">
                 {pdfLink.slice(0, 30)}......
               </a>
-              <p className="py-6 text-[#091057]">Quick Note : {quickNote}</p>
+              <p className="py-6 dark:text-white text-[#091057]">Quick Note : {quickNote}</p>
             </div>
           </SkeletonWrapper>
 
@@ -85,7 +85,7 @@ const GiveMark = () => {
                   <textarea
                     placeholder="Give feedback"
                     name="feedback"
-                    className="textarea text-base textarea-primary"
+                    className="textarea dark:text-black text-base textarea-primary"
                     required
                   />
                 </div>

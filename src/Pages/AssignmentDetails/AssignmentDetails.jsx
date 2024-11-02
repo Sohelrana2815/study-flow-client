@@ -60,29 +60,29 @@ const AssignmentDetails = () => {
     <>
       <div className="hero bg-base-200 dark:bg-gray-800 rounded-lg min-h-screen px-5">
         <div className="hero-content flex-col ">
-          <p className="flex items-center gap-2 text-[#091057] text-lg">
+          <p className="flex items-center gap-2 text-[#091057] text-lg dark:text-white">
             {" "}
             Mark : {marks}
           </p>
-          <p className="text-[#024CAA] text-lg font-semibold">
+          <p className="text-[#024CAA] dark:text-white text-lg font-semibold">
             Difficulty Level : {difficultyLevel.toUpperCase()}
           </p>
           <img
             src={imageURL}
-            className="max-w-xs lg:max-w-lg md:max-w-md rounded-lg shadow-2xl"
+            className="max-w-xs dark:text-white lg:max-w-lg md:max-w-md rounded-lg shadow-2xl"
           />
           <div>
-            <h1 className="text-xl font-bold text-[#091057]">
+            <h1 className="text-xl font-bold dark:text-white text-[#091057]">
               Title : {title}
             </h1>
             <div className="space-y-5 mt-6">
-              <p className="text-[#091057]">{description.slice(0, 600)}....</p>
+              <p className="text-[#091057] dark:text-white">{description.slice(0, 600)}....</p>
 
-              <p className="text-[#091057]">
-                Posted date :<span className="text-[#091057]"> {date}</span>
+              <p className="text-[#091057] dark:text-white">
+                Posted date :<span className="text-[#091057] dark:text-white"> {date}</span>
               </p>
               <button
-                className="btn bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-all duration-300 text-white rounded-lg"
+                className="btn bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-all duration-300 text-white rounded-lg border-none"
                 onClick={() =>
                   document.getElementById("assignment_modal").showModal()
                 }
@@ -130,7 +130,7 @@ const AssignmentDetails = () => {
                   onChange={formik.handleChange}
                   value={formik.values.quickNote}
                   placeholder="Enter a quick note"
-                  className="textarea textarea-bordered"
+                  className="textarea textarea-bordered dark:text-black"
                   required
                 ></textarea>
               </div>
