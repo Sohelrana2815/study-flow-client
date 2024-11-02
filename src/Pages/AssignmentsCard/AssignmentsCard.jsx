@@ -73,19 +73,19 @@ const AssignmentsCard = ({ assignment, onDelete }) => {
   };
 
   return (
-    <div className="card bg-base-100  shadow-xl">
-      <figure className="px-10 pt-10">
+    <div className="card  bg-base-100 dark:shadow-green-400 dark:shadow-lg shadow-xl">
+      <figure className="px-10 pt-10 h-[280px]">
         <SkeletonWrapper loading={loading} width={370} height={180}>
           <img src={imageURL} alt="Shoes" className="rounded-xl" />
         </SkeletonWrapper>
       </figure>
-      <div className="card-body">
-        <h2 className="card-title text-[#091057]">
+      <div className="card-body dark:bg-gray-900">
+        <h2 className="card-title text-[#091057] dark:text-white">
           <SkeletonWrapper loading={loading} height={30} width={120}>
             Title : {title}
           </SkeletonWrapper>
         </h2>
-        <p className="text-[#091057]">
+        <p className="text-[#091057] dark:text-white">
           <SkeletonWrapper loading={loading} width={100} height={25}>
             Author : {name}
           </SkeletonWrapper>

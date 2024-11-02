@@ -54,10 +54,10 @@ const CreateAssignments = () => {
       <Helmet>
         <title>Create Assignment Page</title>
       </Helmet>
-      <div className="hero bg-base-200 min-h-screen">
+      <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-lg">
         <div className="hero-content flex-col w-full">
           <div className="text-center lg:text-left ">
-            <h1 className="lg:text-3xl md:text-2xl text-xl font-semibold text-[#091057] font-serif">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-semibold text-[#091057] font-serif dark:text-white">
               Create An Assignment
             </h1>
           </div>
@@ -150,7 +150,7 @@ const CreateAssignments = () => {
                     name="difficultyLevel"
                     onChange={formik.handleChange}
                     value={formik.values.difficultyLevel}
-                    className="select select-bordered w-full"
+                    className="select select-bordered w-full dark:bg-gray-800"
                   >
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
@@ -168,7 +168,7 @@ const CreateAssignments = () => {
                     onChange={(date) => formik.setFieldValue("date", date)}
                     dateFormat="dd/MM/yyyy" // you can customize
                     placeholderText="Select Due Date"
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full dark:bg-gray-800"
                     required
                   />
                 </div>

@@ -73,7 +73,7 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   } = singleTask;
 
   return (
-    <div className="card card-compact  bg-base-100 w-full shadow-xl my-16">
+    <div className="card card-compact dark:bg-gray-900  bg-base-100 w-full shadow-xl my-16 dark:shadow-xl dark:shadow-green-500">
       <figure className="h-48 overflow-hidden">
         <SkeletonWrapper loading={loading} height={192} width={500}>
           <img

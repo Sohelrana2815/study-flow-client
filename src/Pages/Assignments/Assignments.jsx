@@ -51,7 +51,7 @@ const Assignments = () => {
   };
 
   if (!assignments) {
-    return <p>No Assignment.....</p>;
+    return <p className="dark:text-white">No Assignment.....</p>;
   }
   return (
     <>
@@ -60,7 +60,7 @@ const Assignments = () => {
       </Helmet>
       <SkeletonWrapper loading={loading} width={250} height={35}>
         <div className="mb-4 mt-16">
-          <label className="text-[#091057] font-semibold text-lg">
+          <label className="text-[#091057] font-semibold text-lg dark:text-white">
             Filter by Difficulty Level :{" "}
           </label>
           <select
@@ -100,7 +100,7 @@ const Assignments = () => {
               className={
                 currentPage === page
                   ? "btn  btn-sm  bg-[#091057] text-white"
-                  : "btn btn-outline"
+                  : "btn btn-sm btn-outline dark:badge-outline dark:bg-slate-50 dark:text-black"
               }
               key={page}
               onClick={() => setCurrentPage(page)}

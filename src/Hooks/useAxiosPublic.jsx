@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://study-flow-server.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 
 const useAxiosPublic = () => {
@@ -11,3 +11,6 @@ const useAxiosPublic = () => {
 export default useAxiosPublic;
 //http://study-flow-server.vercel.app/
 // http://localhost:500
+
+
+

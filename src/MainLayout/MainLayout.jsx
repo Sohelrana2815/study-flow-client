@@ -5,13 +5,15 @@ import Footer from "../Shared/Footer/Footer";
 const MainLayout = () => {
   return (
     <>
-      <div className="max-w-screen-xl mx-auto min-h-screen flex flex-col px-4 mt-20">
-        <Navbar />
-        <div className="flex-grow">
-          <Outlet />
+      <div className="dark:bg-gray-900  dark:text-white transition-colors duration-300">
+        <div className="max-w-screen-xl mx-auto min-h-screen flex flex-col px-4 ">
+          <Navbar />
+          <div className="flex-grow">
+            <Outlet />
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

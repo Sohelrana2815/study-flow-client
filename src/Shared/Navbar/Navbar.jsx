@@ -2,12 +2,10 @@ import { Link, NavLink } from "react-router-dom";
 import { IoBookSharp, IoMenuSharp } from "react-icons/io5";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import usePendingAssignment from "../../Hooks/usePendingAssignment";
-import useSubmittedAssignment from "../../Hooks/useSubmittedAssignment";
+import useTheme from "../../Hooks/useTheme";
 const Navbar = () => {
-  const [pendingAssignments] = usePendingAssignment();
-  const [submittedAssignments] = useSubmittedAssignment();
   const { logout, user, loading } = useAuth();
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   const handleLogout = () => {
     Swal.fire({
@@ -32,23 +30,25 @@ const Navbar = () => {
   }
   const navLinks = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      {user ? (
+      <div className="lg:flex gap-2">
         <li>
-          <NavLink to="/createAssignments">Create Assignments</NavLink>
+          <NavLink to="/">Home</NavLink>
         </li>
-      ) : null}
-      <li>
-        <NavLink to="/assignments">All Assignments</NavLink>
-      </li>
+        {user ? (
+          <li>
+            <NavLink to="/createAssignments">Create Assignments</NavLink>
+          </li>
+        ) : null}
+        <li>
+          <NavLink to="/assignments">All Assignments</NavLink>
+        </li>
+      </div>
     </>
   );
 
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 dark:bg-gray-900 mt-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -56,7 +56,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow dark:bg-gray-900"
             >
               {navLinks}
             </ul>
@@ -64,9 +64,9 @@ const Navbar = () => {
           <Link to="/">
             <div className="flex items-center gap-4">
               <p>
-                <IoBookSharp className="text-[#161D6F] md:text-2xl " />
+                <IoBookSharp className="text-[#161D6F] md:text-2xl  dark:text-green-500" />
               </p>
-              <p className="text-sm md:text-xl text-[#001F3F] lg:text-2xl lg:ml-4 font-semibold font-serif ">
+              <p className="text-sm md:text-xl text-[#001F3F] lg:text-2xl lg:ml-4 font-semibold dark:text-white font-serif ">
                 Study Flow
               </p>
             </div>
@@ -75,19 +75,19 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end ">
           {user ? (
             <div>
               {/*  */}
 
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost btn-circle avatar"
+                  className="btn btn-ghost btn-circle avatar "
                 >
-                  <div className="avatar placeholder">
-                    <div className="bg-neutral text-neutral-content w-10 rounded-full">
+                  <div className="avatar placeholder ">
+                    <div className="bg-neutral text-neutral-content  w-10 rounded-full">
                       <div>
                         {user?.photoURL ? (
                           <>
@@ -102,7 +102,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box  z-[1] mt-3 w-52 p-2 shadow "
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box  z-[1] mt-3 w-52 p-2 dark:bg-gray-900 shadow "
                 >
                   <li>
                     <Link
@@ -140,6 +140,9 @@ const Navbar = () => {
               <button className="font-serif btn">Sign In</button>
             </Link>
           )}
+          <button onClick={toggleDarkMode} className="btn btn-primary">
+            {isDarkMode ? "Light Mode" : "Dark Mode"}
+          </button>
         </div>
       </div>
     </>

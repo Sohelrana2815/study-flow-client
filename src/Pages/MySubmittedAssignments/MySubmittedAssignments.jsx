@@ -6,7 +6,7 @@ const MySubmittedAssignments = () => {
   const [submittedAssignments] = useSubmittedAssignment();
   if (!submittedAssignments.length) {
     return (
-      <p className="text-[#091057] text-2xl mt-5 text-center font-serif ">
+      <p className="text-[#091057] text-2xl mt-5 text-center font-serif dark:text-white">
         You don&apos;t submit any assignment.....
       </p>
     );

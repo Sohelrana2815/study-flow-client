@@ -58,7 +58,7 @@ const AssignmentDetails = () => {
   }
   return (
     <>
-      <div className="hero bg-base-200 min-h-screen px-5">
+      <div className="hero bg-base-200 dark:bg-gray-800 rounded-lg min-h-screen px-5">
         <div className="hero-content flex-col ">
           <p className="flex items-center gap-2 text-[#091057] text-lg">
             {" "}

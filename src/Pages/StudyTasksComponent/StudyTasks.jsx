@@ -23,13 +23,13 @@ const StudyTasks = () => {
   return (
     <>
       <div>
-        <label className="text-[#091057] font-semibold text-lg">
+        <label className="text-[#091057] dark:text-white font-semibold text-lg">
           Filter by Priority Level :{" "}
         </label>
         <select
           onChange={handlePriorityLevel}
           value={priority}
-          className="select text-[#091057] select-bordered bg-[#EEEEEE] select-sm"
+          className="select  select-bordered  text-white  dark:bg-white dark:text-[#091057] bg-[#091057]  select-sm"
         >
           <option value="">All</option>
           <option value="low">Low</option>

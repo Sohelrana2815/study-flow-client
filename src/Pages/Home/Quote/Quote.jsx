@@ -22,7 +22,7 @@ const Quote = () => {
             backSpeed={30}
             loop={true}
             className="bg-gradient-to-r from-[#0d6efd] to-[#091057] bg-clip-text text-transparent md:text-2xl
-            text-xl lg:text-4xl font-bold"
+            text-xl lg:text-4xl font-bold dark:text-white"
           />
         ) : (
           ""
