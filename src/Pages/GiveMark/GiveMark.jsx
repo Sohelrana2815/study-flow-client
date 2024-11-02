@@ -53,10 +53,15 @@ const GiveMark = () => {
               <span className="text-xl text-[#091057] text-center dark:text-white">
                 Assignment Doc :{" "}
               </span>
-              <a href={pdfLink} className="text-xl link dark:text-white text-[#091057]">
+              <a
+                href={pdfLink}
+                className="text-xl link dark:text-white text-[#091057]"
+              >
                 {pdfLink.slice(0, 30)}......
               </a>
-              <p className="py-6 dark:text-white text-[#091057]">Quick Note : {quickNote}</p>
+              <p className="py-6 dark:text-white text-[#091057]">
+                Quick Note : {quickNote}
+              </p>
             </div>
           </SkeletonWrapper>
 

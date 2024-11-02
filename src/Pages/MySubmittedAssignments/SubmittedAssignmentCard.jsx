@@ -4,6 +4,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useSubmittedAssignment from "../../Hooks/useSubmittedAssignment";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
 import useLoading from "../../Hooks/useLoading";
+import { FaEye } from "react-icons/fa6";
 const SubmittedAssignmentCard = ({ submittedAssignment }) => {
   const axiosPublic = useAxiosPublic();
   const [, refetch] = useSubmittedAssignment();
@@ -46,7 +47,7 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
                 <img src={imageURL} alt="Shoes" />
               </SkeletonWrapper>
             </figure>
-            <div className="card-body dark:bg-gray-900 dark:rounded-b-lg">
+            <div className="card-body dark:bg-black dark:rounded-b-lg">
               <h2 className="card-title">
                 <SkeletonWrapper loading={loading} width={300} height={20}>
                   {title}
@@ -68,7 +69,7 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
         </>
       ) : (
         <>
-          <div className="card bg-base-100 w-full shadow-xl justify-center items-center space-y-5">
+          <div className="card bg-base-100 w-full shadow-xl justify-center dark:bg-black dark:shadow-green-500 py-5 items-center space-y-5">
             <p>{title.slice(0, 25)}...</p>
             <p className="text-green-500">{status.toUpperCase()}</p>
             <p className="text-white text-2xl">
@@ -77,17 +78,19 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
             {/*  */}
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <div className="mt-10">
-              <span
-                className="cursor-pointer"
-                onClick={() =>
-                  document.getElementById("my_modal_5").showModal()
-                }
-              >
-                View Examiner&apos;s Feedback
-              </span>
+              <div className="flex items-center gap-2">
+                <span>View Examiner&apos;s Feedback</span>
+                <span
+                  onClick={() =>
+                    document.getElementById("my_modal_5").showModal()
+                  }
+                >
+                  <FaEye className="text-xl cursor-pointer" />
+                </span>
+              </div>
               <dialog
                 id="my_modal_5"
-                className="modal modal-bottom sm:modal-middle"
+                className="modal dark:text-black modal-bottom sm:modal-middle"
               >
                 <div className="modal-box">
                   <h3 className="font-bold text-lg">
@@ -107,7 +110,7 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
               onClick={() => {
                 handleDeleteMarkedAssignment(_id);
               }}
-              className="btn btn-circle bg-red-600 text-white text-lg"
+              className="btn btn-circle bg-red-600 dark:border-none text-white text-lg"
             >
               <IoMdClose />
             </button>

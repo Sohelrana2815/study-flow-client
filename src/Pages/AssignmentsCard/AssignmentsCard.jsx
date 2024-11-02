@@ -79,7 +79,7 @@ const AssignmentsCard = ({ assignment, onDelete }) => {
           <img src={imageURL} alt="Shoes" className="rounded-xl" />
         </SkeletonWrapper>
       </figure>
-      <div className="card-body dark:bg-gray-900">
+      <div className="card-body dark:bg-black">
         <h2 className="card-title text-[#091057] dark:text-white">
           <SkeletonWrapper loading={loading} height={30} width={120}>
             Title : {title}

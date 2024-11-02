@@ -73,7 +73,7 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   } = singleTask;
 
   return (
-    <div className="card card-compact dark:bg-gray-900  bg-base-100 w-full shadow-xl my-16 dark:shadow-xl dark:shadow-green-500">
+    <div className="card card-compact dark:bg-black  bg-base-100 w-full shadow-xl my-16 dark:shadow-xl dark:shadow-green-500">
       <figure className="h-48 overflow-hidden">
         <SkeletonWrapper loading={loading} height={192} width={500}>
           <img
@@ -93,34 +93,34 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
         <div className="grid grid-cols-2 gap-2">
           <SkeletonWrapper loading={loading} width={80}>
             <p className="flex items-center gap-2">
-              <TbCategoryPlus className="text-xl text-[#1E3E62] " />{" "}
+              <TbCategoryPlus className="text-xl text-[#1E3E62] dark:text-green-500" />{" "}
               {subject.toUpperCase()}
             </p>
           </SkeletonWrapper>
           <SkeletonWrapper loading={loading} width={80}>
             <p className="flex items-center gap-2">
-              <GiLevelEndFlag className="text-xl text-[#1E3E62] " />
+              <GiLevelEndFlag className="text-xl dark:text-green-500 text-[#1E3E62] " />
               {priority.toUpperCase()}
             </p>
           </SkeletonWrapper>
 
           <SkeletonWrapper loading={loading} width={80}>
             <p className="flex items-center gap-2">
-              <LuClock2 className="text-xl text-[#1E3E62] " />
+              <LuClock2 className="text-xl dark:text-green-500 text-[#1E3E62] " />
               {estimatedTime}
             </p>
           </SkeletonWrapper>
 
           <SkeletonWrapper loading={loading} width={80}>
             <p className="flex items-center gap-2">
-              <FaRegCalendarAlt className="text-xl text-[#1E3E62] " />
+              <FaRegCalendarAlt className="text-xl dark:text-green-500 text-[#1E3E62] " />
               {date}
             </p>
           </SkeletonWrapper>
         </div>
         <SkeletonWrapper loading={loading} width={120}>
           <p className="mt-2 text-base">
-            <span className="text-[#1E3E62] text-base font-semibold">
+            <span className="text-[#1E3E62] text-base font-semibold dark:text-green-500">
               Description :{" "}
             </span>
             {description}
@@ -130,7 +130,7 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
           <SkeletonWrapper loading={loading} height={35} width={80}>
             <button
               onClick={() => handleDelete(_id)}
-              className="btn btn-sm bg-gradient-to-r from-[#C62E2E] to-[#2C2C2C] text-white"
+              className="btn btn-sm bg-gradient-to-r from-[#C62E2E] to-[#2C2C2C] text-white dark:border-none"
             >
               Remove
             </button>
@@ -140,15 +140,15 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
             <SkeletonWrapper loading={loading} height={35} width={80} />
           ) : (
             <>
-              <p className="text-lg text-center text-[#024CAA] ">---OR---</p>
+              <p className="text-lg dark:text-white text-center text-[#024CAA] ">---OR---</p>
               {singleTask.status === "completed" ? (
-                <p className="text-[#1E3E62]  text-lg">Completed</p>
+                <p className="text-[#1E3E62]  text-lg dark:text-green-500">Completed !</p>
               ) : (
                 <button
                   onClick={() => {
                     handleCompleted(singleTask);
                   }}
-                  className="btn btn-sm bg-gradient-to-r from-[#091057] to-[#0d6efd] text-white"
+                  className="btn btn-sm bg-gradient-to-r from-[#091057] to-[#0d6efd] dark:border-none text-white"
                 >
                   Pending...
                 </button>

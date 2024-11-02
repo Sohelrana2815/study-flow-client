@@ -13,7 +13,7 @@ const PendingAssignmentCard = ({ pendingAssignment }) => {
           <img src={imageURL} alt="car!" className="rounded-lg" />
         </SkeletonWrapper>
       </figure>
-      <div className="card-body dark:bg-gray-900">
+      <div className="card-body dark:bg-black">
         <h2 className="text-[#091057] dark:text-white">
           <SkeletonWrapper loading={loading} width={200} height={30}>
             Examinee Name : {name}
