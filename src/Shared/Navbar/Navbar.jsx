@@ -3,6 +3,8 @@ import { IoBookSharp, IoMenuSharp } from "react-icons/io5";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useTheme from "../../Hooks/useTheme";
+import { LuSun } from "react-icons/lu";
+import { GoMoon } from "react-icons/go";
 const Navbar = () => {
   const { logout, user, loading } = useAuth();
   const { isDarkMode, toggleDarkMode } = useTheme();
@@ -123,6 +125,7 @@ const Navbar = () => {
                   <li>
                     <NavLink to="about">404 Page</NavLink>
                   </li>
+
                   <li>
                     <a
                       className="hover:bg-gradient-to-r from-[#C62E2E] to-[#4b0082] hover:text-white"
@@ -140,8 +143,19 @@ const Navbar = () => {
               <button className="font-serif btn">Sign In</button>
             </Link>
           )}
-          <button onClick={toggleDarkMode} className="btn btn-primary">
-            {isDarkMode ? "Light Mode" : "Dark Mode"}
+          <button
+            className="dark:text-white text-black"
+            onClick={toggleDarkMode}
+          >
+            {/* this hidden checkbox controls the state */}
+
+            {isDarkMode ? (
+              // sun icon
+              <LuSun className="text-4xl" />
+            ) : (
+              // moon icon
+              <GoMoon className="text-3xl" />
+            )}
           </button>
         </div>
       </div>
