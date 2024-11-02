@@ -68,11 +68,11 @@ const StudyTasksForm = () => {
   });
   return (
     <>
-      <div className="hero bg-base-200 min-h-screen">
+      <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-xl">
         <div className="hero-content flex-col lg:flex-row w-full">
           <div className="text-center lg:text-left"></div>
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
-            <form className="card-body" onSubmit={formik.handleSubmit}>
+            <form className="card-body dark:text-black" onSubmit={formik.handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Task title */}
                 <div className="form-control">

@@ -61,15 +61,15 @@ const UpdateAssignments = () => {
 
   return (
     <>
-      <div className="hero bg-base-200 min-h-screen">
+      <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-lg">
         <div className="hero-content flex-col w-full">
           <div className="text-center lg:text-left ">
-            <h1 className="lg:text-3xl font-serif md:text-2xl font-bold text-[#091057] ">
+            <h1 className="lg:text-3xl font-serif md:text-2xl font-bold text-[#091057] dark:text-white ">
               Update An Assignment
             </h1>
           </div>
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
-            <form onSubmit={formik.handleSubmit} className="card-body">
+            <form onSubmit={formik.handleSubmit} className="card-body dark:text-black">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Assignment Title */}
                 <div className="form-control">
