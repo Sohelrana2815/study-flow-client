@@ -1,8 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
-import { FaHome, FaUsers } from "react-icons/fa";
-import Assignments from "../../Pages/Assignments/Assignments";
+import { FaHome } from "react-icons/fa";
 import { IoMenuSharp } from "react-icons/io5";
+import { PiStudent } from "react-icons/pi";
+import { GiTeacher } from "react-icons/gi";
+import { MdAssignment } from "react-icons/md";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -11,16 +13,15 @@ const Dashboard = () => {
       {isAdmin ? (
         <>
           <li>
-            <NavLink to="/dashboard/adminHome">
-              <FaHome />
+            <NavLink to="/dashboard/academyAdmin">
+              <GiTeacher />
               Teacher&apos;s Desk
             </NavLink>
           </li>
-
           <li>
-            <NavLink to="/dashboard/allUsers">
-              <FaUsers />
-              All Users
+            <NavLink to="/dashboard/academyAdmin">
+              <GiTeacher />
+              Teacher&apos;s Desk
             </NavLink>
           </li>
         </>
@@ -32,8 +33,9 @@ const Dashboard = () => {
       <div className="border border-primary hidden lg:block mr-2"></div>
       <>
         <li>
-          <NavLink to="/dashboard/userHome">
-            <FaHome /> User Home
+          <NavLink to="/dashboard/studentDashboard">
+            <PiStudent />
+            Student Dashboard
           </NavLink>
         </li>
       </>
@@ -47,8 +49,8 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/allAssignments">
-          <Assignments /> All Assignments
+        <NavLink to="/assignments">
+          <MdAssignment /> All Assignments
         </NavLink>
       </li>
     </>
@@ -69,7 +71,7 @@ const Dashboard = () => {
             </label>
           </div>
           <Link to="/">
-            <div className="mx-2 flex-1 px-2 btn btn-ghost">Glow Mart BD</div>
+            <div className="mx-2 flex-1 px-2 btn btn-ghost">Study Flow</div>
           </Link>
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal ">

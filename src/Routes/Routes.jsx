@@ -1,6 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../MainLayout/MainLayout";
-import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import StudyTasksForm from "../Pages/StudyTasksComponent/StudyTasksForm";
@@ -14,6 +12,11 @@ import MySubmittedAssignments from "../Pages/MySubmittedAssignments/MySubmittedA
 import PendingAssignment from "../Pages/PendingAssignment/PendingAssignment";
 import GiveMark from "../Pages/GiveMark/GiveMark";
 import Dashboard from "../Layout/Dashboard/Dashboard";
+import AdminRoute from "./AdminRoute/AdminRoute";
+import AcademyAdmin from "../Pages/Dashboard/AcademyAdmin/AcademyAdmin";
+import StudentDashboard from "../Pages/Dashboard/StudentDashboard/StudentDashboard";
+import Home from "../Pages/Home/Home/Home";
+import MainLayout from "../Layout/MainLayout/MainLayout";
 
 const router = createBrowserRouter([
   {
@@ -116,15 +119,15 @@ const router = createBrowserRouter([
       // Normal user dashboard / routes
       {
         path: "studentDashboard",
-        element: <UserHome />,
+        element: <StudentDashboard />,
       },
 
       // Admin routes / dashboard
       {
-        path: "adminHome",
+        path: "academyAdmin",
         element: (
           <AdminRoute>
-            <AdminHome />
+            <AcademyAdmin />
           </AdminRoute>
         ),
       },

@@ -4,9 +4,10 @@ import StudyTasks from "../../StudyTasksComponent/StudyTasks";
 import Banner from "../Banner/Banner";
 import Quote from "../Quote/Quote";
 import Features from "../Features/Features";
-
 import { useRef } from "react";
 import UsageGuide from "../UsageGuide/UsageGuide";
+
+
 const Home = () => {
   // step 1.1 : Create a ref to target the AddStudyTasks section
 
@@ -28,10 +29,10 @@ const Home = () => {
       {/* step 1.3: pass scroll function as prop to Features */}
       <Features onGetStartedClick={scrollToAddStudyTasks} />
       {/* Step 1.4: Attach ref to the AddStudyTasks section */}
-      <UsageGuide />
       <div ref={addStudyTasksRef}>
-        <AddStudyTasks />
+        <UsageGuide />
       </div>
+      <AddStudyTasks />
       <Quote />
       <StudyTasks />
     </div>

@@ -47,11 +47,11 @@ const Navbar = () => {
           <NavLink to="/assignments">All Assignments</NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/userHome">User Home</NavLink>
+          <NavLink to="/dashboard/studentDashboard">Student Dashboard</NavLink>
         </li>
         {isAdmin ? (
           <li>
-            <NavLink to="/dashboard/adminHome">Admin Home</NavLink>
+            <NavLink to="/dashboard/academyAdmin">Teacher&apos;s Panel</NavLink>
           </li>
         ) : (
           ""
@@ -118,22 +118,6 @@ const Navbar = () => {
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box  z-[1] mt-3 w-52 p-2 dark:bg-black shadow "
                 >
-                  <li>
-                    <Link
-                      className="hover:bg-gradient-to-r from-[#A0D683] to-[#4CAF50] hover:text-white"
-                      to={"/mySubmittedAssignments"}
-                    >
-                      <p>My Submitted Assignment</p>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="hover:bg-gradient-to-r from-[#A0D683] to-[#4CAF50] hover:text-white"
-                      to={"/pendingAssignments"}
-                    >
-                      <p>Pending Assignments</p>
-                    </Link>
-                  </li>
                   <li>
                     <NavLink to="about">404 Page</NavLink>
                   </li>
