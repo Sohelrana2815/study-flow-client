@@ -143,6 +143,9 @@ const Navbar = () => {
               <button className="font-serif btn">Sign In</button>
             </Link>
           )}
+
+
+          
           <button
             className="dark:text-white text-black"
             onClick={toggleDarkMode}
