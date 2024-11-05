@@ -22,7 +22,6 @@ const AnimatedComponent = ({
       >
         {children}
       </div>
-      ;
     </>
   );
 };

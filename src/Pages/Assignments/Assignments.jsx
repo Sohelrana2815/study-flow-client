@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 const Assignments = () => {
   const { count } = useLoaderData();
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const loading = useLoading();
 
   const numberOfPages = Math.ceil(count / itemsPerPage);
@@ -119,10 +119,9 @@ const Assignments = () => {
             value={itemsPerPage}
             onChange={handleItemsPerPage}
           >
-            <option value="3">3</option>
-            <option value="6">6</option>
-            <option value="9">9</option>
-            <option value="12">12</option>
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="18">18</option>
           </select>
         </SkeletonWrapper>
       </div>
