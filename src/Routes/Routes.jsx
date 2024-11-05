@@ -13,6 +13,7 @@ import AssignmentDetails from "../Pages/AssignmentDetails/AssignmentDetails";
 import MySubmittedAssignments from "../Pages/MySubmittedAssignments/MySubmittedAssignments";
 import PendingAssignment from "../Pages/PendingAssignment/PendingAssignment";
 import GiveMark from "../Pages/GiveMark/GiveMark";
+import Dashboard from "../Layout/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,31 @@ const router = createBrowserRouter([
           fetch(
             `http://localhost:5000/specificSubmittedAssignment/${params.id}`
           ),
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      // Normal user dashboard / routes
+      {
+        path: "studentDashboard",
+        element: <UserHome />,
+      },
+
+      // Admin routes / dashboard
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
       },
     ],
   },

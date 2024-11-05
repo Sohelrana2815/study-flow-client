@@ -5,9 +5,11 @@ import Swal from "sweetalert2";
 import useTheme from "../../Hooks/useTheme";
 import { LuSun } from "react-icons/lu";
 import { GoMoon } from "react-icons/go";
+import useAdmin from "../../Hooks/useAdmin";
 const Navbar = () => {
   const { logout, user, loading } = useAuth();
   const { isDarkMode, toggleDarkMode } = useTheme();
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     Swal.fire({
@@ -44,6 +46,16 @@ const Navbar = () => {
         <li>
           <NavLink to="/assignments">All Assignments</NavLink>
         </li>
+        <li>
+          <NavLink to="/dashboard/userHome">User Home</NavLink>
+        </li>
+        {isAdmin ? (
+          <li>
+            <NavLink to="/dashboard/adminHome">Admin Home</NavLink>
+          </li>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
@@ -144,8 +156,6 @@ const Navbar = () => {
             </Link>
           )}
 
-
-          
           <button
             className="dark:text-white text-black"
             onClick={toggleDarkMode}
