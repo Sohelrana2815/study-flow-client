@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import useLoading from "../../Hooks/useLoading";
 import "react-loading-skeleton/dist/skeleton.css";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
+import AnimatedComponent from "../../Components/AnimatedComponent/AnimatedComponent";
 const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   const axiosPublic = useAxiosPublic();
   const loading = useLoading();
@@ -73,91 +74,97 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   } = singleTask;
 
   return (
-    <div className="card card-compact dark:bg-black  bg-base-100 w-full shadow-xl my-16 dark:shadow-xl dark:shadow-green-500">
-      <figure className="h-48 overflow-hidden">
-        <SkeletonWrapper loading={loading} height={192} width={500}>
-          <img
-            src={image}
-            alt={taskTitle.slice(0, 6)}
-            className="object-cover w-full h-full"
-          />
-        </SkeletonWrapper>
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">
-          <SkeletonWrapper loading={loading} width={150}>
-            {taskTitle}
+    <AnimatedComponent animation="flip-right">
+      <div className="card card-compact dark:bg-black  bg-base-100 w-full shadow-xl my-16 dark:shadow-xl dark:shadow-green-500">
+        <figure className="h-48 overflow-hidden">
+          <SkeletonWrapper loading={loading} height={192} width={500}>
+            <img
+              src={image}
+              alt={taskTitle.slice(0, 6)}
+              className="object-cover w-full h-full"
+            />
           </SkeletonWrapper>
-        </h2>
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            <SkeletonWrapper loading={loading} width={150}>
+              {taskTitle}
+            </SkeletonWrapper>
+          </h2>
 
-        <div className="grid grid-cols-2 gap-2">
-          <SkeletonWrapper loading={loading} width={80}>
-            <p className="flex items-center gap-2">
-              <TbCategoryPlus className="text-xl text-[#1E3E62] dark:text-green-500" />{" "}
-              {subject.toUpperCase()}
+          <div className="grid grid-cols-2 gap-2">
+            <SkeletonWrapper loading={loading} width={80}>
+              <p className="flex items-center gap-2">
+                <TbCategoryPlus className="text-xl text-[#1E3E62] dark:text-green-500" />{" "}
+                {subject.toUpperCase()}
+              </p>
+            </SkeletonWrapper>
+            <SkeletonWrapper loading={loading} width={80}>
+              <p className="flex items-center gap-2">
+                <GiLevelEndFlag className="text-xl dark:text-green-500 text-[#1E3E62] " />
+                {priority.toUpperCase()}
+              </p>
+            </SkeletonWrapper>
+
+            <SkeletonWrapper loading={loading} width={80}>
+              <p className="flex items-center gap-2">
+                <LuClock2 className="text-xl dark:text-green-500 text-[#1E3E62] " />
+                {estimatedTime}
+              </p>
+            </SkeletonWrapper>
+
+            <SkeletonWrapper loading={loading} width={80}>
+              <p className="flex items-center gap-2">
+                <FaRegCalendarAlt className="text-xl dark:text-green-500 text-[#1E3E62] " />
+                {date}
+              </p>
+            </SkeletonWrapper>
+          </div>
+          <SkeletonWrapper loading={loading} width={120}>
+            <p className="mt-2 text-base">
+              <span className="text-[#1E3E62] text-base font-semibold dark:text-green-500">
+                Description :{" "}
+              </span>
+              {description}
             </p>
           </SkeletonWrapper>
-          <SkeletonWrapper loading={loading} width={80}>
-            <p className="flex items-center gap-2">
-              <GiLevelEndFlag className="text-xl dark:text-green-500 text-[#1E3E62] " />
-              {priority.toUpperCase()}
-            </p>
-          </SkeletonWrapper>
+          <div className="card-actions justify-center items-center my-4">
+            <SkeletonWrapper loading={loading} height={35} width={80}>
+              <button
+                onClick={() => handleDelete(_id)}
+                className="btn btn-sm bg-gradient-to-r from-[#C62E2E] to-[#2C2C2C] text-white dark:border-none"
+              >
+                Remove
+              </button>
+            </SkeletonWrapper>
 
-          <SkeletonWrapper loading={loading} width={80}>
-            <p className="flex items-center gap-2">
-              <LuClock2 className="text-xl dark:text-green-500 text-[#1E3E62] " />
-              {estimatedTime}
-            </p>
-          </SkeletonWrapper>
-
-          <SkeletonWrapper loading={loading} width={80}>
-            <p className="flex items-center gap-2">
-              <FaRegCalendarAlt className="text-xl dark:text-green-500 text-[#1E3E62] " />
-              {date}
-            </p>
-          </SkeletonWrapper>
-        </div>
-        <SkeletonWrapper loading={loading} width={120}>
-          <p className="mt-2 text-base">
-            <span className="text-[#1E3E62] text-base font-semibold dark:text-green-500">
-              Description :{" "}
-            </span>
-            {description}
-          </p>
-        </SkeletonWrapper>
-        <div className="card-actions justify-center items-center my-4">
-          <SkeletonWrapper loading={loading} height={35} width={80}>
-            <button
-              onClick={() => handleDelete(_id)}
-              className="btn btn-sm bg-gradient-to-r from-[#C62E2E] to-[#2C2C2C] text-white dark:border-none"
-            >
-              Remove
-            </button>
-          </SkeletonWrapper>
-
-          {loading ? (
-            <SkeletonWrapper loading={loading} height={35} width={80} />
-          ) : (
-            <>
-              <p className="text-lg dark:text-white text-center text-[#024CAA] ">---OR---</p>
-              {singleTask.status === "completed" ? (
-                <p className="text-[#1E3E62]  text-lg dark:text-green-500">Completed !</p>
-              ) : (
-                <button
-                  onClick={() => {
-                    handleCompleted(singleTask);
-                  }}
-                  className="btn btn-sm bg-gradient-to-r from-[#091057] to-[#0d6efd] dark:border-none text-white"
-                >
-                  Pending...
-                </button>
-              )}
-            </>
-          )}
+            {loading ? (
+              <SkeletonWrapper loading={loading} height={35} width={80} />
+            ) : (
+              <>
+                <p className="text-lg dark:text-white text-center text-[#024CAA] ">
+                  ---OR---
+                </p>
+                {singleTask.status === "completed" ? (
+                  <p className="text-[#1E3E62]  text-lg dark:text-green-500">
+                    Completed !
+                  </p>
+                ) : (
+                  <button
+                    onClick={() => {
+                      handleCompleted(singleTask);
+                    }}
+                    className="btn btn-sm bg-gradient-to-r from-[#091057] to-[#0d6efd] dark:border-none text-white"
+                  >
+                    Pending...
+                  </button>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </AnimatedComponent>
   );
 };
 // Define PropTypes for singleTask

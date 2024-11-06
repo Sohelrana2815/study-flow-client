@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { IoMdClose } from "react-icons/io";
 import SkeletonWrapper from "../../../Utility/SkeletonWrapper";
 import { FaEye } from "react-icons/fa6";
+import AnimatedComponent from "../../../Components/AnimatedComponent/AnimatedComponent";
 
 const StudentDashboardCard = ({ submittedAssignment }) => {
   const axiosPublic = useAxiosPublic();
@@ -41,31 +42,33 @@ const StudentDashboardCard = ({ submittedAssignment }) => {
     <>
       {status === "pending" ? (
         <>
-          <div className="card  md:w-96 bg-base-100 shadow-xl  dark:shadow-green-500">
-            <figure className="h-48">
-              <SkeletonWrapper loading={loading} width={380} height={180}>
-                <img src={imageURL} alt="Shoes" />
-              </SkeletonWrapper>
-            </figure>
-            <div className="card-body dark:bg-black dark:rounded-b-lg">
-              <h2 className="card-title">
-                <SkeletonWrapper loading={loading} width={300} height={20}>
-                  {title}
+          <AnimatedComponent animation="fade-down-right">
+            <div className="card  md:w-96 bg-base-100 shadow-xl  dark:shadow-green-500">
+              <figure className="h-48">
+                <SkeletonWrapper loading={loading} width={380} height={180}>
+                  <img src={imageURL} alt="Shoes" />
                 </SkeletonWrapper>
-              </h2>
-              <SkeletonWrapper loading={loading} width={300} height={30}>
-                <div className="card-actions justify-between">
-                  <div className="badge badge-outline text-[#091057] dark:text-white  font-semibold  badge-lg">
-                    Assignment Marks : {marks}
+              </figure>
+              <div className="card-body dark:bg-black dark:rounded-b-lg">
+                <h2 className="card-title">
+                  <SkeletonWrapper loading={loading} width={300} height={20}>
+                    {title}
+                  </SkeletonWrapper>
+                </h2>
+                <SkeletonWrapper loading={loading} width={300} height={30}>
+                  <div className="card-actions justify-between">
+                    <div className="badge badge-outline text-[#091057] dark:text-white  font-semibold  badge-lg">
+                      Assignment Marks : {marks}
+                    </div>
+                    <div className="badge badge-outline md:mt-0 mt-2 badge-lg bg-gradient-to-r  from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent ">
+                      <span className="dark:text-sky-200"> {status}</span>
+                      <span className="loading loading-ball loading-lg  text-[#EC8305] dark:text-white"></span>
+                    </div>
                   </div>
-                  <div className="badge badge-outline md:mt-0 mt-2 badge-lg bg-gradient-to-r  from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent ">
-                    <span className="dark:text-sky-200"> {status}</span>
-                    <span className="loading loading-ball loading-lg  text-[#EC8305] dark:text-white"></span>
-                  </div>
-                </div>
-              </SkeletonWrapper>
+                </SkeletonWrapper>
+              </div>
             </div>
-          </div>
+          </AnimatedComponent>
         </>
       ) : (
         <>

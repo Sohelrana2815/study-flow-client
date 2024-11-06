@@ -2,12 +2,15 @@ import { useFormik } from "formik";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const { createUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -21,10 +24,22 @@ const SignUp = () => {
         if (result.user) {
           const updateProfile = await updateUserProfile(name);
           console.log(updateProfile);
-          navigate(from, { replace: true });
+          const userInfo = { name, email, password };
+          const res = await axiosPublic.post("/users", userInfo);
+
+          if (res.data.insertedId) {
+            Swal.fire({
+              icon: "success",
+              title: "NEW USER CREATED SUCCESSFULLY!",
+              text: "Welcome back!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate(from, { replace: true });
+            resetForm();
+          }
         }
         console.log("User created successfully:", result.user);
-        resetForm();
       } catch (error) {
         console.error("Error creating user:", error);
       }
