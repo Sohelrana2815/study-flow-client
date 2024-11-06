@@ -24,7 +24,7 @@ const SignUp = () => {
         if (result.user) {
           const updateProfile = await updateUserProfile(name);
           console.log(updateProfile);
-          const userInfo = { name, email, password };
+          const userInfo = { name, email };
           const res = await axiosPublic.post("/users", userInfo);
 
           if (res.data.insertedId) {
