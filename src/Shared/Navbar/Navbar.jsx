@@ -43,12 +43,20 @@ const Navbar = () => {
             <NavLink to="/createAssignments">Create Assignments</NavLink>
           </li>
         ) : null}
+
         <li>
           <NavLink to="/assignments">All Assignments</NavLink>
         </li>
-        <li>
-          <NavLink to="/dashboard/studentDashboard">Student Dashboard</NavLink>
-        </li>
+
+        {!isAdmin && user ? (
+          <li>
+            <NavLink to="/dashboard/studentDashboard">
+              Student Dashboard
+            </NavLink>
+          </li>
+        ) : (
+          ""
+        )}
         {isAdmin ? (
           <li>
             <NavLink to="/dashboard/academyAdmin">Teacher&apos;s Panel</NavLink>
@@ -65,8 +73,12 @@ const Navbar = () => {
       <div className="navbar bg-base-100 dark:bg-black mt-10">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <IoMenuSharp className="md:text-2xl text-xl" />
+            <div
+              tabIndex={0}
+              role="button"
+              className="lg:hidden cursor-pointer"
+            >
+              <IoMenuSharp className="text-2xl" />
             </div>
             <ul
               tabIndex={0}
@@ -76,11 +88,11 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center px-2 gap-2">
               <p>
                 <IoBookSharp className="text-[#161D6F] md:text-2xl  dark:text-green-500" />
               </p>
-              <p className="text-sm md:text-xl text-[#001F3F] lg:text-2xl lg:ml-4 font-semibold dark:text-white font-serif ">
+              <p className="text-base md:text-xl text-[#001F3F] lg:text-2xl lg:ml-4 font-semibold dark:text-white font-serif">
                 Study Flow
               </p>
             </div>
@@ -139,16 +151,15 @@ const Navbar = () => {
               <button className="font-serif btn">Sign In</button>
             </Link>
           )}
-
           <button
-            className="dark:text-white text-black"
+            className="dark:text-white text-black pl-2"
             onClick={toggleDarkMode}
           >
             {/* this hidden checkbox controls the state */}
 
             {isDarkMode ? (
               // sun icon
-              <LuSun className="text-4xl" />
+              <LuSun className=" text-3xl" />
             ) : (
               // moon icon
               <GoMoon className="text-3xl" />

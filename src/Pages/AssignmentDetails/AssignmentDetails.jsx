@@ -41,7 +41,7 @@ const AssignmentDetails = () => {
             document.getElementById("assignment_modal").close();
             resetForm();
             setTimeout(() => {
-              navigate("/mySubmittedAssignments");
+              navigate("/dashboard/studentDashboard");
             }, 1500);
           } else {
             toast.error("Failed to submit the assignment");

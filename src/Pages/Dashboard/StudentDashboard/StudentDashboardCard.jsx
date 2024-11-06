@@ -1,11 +1,12 @@
-import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import useSubmittedAssignment from "../../Hooks/useSubmittedAssignment";
-import SkeletonWrapper from "../../Utility/SkeletonWrapper";
-import useLoading from "../../Hooks/useLoading";
+import useLoading from "../../../Hooks/useLoading";
+import useSubmittedAssignment from "../../../Hooks/useSubmittedAssignment";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { IoMdClose } from "react-icons/io";
+import SkeletonWrapper from "../../../Utility/SkeletonWrapper";
 import { FaEye } from "react-icons/fa6";
-const SubmittedAssignmentCard = ({ submittedAssignment }) => {
+
+const StudentDashboardCard = ({ submittedAssignment }) => {
   const axiosPublic = useAxiosPublic();
   const [, refetch] = useSubmittedAssignment();
 
@@ -36,13 +37,12 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
       }
     });
   };
-
   return (
     <>
       {status === "pending" ? (
         <>
-          <div className="card bg-base-100 shadow-xl  dark:shadow-green-500">
-            <figure>
+          <div className="card  md:w-96 bg-base-100 shadow-xl  dark:shadow-green-500">
+            <figure className="h-48">
               <SkeletonWrapper loading={loading} width={380} height={180}>
                 <img src={imageURL} alt="Shoes" />
               </SkeletonWrapper>
@@ -69,7 +69,7 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
         </>
       ) : (
         <>
-          <div className="card bg-base-100 w-full shadow-xl justify-center dark:bg-black dark:shadow-green-500 py-5 items-center space-y-5">
+          <div className="card w-80 mx-auto bg-base-100  md:w-full shadow-xl justify-center dark:bg-black dark:shadow-green-500 py-5 items-center space-y-5">
             <p>{title.slice(0, 25)}...</p>
             <p className="text-green-500">{status.toUpperCase()}</p>
             <p className="text-white text-2xl">
@@ -121,4 +121,4 @@ const SubmittedAssignmentCard = ({ submittedAssignment }) => {
   );
 };
 
-export default SubmittedAssignmentCard;
+export default StudentDashboardCard;

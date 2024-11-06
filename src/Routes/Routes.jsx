@@ -8,15 +8,16 @@ import CreateAssignments from "../Pages/CreateAssignments/CreateAssignments";
 import Assignments from "../Pages/Assignments/Assignments";
 import UpdateAssignments from "../Pages/UpdateAssignments/UpdateAssignments";
 import AssignmentDetails from "../Pages/AssignmentDetails/AssignmentDetails";
-import MySubmittedAssignments from "../Pages/MySubmittedAssignments/MySubmittedAssignments";
+
 import PendingAssignment from "../Pages/PendingAssignment/PendingAssignment";
 import GiveMark from "../Pages/GiveMark/GiveMark";
-import Dashboard from "../Layout/Dashboard/Dashboard";
+import Dashboard from "../Dashboard/Dashboard";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import AcademyAdmin from "../Pages/Dashboard/AcademyAdmin/AcademyAdmin";
-import StudentDashboard from "../Pages/Dashboard/StudentDashboard/StudentDashboard";
 import Home from "../Pages/Home/Home/Home";
-import MainLayout from "../Layout/MainLayout/MainLayout";
+import MainLayout from "../MainLayout/MainLayout";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import StudentDashboard from "../Pages/Dashboard/StudentDashboard/StudentDashboard";
 
 const router = createBrowserRouter([
   {
@@ -47,11 +48,7 @@ const router = createBrowserRouter([
       },
       {
         path: "assignments",
-        element: (
-          <PrivateRoute>
-            <Assignments />
-          </PrivateRoute>
-        ),
+        element: <Assignments />,
         loader: () => fetch("http://localhost:5000/assignmentsCount"),
       },
       {
@@ -64,7 +61,11 @@ const router = createBrowserRouter([
       },
       {
         path: "updateAssignment/:id",
-        element: <UpdateAssignments />,
+        element: (
+          <PrivateRoute>
+            <UpdateAssignments />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/specificAssignment/${params.id}`),
       },
@@ -77,14 +78,6 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/specificAssignment/${params.id}`),
-      },
-      {
-        path: "mySubmittedAssignments",
-        element: (
-          <PrivateRoute>
-            <MySubmittedAssignments />
-          </PrivateRoute>
-        ),
       },
       {
         path: "pendingAssignments",
@@ -119,7 +112,11 @@ const router = createBrowserRouter([
       // Normal user dashboard / routes
       {
         path: "studentDashboard",
-        element: <StudentDashboard />,
+        element: (
+          <PrivateRoute>
+            <StudentDashboard />
+          </PrivateRoute>
+        ),
       },
 
       // Admin routes / dashboard
@@ -128,6 +125,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AcademyAdmin />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "allUsers",
+        element: (
+          <AdminRoute>
+            <AllUsers />
           </AdminRoute>
         ),
       },

@@ -52,11 +52,11 @@ const Login = () => {
         <p className="text-center mt-10">
           New To Study Flow ?{" "}
           <Link to="/signUp">
-            <button className="font-serif btn-link text-lg">Sign Up</button>
+            <button className="font-serif dark:text-[#6EACDA] btn-link text-lg">Sign Up</button>
           </Link>
         </p>
 
-        <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
+        <div className="w-full dark:text-black max-w-sm p-6 bg-white rounded-lg shadow-md">
           <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
           <form onSubmit={formik.handleSubmit}>
             <div className="mb-4">

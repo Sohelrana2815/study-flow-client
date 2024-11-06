@@ -31,14 +31,16 @@ const SignUp = () => {
     },
   });
   return (
-    <div className="flex items-center justify-center min-h-screen flex-col space-y-8">
+    <div className="flex dark:text-black items-center justify-center min-h-screen flex-col space-y-8">
       <h2 className="text-center font-serif text-purple-500 text-4xl">
         REACT FORMIK FORM
       </h2>
-      <p className="text-center mt-10">
+      <p className="text-center dark:text-white mt-10">
         Already have an account ?{" "}
         <Link to="/login">
-          <button className="font-serif btn-link text-lg">Login</button>
+          <button className="font-serif btn-link dark:text-[#6EACDA] text-lg">
+            Login
+          </button>
         </Link>
       </p>
       <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
