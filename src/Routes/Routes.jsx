@@ -15,9 +15,9 @@ import Dashboard from "../Dashboard/Dashboard";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import AcademyAdmin from "../Pages/Dashboard/AcademyAdmin/AcademyAdmin";
 import Home from "../Pages/Home/Home/Home";
-import MainLayout from "../MainLayout/MainLayout";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import StudentDashboard from "../Pages/Dashboard/StudentDashboard/StudentDashboard";
+import MainLayout from "../Layout/MainLayout/MainLayout";
 
 const router = createBrowserRouter([
   {
