@@ -3,11 +3,13 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast, { Toaster } from "react-hot-toast";
+import useAdmin from "../../Hooks/useAdmin";
 const AssignmentDetails = () => {
   const assignmentData = useLoaderData();
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const [isAdmin] = useAdmin();
 
   const { title, imageURL, description, marks, difficultyLevel, date } =
     assignmentData;
@@ -76,12 +78,16 @@ const AssignmentDetails = () => {
               Title : {title}
             </h1>
             <div className="space-y-5 mt-6">
-              <p className="text-[#091057] dark:text-white">{description.slice(0, 600)}....</p>
+              <p className="text-[#091057] dark:text-white">
+                {description.slice(0, 600)}....
+              </p>
 
               <p className="text-[#091057] dark:text-white">
-                Posted date :<span className="text-[#091057] dark:text-white"> {date}</span>
+                Posted date :
+                <span className="text-[#091057] dark:text-white"> {date}</span>
               </p>
               <button
+                disabled={isAdmin}
                 className="btn bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-all duration-300 text-white rounded-lg border-none"
                 onClick={() =>
                   document.getElementById("assignment_modal").showModal()

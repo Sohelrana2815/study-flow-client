@@ -2,12 +2,12 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import { IoMenuSharp } from "react-icons/io5";
 import { PiStudent } from "react-icons/pi";
-import { GiTeacher } from "react-icons/gi";
 import { MdAssignment } from "react-icons/md";
 import { BiHome } from "react-icons/bi";
 import useTheme from "../Hooks/useTheme";
 import { LuSun } from "react-icons/lu";
 import { GoMoon } from "react-icons/go";
+import { FaChalkboardTeacher, FaUsers } from "react-icons/fa";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -19,13 +19,13 @@ const Dashboard = () => {
           <>
             <li>
               <NavLink to="/dashboard/academyAdmin">
-                <GiTeacher />
+                <FaChalkboardTeacher className="text-2xl text-[#00CCDD]" />
                 Teacher&apos;s Desk
               </NavLink>
             </li>
             <li>
               <NavLink to="/dashboard/allUsers">
-                <GiTeacher />
+                <FaUsers className="text-2xl text-[#6439FF]" />
                 All Users
               </NavLink>
             </li>
