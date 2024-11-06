@@ -9,7 +9,6 @@ import Assignments from "../Pages/Assignments/Assignments";
 import UpdateAssignments from "../Pages/UpdateAssignments/UpdateAssignments";
 import AssignmentDetails from "../Pages/AssignmentDetails/AssignmentDetails";
 
-import PendingAssignment from "../Pages/PendingAssignment/PendingAssignment";
 import GiveMark from "../Pages/GiveMark/GiveMark";
 import Dashboard from "../Dashboard/Dashboard";
 import AdminRoute from "./AdminRoute/AdminRoute";
@@ -79,14 +78,7 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/specificAssignment/${params.id}`),
       },
-      {
-        path: "pendingAssignments",
-        element: (
-          <PrivateRoute>
-            <PendingAssignment />
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "giveMark/:id",
         element: (

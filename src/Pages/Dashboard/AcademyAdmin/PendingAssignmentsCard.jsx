@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import useLoading from "../../Hooks/useLoading";
-import SkeletonWrapper from "../../Utility/SkeletonWrapper";
+import useLoading from "../../../Hooks/useLoading";
+import SkeletonWrapper from "../../../Utility/SkeletonWrapper";
 
-const PendingAssignmentCard = ({ pendingAssignment }) => {
+const PendingAssignmentsCard = ({ pendingAssignment }) => {
   const { name, title, marks, _id, imageURL } = pendingAssignment;
 
   const loading = useLoading();
@@ -45,4 +45,4 @@ const PendingAssignmentCard = ({ pendingAssignment }) => {
   );
 };
 
-export default PendingAssignmentCard;
+export default PendingAssignmentsCard;
