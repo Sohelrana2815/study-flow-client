@@ -19,6 +19,28 @@ const AllUsers = () => {
 
   const handleMakeAdmin = (user) => {
     console.log(user);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: `${user.name} will be a new Admin!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: `${user.name} is a new Admin.`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
   };
 
   // Delete user option or function
