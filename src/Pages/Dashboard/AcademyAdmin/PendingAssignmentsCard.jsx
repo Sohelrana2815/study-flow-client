@@ -7,13 +7,13 @@ const PendingAssignmentsCard = ({ pendingAssignment }) => {
 
   const loading = useLoading();
   return (
-    <div className="card glass dark:card shadow-xl shadow-[#091057] p-4  ">
+    <div className="card glass  shadow-xl shadow-[#091057] p-4  ">
       <figure>
         <SkeletonWrapper loading={loading} width={380} height={160}>
           <img src={imageURL} alt="car!" className="rounded-lg" />
         </SkeletonWrapper>
       </figure>
-      <div className="card-body dark:bg-black">
+      <div className="card-body">
         <h2 className="text-[#091057] dark:text-white">
           <SkeletonWrapper loading={loading} width={200} height={30}>
             Examinee Name : {name}
@@ -34,7 +34,7 @@ const PendingAssignmentsCard = ({ pendingAssignment }) => {
         <Link to={`/giveMark/${_id}`}>
           <div className="card-actions">
             <SkeletonWrapper loading={loading} width={80} height={43}>
-              <button className="btn bg-gradient-to-r from-[#0d6efd] to-black text-white border-none">
+              <button className="btn bg-gradient-to-r from-[#0d6efd] to-black text-white">
                 Give Mark
               </button>
             </SkeletonWrapper>
