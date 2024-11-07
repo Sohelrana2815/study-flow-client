@@ -6,7 +6,7 @@ const FeaturesCard = ({ feature, onGetStartedClick }) => {
   return (
     <>
       <AnimatedComponent animation="zoom-in">
-        <div className="card bg-base-100  animate-jump-in animate-duration-[1500ms] animate-delay-500   lg:w-96 dark:bg-black shadow-xl dark:shadow-green-500">
+        <div className="card bg-base-100  animate-jump-in animate-duration-[1500ms] animate-delay-500   lg:w-96 dark:bg-[#0B192C] shadow-xl dark:shadow-green-500">
           <figure className=" px-10 pt-8 h-48 lg:h-72 lg:w-96">
             <img src={imageUrl} alt="Shoes" className="rounded-xl" />
           </figure>

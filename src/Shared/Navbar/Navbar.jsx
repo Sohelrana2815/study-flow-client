@@ -34,23 +34,53 @@ const Navbar = () => {
   }
   const navLinks = (
     <>
-      <div className="lg:flex gap-2">
+      <div className="lg:flex gap-2 text-lg">
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink
+            to="/"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? "#6439FF" : "transparent",
+              color: isActive ? "white" : "",
+            })}
+          >
+            Home
+          </NavLink>
         </li>
         {user ? (
           <li>
-            <NavLink to="/createAssignments">Create Assignments</NavLink>
+            <NavLink
+              to="/createAssignments"
+              style={({ isActive }) => ({
+                backgroundColor: isActive ? "#6439FF" : "transparent",
+                color: isActive ? "white" : "",
+              })}
+            >
+              Create Assignments
+            </NavLink>
           </li>
         ) : null}
 
         <li>
-          <NavLink to="/assignments">All Assignments</NavLink>
+          <NavLink
+            to="/assignments"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? "#6439FF" : "transparent",
+              color: isActive ? "white" : "",
+            })}
+          >
+            All Assignments
+          </NavLink>
         </li>
 
         {!isAdmin && user ? (
           <li>
-            <NavLink to="/dashboard/studentDashboard">
+            <NavLink
+              to="/dashboard/studentDashboard"
+              style={({ isActive }) => ({
+                backgroundColor: isActive ? "#6439FF" : "transparent",
+                color: isActive ? "white" : "",
+              })}
+            >
               Student Dashboard
             </NavLink>
           </li>
@@ -59,7 +89,15 @@ const Navbar = () => {
         )}
         {isAdmin ? (
           <li>
-            <NavLink to="/dashboard/academyAdmin">Teacher&apos;s Panel</NavLink>
+            <NavLink
+              to="/dashboard/academyAdmin"
+              style={({ isActive }) => ({
+                backgroundColor: isActive ? "#6439FF" : "transparent",
+                color: isActive ? "white" : "",
+              })}
+            >
+              Teacher&apos;s Panel
+            </NavLink>
           </li>
         ) : (
           ""
@@ -70,7 +108,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar bg-base-100 dark:bg-black mt-10">
+      <div className="navbar bg-[#E3FDFD] px-4 rounded-lg  dark:bg-[#133E87] mt-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div

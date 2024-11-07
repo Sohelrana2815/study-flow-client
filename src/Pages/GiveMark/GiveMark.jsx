@@ -34,7 +34,7 @@ const GiveMark = () => {
         showConfirmButton: false,
         timer: 2500,
       });
-      navigate("/pendingAssignments");
+      navigate("/dashboard/academyAdmin");
     }
   };
 
@@ -66,7 +66,10 @@ const GiveMark = () => {
           </SkeletonWrapper>
 
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form onSubmit={handleScoreSubmit} className="card-body">
+            <form
+              onSubmit={handleScoreSubmit}
+              className="card-body dark:text-black"
+            >
               <SkeletonWrapper loading={loading} width={315} height={50}>
                 <div className="form-control">
                   <label className="label">

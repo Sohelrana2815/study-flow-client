@@ -51,7 +51,7 @@ const Dashboard = () => {
       </li>
       <li className="dark:hover:bg-[#2F3645]">
         <NavLink to="/assignments">
-          <BiHome className="text-2xl text-[#FCF8F3]" />
+          <BiHome className="text-2xl text-[#7C00FE]" />
           Home
         </NavLink>
       </li>
