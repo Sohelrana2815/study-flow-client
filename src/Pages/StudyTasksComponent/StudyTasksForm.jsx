@@ -3,11 +3,14 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const StudyTasksForm = () => {
+  const navigate = useNavigate();
+
   // axiosPublic hook
 
   const axiosPublic = useAxiosPublic();
@@ -59,6 +62,9 @@ const StudyTasksForm = () => {
               draggable: true,
             });
             resetForm();
+            setTimeout(() => {
+              navigate("/");
+            }, 1500);
           }
         }
       } catch (error) {
@@ -72,7 +78,10 @@ const StudyTasksForm = () => {
         <div className="hero-content flex-col lg:flex-row w-full">
           <div className="text-center lg:text-left"></div>
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
-            <form className="card-body dark:text-black" onSubmit={formik.handleSubmit}>
+            <form
+              className="card-body dark:text-black"
+              onSubmit={formik.handleSubmit}
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Task title */}
                 <div className="form-control">
