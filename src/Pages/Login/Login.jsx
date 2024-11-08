@@ -4,8 +4,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+  // Step 1. Define a state to control the password visibility
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  // Step 2. Function to toggle password visibility
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible); // Invert the state
+  };
+
   const { loginUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,7 +63,9 @@ const Login = () => {
         <p className="text-center mt-10">
           New To Study Flow ?{" "}
           <Link to="/signUp">
-            <button className="font-serif dark:text-[#6EACDA] btn-link text-lg">Sign Up</button>
+            <button className="font-serif dark:text-[#6EACDA] btn-link text-lg">
+              Sign Up
+            </button>
           </Link>
         </p>
 
@@ -77,7 +90,7 @@ const Login = () => {
                 Password
               </label>
               <input
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 name="password"
                 autoComplete=""
                 onChange={formik.handleChange}
@@ -85,6 +98,16 @@ const Login = () => {
                 className="input bg-white text-purple-600 input-primary w-full"
                 required
               />
+
+              <div className="relative">
+                <button
+                  type="button"
+                  className="absolute right-0 bottom-[13px] pr-4 text-lg"
+                  onClick={togglePasswordVisibility}
+                >
+                  {passwordVisible ? <FaEye /> : <FaEyeSlash />}
+                </button>
+              </div>
             </div>
             {error && <p className="text-red-500 text-center">{error}</p>}
             <button type="submit" className="btn text-white btn-primary w-full">

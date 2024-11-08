@@ -4,8 +4,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -93,7 +100,7 @@ const SignUp = () => {
               Password
             </label>
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               name="password"
               autoComplete=""
               onChange={formik.handleChange}
@@ -101,6 +108,15 @@ const SignUp = () => {
               className="input bg-white text-purple-600 input-primary w-full"
               required
             />
+            <div className="relative">
+              <button
+                onClick={togglePasswordVisibility}
+                type="button"
+                className="absolute right-0 bottom-[13px] pr-4 text-lg"
+              >
+                {passwordVisible ? <FaEye /> : <FaEyeSlash />}
+              </button>
+            </div>
           </div>
           <button type="submit" className="btn text-white btn-primary w-full">
             Sign Up
