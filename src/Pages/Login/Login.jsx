@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import AdminAccessButton from "../../Components/AdminAccessButton/AdminAccessButton";
 
 const Login = () => {
   // Step 1. Define a state to control the password visibility
@@ -56,6 +57,7 @@ const Login = () => {
 
   return (
     <>
+      <AdminAccessButton />
       <div className="flex items-center justify-center min-h-screen flex-col space-y-8">
         <h2 className="text-center font-serif text-purple-500 text-4xl">
           REACT FORMIK FORM

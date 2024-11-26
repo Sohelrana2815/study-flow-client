@@ -76,7 +76,7 @@ const CreateAssignments = () => {
                     onChange={formik.handleChange}
                     value={formik.values.title}
                     placeholder="Assignment title"
-                    className="input input-bordered"
+                    className="input input-bordered dark:text-black "
                     required
                   />
                 </div>
@@ -91,7 +91,7 @@ const CreateAssignments = () => {
                     onChange={formik.handleChange}
                     value={formik.values.description}
                     placeholder="Assignment description"
-                    className="input input-bordered"
+                    className="input input-bordered dark:text-black" 
                     required
                   />
                 </div>
@@ -119,7 +119,7 @@ const CreateAssignments = () => {
                     value={formik.values.marks}
                     step="0.01" // Allows float values
                     placeholder="Assignment Marks"
-                    className="input input-bordered"
+                    className="input input-bordered dark:text-black"
                     required
                   />
                 </div>
@@ -135,7 +135,7 @@ const CreateAssignments = () => {
                     onChange={formik.handleChange}
                     value={formik.values.imageURL}
                     placeholder="Assignment URL"
-                    className="input input-bordered"
+                    className="input input-bordered dark:text-black"
                     required
                   />
                 </div>
