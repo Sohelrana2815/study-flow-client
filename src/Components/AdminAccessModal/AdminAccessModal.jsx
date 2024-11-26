@@ -21,7 +21,7 @@ const AdminAccessModal = ({ toggleModal }) => {
             Explore Admin Features!
           </h2>
           <p className="mb-6 text-lg text-center">
-            Copy the keys to log in as admin
+            Copy the keys to log in as admin!
           </p>
 
           <div className="space-y-4">
