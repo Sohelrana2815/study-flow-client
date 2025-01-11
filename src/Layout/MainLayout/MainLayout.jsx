@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 const MainLayout = () => {
   return (
     <>
-      <div className="dark:bg-black  dark:text-white transition-colors duration-1000">
-        <div className="max-w-screen-xl mx-auto min-h-screen flex flex-col px-4 ">
+      <div className="dark:bg-black dark:text-white transition-colors duration-1000">
+        <div className="min-h-screen flex flex-col">
           <Navbar />
           <div className="flex-grow">
             <Outlet />

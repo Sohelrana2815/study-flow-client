@@ -1,11 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
-import { IoBookSharp, IoMenuSharp } from "react-icons/io5";
+import { IoSearch, IoMenuSharp } from "react-icons/io5";
+import { LuSun } from "react-icons/lu";
+import { GoMoon } from "react-icons/go";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useTheme from "../../Hooks/useTheme";
-import { LuSun } from "react-icons/lu";
-import { GoMoon } from "react-icons/go";
 import useAdmin from "../../Hooks/useAdmin";
+import { FaHome, FaPhone, FaRegistered } from "react-icons/fa";
+import { BsClock } from "react-icons/bs";
+import { BiLogIn, BiPhone } from "react-icons/bi";
+
 const Navbar = () => {
   const { logout, user, loading } = useAuth();
   const { isDarkMode, toggleDarkMode } = useTheme();
@@ -29,180 +33,134 @@ const Navbar = () => {
       }
     });
   };
+
   if (loading) {
     return <p>Loading.....</p>;
   }
+
   const navLinks = (
     <>
-      <div className="lg:flex gap-2 text-lg">
+      <li>
+        <NavLink to="/" className="text-white hover:text-gray-400">
+          Home
+        </NavLink>
+      </li>
+      {user && (
         <li>
           <NavLink
-            to="/"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? "#6439FF" : "transparent",
-              color: isActive ? "white" : "",
-            })}
+            to="/createAssignments"
+            className="text-white hover:text-gray-400"
           >
-            Home
+            Create Assignments
           </NavLink>
         </li>
-        {user ? (
-          <li>
-            <NavLink
-              to="/createAssignments"
-              style={({ isActive }) => ({
-                backgroundColor: isActive ? "#6439FF" : "transparent",
-                color: isActive ? "white" : "",
-              })}
-            >
-              Create Assignments
-            </NavLink>
-          </li>
-        ) : null}
-
+      )}
+      <li>
+        <NavLink to="/assignments" className="text-white hover:text-gray-400">
+          All Assignments
+        </NavLink>
+      </li>
+      {!isAdmin && user && (
         <li>
           <NavLink
-            to="/assignments"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? "#6439FF" : "transparent",
-              color: isActive ? "white" : "",
-            })}
+            to="/dashboard/studentDashboard"
+            className="text-white hover:text-gray-400"
           >
-            All Assignments
+            Student Dashboard
           </NavLink>
         </li>
-
-        {!isAdmin && user ? (
-          <li>
-            <NavLink
-              to="/dashboard/studentDashboard"
-              style={({ isActive }) => ({
-                backgroundColor: isActive ? "#6439FF" : "transparent",
-                color: isActive ? "white" : "",
-              })}
-            >
-              Student Dashboard
-            </NavLink>
-          </li>
-        ) : (
-          ""
-        )}
-        {isAdmin ? (
-          <li>
-            <NavLink
-              to="/dashboard/academyAdmin"
-              style={({ isActive }) => ({
-                backgroundColor: isActive ? "#6439FF" : "transparent",
-                color: isActive ? "white" : "",
-              })}
-            >
-              Teacher&apos;s Panel
-            </NavLink>
-          </li>
-        ) : (
-          ""
-        )}
-      </div>
+      )}
+      {isAdmin && (
+        <li>
+          <NavLink
+            to="/dashboard/academyAdmin"
+            className="text-white hover:text-gray-400"
+          >
+            Teacher&apos;s Panel
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
   return (
     <>
-      <div className="navbar bg-[#E3FDFD] px-4 rounded-lg  dark:bg-[#133E87] mt-10">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="lg:hidden cursor-pointer"
-            >
-              <IoMenuSharp className="text-2xl" />
+      {/* Top Layer */}
+      <div className="bg-[#FFB400] h-12 flex items-center justify-center gap-x-8">
+        {/* Phone */}
+        <p className="flex items-center text-[#000957] gap-x-1">
+          <BiPhone className="text-lg" /> +8801 64587 2451
+        </p>
+        <p className="flex items-center text-[#000957] gap-x-1">
+          <BsClock /> Opening Time : 9:30am-5:30pm
+        </p>
+        <p className="flex items-center text-[#000957] gap-x-1">
+          <FaHome /> Address: Example 1205 Dhaka
+        </p>
+
+        {/* register/login */}
+
+        <div className="flex items-center gap-x-1">
+          <Link to="/signUp">
+            <p className="flex items-center gap-x-1">
+              <FaRegistered /> Register
+            </p>
+          </Link>
+          <p>|</p>
+          <Link to="/login">
+            <p className="flex items-center gap-x-1 link">
+              <BiLogIn /> Login
+            </p>
+          </Link>
+        </div>
+      </div>
+
+      {/* Middleware */}
+      <div className="relative">
+        {/* Searchbar */}
+        <div className="absolute top-1/3 left-8">
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="border border-gray-300 rounded-lg px-3 py-1 w-64 focus:outline-none"
+            />
+            <button className="bg-[#FFB400] text-white p-2 rounded-lg">
+              <IoSearch />
+            </button>
+          </div>
+        </div>
+        <div className="flex items-center justify-center h-24">
+          <Link to="/" className="text-2xl font-bold text-[#1A1A1A]">
+            <p>StudyFlow</p>
+          </Link>
+        </div>
+      </div>
+
+      {/* Bottom Layer */}
+      <div className="bg-[#1A1A1A] py-3">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            <div className="lg:hidden">
+              <div className="dropdown dropdown-content">
+                <button
+                  tabIndex={0}
+                  className="text-white text-3xl focus:outline-none"
+                >
+                  <IoMenuSharp />
+                </button>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 shadow bg-[#1A1A1A] rounded-box w-52"
+                >
+                  {navLinks}
+                </ul>
+              </div>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow dark:bg-black"
-            >
+            <ul className="hidden lg:flex gap-6 text-sm uppercase font-semibold">
               {navLinks}
             </ul>
           </div>
-          <Link to="/">
-            <div className="flex items-center px-2 gap-2">
-              <p>
-                <IoBookSharp className="text-[#161D6F] md:text-2xl  dark:text-green-500" />
-              </p>
-              <p className="text-base md:text-xl text-[#001F3F] lg:text-2xl lg:ml-4 font-semibold dark:text-white font-serif">
-                Study Flow
-              </p>
-            </div>
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
-        </div>
-        <div className="navbar-end ">
-          {user ? (
-            <div>
-              {/*  */}
-
-              <div className="dropdown dropdown-end ">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar "
-                >
-                  <div className="avatar placeholder ">
-                    <div className="bg-neutral text-neutral-content  w-10 rounded-full">
-                      <div>
-                        {user?.photoURL ? (
-                          <>
-                            <img src={user.photoURL} />
-                          </>
-                        ) : (
-                          <>{user.displayName.slice(0, 1).toUpperCase()}</>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box  z-[1] mt-3 w-52 p-2 dark:bg-black shadow "
-                >
-                  <li>
-                    <NavLink to="about">404 Page</NavLink>
-                  </li>
-
-                  <li>
-                    <a
-                      className="hover:bg-gradient-to-r from-[#C62E2E] to-[#4b0082] hover:text-white"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              {/*  */}
-            </div>
-          ) : (
-            <Link to="/login">
-              <button className="font-serif btn">Sign In</button>
-            </Link>
-          )}
-          <button
-            className="dark:text-white text-black pl-2"
-            onClick={toggleDarkMode}
-          >
-            {/* this hidden checkbox controls the state */}
-
-            {isDarkMode ? (
-              // sun icon
-              <LuSun className=" text-3xl" />
-            ) : (
-              // moon icon
-              <GoMoon className="text-3xl" />
-            )}
-          </button>
         </div>
       </div>
     </>

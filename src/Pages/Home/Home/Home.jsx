@@ -7,7 +7,6 @@ import Features from "../Features/Features";
 import { useRef } from "react";
 import UsageGuide from "../UsageGuide/UsageGuide";
 
-
 const Home = () => {
   // step 1.1 : Create a ref to target the AddStudyTasks section
 
