@@ -9,7 +9,6 @@ import useAdmin from "../../Hooks/useAdmin";
 import { FaHome, FaPhone, FaRegistered } from "react-icons/fa";
 import { BsClock } from "react-icons/bs";
 import { BiLogIn, BiPhone } from "react-icons/bi";
-import Nav from "./Nav";
 
 const Navbar = () => {
   const { logout, user, loading } = useAuth();
@@ -139,8 +138,30 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Layer */}
-      <div className="overflow-x-hidden">
-        <Nav />
+      <div className="bg-[#1A1A1A] py-3">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            <div className="lg:hidden">
+              <div className="dropdown dropdown-content">
+                <button
+                  tabIndex={0}
+                  className="text-white text-3xl focus:outline-none"
+                >
+                  <IoMenuSharp />
+                </button>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 shadow bg-[#1A1A1A] rounded-box w-52"
+                >
+                  {navLinks}
+                </ul>
+              </div>
+            </div>
+            <ul className="hidden lg:flex gap-6 text-sm uppercase font-semibold">
+              {navLinks}
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -48,7 +48,8 @@ const router = createBrowserRouter([
       {
         path: "assignments",
         element: <Assignments />,
-        loader: () => fetch("https://study-flow-server.vercel.app/assignmentsCount"),
+        loader: () =>
+          fetch("https://study-flow-server.vercel.app/assignmentsCount"),
       },
       {
         path: "createAssignments",
@@ -66,7 +67,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://study-flow-server.vercel.app/specificAssignment/${params.id}`),
+          fetch(
+            `https://study-flow-server.vercel.app/specificAssignment/${params.id}`
+          ),
       },
       {
         path: "assignmentDetails/:id",
@@ -76,7 +79,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://study-flow-server.vercel.app/specificAssignment/${params.id}`),
+          fetch(
+            `https://study-flow-server.vercel.app/specificAssignment/${params.id}`
+          ),
       },
 
       {
