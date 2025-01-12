@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaUser } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -71,57 +72,62 @@ const AllUsers = () => {
   };
 
   return (
-    <div>
-      <p className="text-center py-6 font-serif text-xl">
-        Total Users : {users.length}
-      </p>
+    <>
+      <Helmet>
+        <title>All Users</title>
+      </Helmet>
       <div>
-        <div className="overflow-x-auto">
-          <table className="table ">
-            {/* head */}
-            <thead className="dark:text-white">
-              <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              {users.map((user, index) => (
-                <tr key={user._id}>
-                  <th>{index + 1}</th>
-                  <td>{user.name}</td>
-                  <td>
-                    {user.role === "admin" ? (
-                      <span>Admin</span>
-                    ) : (
-                      <button
-                        onClick={() => handleMakeAdmin(user)}
-                        className="btn btn-sm"
-                      >
-                        <FaUser />
-                      </button>
-                    )}
-                  </td>
-                  <td>
-                    {user.role === "admin" ? null : (
-                      <button
-                        onClick={() => handleDeleteUser(user)}
-                        className="btn btn-sm bg-red-600 border-none"
-                      >
-                        <FaTrashCan className="text-white" />
-                      </button>
-                    )}
-                  </td>
+        <p className="text-center py-6 font-serif text-xl">
+          Total Users : {users.length}
+        </p>
+        <div>
+          <div className="overflow-x-auto">
+            <table className="table ">
+              {/* head */}
+              <thead className="dark:text-white">
+                <tr>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Delete</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                {users.map((user, index) => (
+                  <tr key={user._id}>
+                    <th>{index + 1}</th>
+                    <td>{user.name}</td>
+                    <td>
+                      {user.role === "admin" ? (
+                        <span>Admin</span>
+                      ) : (
+                        <button
+                          onClick={() => handleMakeAdmin(user)}
+                          className="btn btn-sm"
+                        >
+                          <FaUser />
+                        </button>
+                      )}
+                    </td>
+                    <td>
+                      {user.role === "admin" ? null : (
+                        <button
+                          onClick={() => handleDeleteUser(user)}
+                          className="btn btn-sm bg-red-600 border-none"
+                        >
+                          <FaTrashCan className="text-white" />
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

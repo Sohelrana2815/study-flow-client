@@ -8,12 +8,16 @@ import useTheme from "../Hooks/useTheme";
 import { LuSun } from "react-icons/lu";
 import { GoMoon } from "react-icons/go";
 import { FaChalkboardTeacher, FaUsers } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const { isDarkMode, toggleDarkMode } = useTheme();
   const navLinks = (
     <>
+      <Helmet>
+        <title>Dashboard</title>
+      </Helmet>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center">
         {isAdmin ? (
           <>

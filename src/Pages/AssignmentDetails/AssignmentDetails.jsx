@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast, { Toaster } from "react-hot-toast";
 import useAdmin from "../../Hooks/useAdmin";
+import { Helmet } from "react-helmet-async";
 const AssignmentDetails = () => {
   const assignmentData = useLoaderData();
   const navigate = useNavigate();
@@ -60,6 +61,9 @@ const AssignmentDetails = () => {
   }
   return (
     <>
+      <Helmet>
+        <title>Assignment Details</title>
+      </Helmet>
       <div className="hero bg-base-200 dark:bg-gray-800 rounded-lg min-h-screen px-5">
         <div className="hero-content flex-col ">
           <p className="flex items-center gap-2 text-[#091057] text-lg dark:text-white">

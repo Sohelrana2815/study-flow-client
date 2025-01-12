@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useFormik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const UpdateAssignments = () => {
   const axiosPublic = useAxiosPublic();
@@ -61,6 +62,9 @@ const UpdateAssignments = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Update Assignments</title>
+      </Helmet>
       <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-lg">
         <div className="hero-content flex-col w-full">
           <div className="text-center lg:text-left ">
@@ -69,7 +73,10 @@ const UpdateAssignments = () => {
             </h1>
           </div>
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
-            <form onSubmit={formik.handleSubmit} className="card-body dark:text-black">
+            <form
+              onSubmit={formik.handleSubmit}
+              className="card-body dark:text-black"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Assignment Title */}
                 <div className="form-control">

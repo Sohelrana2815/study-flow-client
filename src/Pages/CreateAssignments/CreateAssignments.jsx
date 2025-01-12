@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
-// import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const CreateAssignments = () => {
   const axiosPublic = useAxiosPublic();
@@ -53,7 +53,7 @@ const CreateAssignments = () => {
   return (
     <>
       <Helmet>
-        <title>Create Assignment Page</title>
+        <title>Create Assignment</title>
       </Helmet>
       <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-lg">
         <div className="hero-content flex-col w-full">
@@ -91,7 +91,7 @@ const CreateAssignments = () => {
                     onChange={formik.handleChange}
                     value={formik.values.description}
                     placeholder="Assignment description"
-                    className="input input-bordered dark:text-black" 
+                    className="input input-bordered dark:text-black"
                     required
                   />
                 </div>

@@ -3,6 +3,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
 import useLoading from "../../Hooks/useLoading";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const GiveMark = () => {
   const navigate = useNavigate();
@@ -40,6 +41,9 @@ const GiveMark = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Assignment Score</title>
+      </Helmet>
       <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-xl">
         <div className="hero-content flex-col w-full">
           <SkeletonWrapper loading={loading} width={240} height={50}>

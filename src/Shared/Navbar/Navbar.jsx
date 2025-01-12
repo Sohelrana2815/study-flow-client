@@ -7,16 +7,35 @@ import { LuSun } from "react-icons/lu";
 import { GoMoon } from "react-icons/go";
 import useAuth from "../../Hooks/useAuth";
 import useTheme from "../../Hooks/useTheme";
+import useAdmin from "../../Hooks/useAdmin";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { isDarkMode, toggleDarkMode } = useTheme();
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
-    if (window.confirm("Are you sure you want to logout?")) {
-      logout();
-      alert("Logged out successfully!");
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out of your account!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        Swal.fire({
+          title: "Logged Out!",
+          text: "You have been successfully logged out.",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+        });
+      }
+    });
   };
 
   const navLinks = (
@@ -77,7 +96,7 @@ const Navbar = () => {
           </li>
         </>
       )}
-      {!user?.isAdmin && user && (
+      {user && !isAdmin && (
         <li className="lg:text-lg">
           <NavLink
             to="/dashboard/studentDashboard"
@@ -89,7 +108,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
-      {user?.isAdmin && (
+      {isAdmin && (
         <li className="lg:text-lg">
           <NavLink
             to="/dashboard/academyAdmin"
@@ -199,7 +218,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#6C5EBF] rounded-box w-52"
               >
                 <li>
                   <button onClick={handleLogout}>Logout</button>
