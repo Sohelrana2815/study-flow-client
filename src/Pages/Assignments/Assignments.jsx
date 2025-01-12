@@ -4,7 +4,7 @@ import AssignmentsCard from "../AssignmentsCard/AssignmentsCard";
 import { useLoaderData } from "react-router-dom";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
 import useLoading from "../../Hooks/useLoading";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const Assignments = () => {
   const { count } = useLoaderData();
@@ -56,7 +56,7 @@ const Assignments = () => {
   return (
     <>
       <Helmet>
-        <title>All Assignment Page</title>
+        <title>All Assignments</title>
       </Helmet>
       <SkeletonWrapper loading={loading} width={250} height={35}>
         <div className="mb-4 mt-16">

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import AddStudyTasks from "../../StudyTasksComponent/AddStudyTasks";
 import StudyTasks from "../../StudyTasksComponent/StudyTasks";
 import Banner from "../Banner/Banner";
@@ -8,6 +8,7 @@ import { useRef } from "react";
 import UsageGuide from "../UsageGuide/UsageGuide";
 import StudyGuideText from "../StudyGuideText/StudyGuideText";
 import OurServices from "../OurServices/OurServices";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   // step 1.1 : Create a ref to target the AddStudyTasks section
@@ -22,23 +23,25 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       <Helmet>
-        <title>Home Page</title>
+        <title>Home</title>
       </Helmet>
-      <Banner />
-      <StudyGuideText />
-      <OurServices />
-      {/* step 1.3: pass scroll function as prop to Features */}
-      <Features onGetStartedClick={scrollToAddStudyTasks} />
-      {/* Step 1.4: Attach ref to the AddStudyTasks section */}
-      <div ref={addStudyTasksRef}>
-        <UsageGuide />
+      <div>
+        <Banner />
+        <StudyGuideText />
+        <OurServices />
+        {/* step 1.3: pass scroll function as prop to Features */}
+        <Features onGetStartedClick={scrollToAddStudyTasks} />
+        {/* Step 1.4: Attach ref to the AddStudyTasks section */}
+        <div ref={addStudyTasksRef}>
+          <UsageGuide />
+        </div>
+        <AddStudyTasks />
+        <Quote />
+        <StudyTasks />
       </div>
-      <AddStudyTasks />
-      <Quote />
-      <StudyTasks />
-    </div>
+    </>
   );
 };
 
