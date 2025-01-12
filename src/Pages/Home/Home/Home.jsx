@@ -6,6 +6,8 @@ import Quote from "../Quote/Quote";
 import Features from "../Features/Features";
 import { useRef } from "react";
 import UsageGuide from "../UsageGuide/UsageGuide";
+import StudyGuideText from "../StudyGuideText/StudyGuideText";
+import OurServices from "../OurServices/OurServices";
 
 const Home = () => {
   // step 1.1 : Create a ref to target the AddStudyTasks section
@@ -25,6 +27,8 @@ const Home = () => {
         <title>Home Page</title>
       </Helmet>
       <Banner />
+      <StudyGuideText />
+      <OurServices />
       {/* step 1.3: pass scroll function as prop to Features */}
       <Features onGetStartedClick={scrollToAddStudyTasks} />
       {/* Step 1.4: Attach ref to the AddStudyTasks section */}

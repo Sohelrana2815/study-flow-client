@@ -14,7 +14,7 @@ const Banner = () => {
   return (
     <div className="mt-16 pb-10">
       <SkeletonWrapper loading={loading} width={1280} height={800}>
-        <Carousel>
+        <Carousel showThumbs={false}>
           <div>
             <img src={banner1} className="rounded-lg" />
           </div>
