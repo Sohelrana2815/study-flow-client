@@ -9,6 +9,7 @@ import UsageGuide from "../UsageGuide/UsageGuide";
 import StudyGuideText from "../StudyGuideText/StudyGuideText";
 import OurServices from "../OurServices/OurServices";
 import { Helmet } from "react-helmet-async";
+import Courses from "../Courses/Courses";
 
 const Home = () => {
   // step 1.1 : Create a ref to target the AddStudyTasks section
@@ -31,6 +32,7 @@ const Home = () => {
         <Banner />
         <StudyGuideText />
         <OurServices />
+        <Courses />
         {/* step 1.3: pass scroll function as prop to Features */}
         <Features onGetStartedClick={scrollToAddStudyTasks} />
         {/* Step 1.4: Attach ref to the AddStudyTasks section */}

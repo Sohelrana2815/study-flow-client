@@ -1,0 +1,62 @@
+[
+  {
+    "image": "https://i.ibb.co.com/s6fKWLq/course-Img2.jpg",
+    "title": "Exploring the Cosmos",
+    "author": "Jane Doe",
+    "date": "2025-01-10",
+    "description": "A fascinating journey through space and time, exploring the mysteries of the universe.",
+    "users": 1200,
+    "messages": 340,
+    "rating": 4.8
+  },
+  {
+    "image": "https://i.ibb.co.com/hYpZg2b/course-Img1.jpg",
+    "title": "The Art of Minimalism",
+    "author": "John Smith",
+    "date": "2024-12-20",
+    "description": "Learn how to embrace simplicity and live a clutter-free life with this comprehensive guide.",
+    "users": 890,
+    "messages": 210,
+    "rating": 4.6
+  },
+  {
+    "image": "https://i.ibb.co.com/BKWRzbg/course-Img3.jpg",
+    "title": "Tech Trends 2025",
+    "author": "Emily Zhang",
+    "date": "2025-01-05",
+    "description": "An in-depth analysis of the emerging technologies shaping the future.",
+    "users": 1500,
+    "messages": 410,
+    "rating": 4.9
+  },
+  {
+    "image": "https://i.ibb.co.com/qyQ2cYB/course-Img4.png",
+    "title": "The Secret Garden",
+    "author": "Frances Hodgson Burnett",
+    "date": "1911-08-10",
+    "description": "A timeless classic about the transformative power of nature and friendship.",
+    "users": 4300,
+    "messages": 780,
+    "rating": 4.7
+  },
+  {
+    "image": "https://i.ibb.co.com/NFk8GF3/course-Img5.webp",
+    "title": "Cooking Made Simple",
+    "author": "Gordon Ramsey",
+    "date": "2024-11-15",
+    "description": "Step-by-step recipes for beginners and seasoned chefs alike.",
+    "users": 670,
+    "messages": 140,
+    "rating": 4.5
+  },
+  {
+    "image": "https://i.ibb.co.com/S6JvXgM/course-Img6.jpg",
+    "title": "The Wildlife Chronicles",
+    "author": "David Attenborough",
+    "date": "2024-10-01",
+    "description": "A breathtaking visual journey through the world's most fascinating ecosystems.",
+    "users": 3100,
+    "messages": 560,
+    "rating": 4.9
+  }
+]

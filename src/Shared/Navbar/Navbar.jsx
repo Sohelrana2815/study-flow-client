@@ -126,7 +126,7 @@ const Navbar = () => {
   return (
     <>
       {/* Top Layer */}
-      <div className="bg-[#FFB400] h-12 xl:flex items-center justify-center gap-x-8 hidden lg:flex">
+      <div className="bg-[#FFB400] h-12 xl:flex items-center justify-center gap-x-8 hidden lg:flex fixed">
         <p className="flex items-center text-[#000957] gap-x-1">
           <BiPhone className="text-lg" /> +8801 64587 2451
         </p>
