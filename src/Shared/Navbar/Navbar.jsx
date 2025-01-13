@@ -126,7 +126,7 @@ const Navbar = () => {
   return (
     <>
       {/* Top Layer */}
-      <div className="bg-[#FFB400] h-12 xl:flex items-center justify-center gap-x-8 hidden lg:flex fixed">
+      <div className="bg-[#FFB400] h-12 xl:flex items-center justify-center gap-x-8 hidden lg:flex">
         <p className="flex items-center text-[#000957] gap-x-1">
           <BiPhone className="text-lg" /> +8801 64587 2451
         </p>
@@ -156,7 +156,7 @@ const Navbar = () => {
 
       {/* Middleware */}
       <div className="relative bg-[#FFF8F0] py-6">
-        <div className="absolute top-1/2 transform -translate-y-1/2 left-4 hidden md:block">
+        <div className="top-1/2 transform -translate-y-1/2 left-4 hidden md:block">
           <div className="flex items-center gap-2">
             <input
               type="text"

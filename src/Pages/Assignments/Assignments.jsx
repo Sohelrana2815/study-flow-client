@@ -59,20 +59,27 @@ const Assignments = () => {
         <title>All Assignments</title>
       </Helmet>
       <SkeletonWrapper loading={loading} width={250} height={35}>
-        <div className="mb-4 mt-16">
-          <label className="text-[#091057] font-semibold text-lg dark:text-white">
-            Filter by Difficulty Level :{" "}
-          </label>
-          <select
-            value={difficultyLevel}
-            onChange={handleDifficultyChange}
-            className="select text-[#091057] select-bordered bg-[#EEEEEE] select-sm"
+        <div className="mb-6 mt-16 p-4">
+          <label
+            htmlFor="difficulty-select"
+            className="block text-lg font-semibold text-gray-800 dark:text-white mb-2 font-lora"
           >
-            <option value="">All</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
+            Filter by Difficulty Level
+          </label>
+          <div className="relative">
+            <select
+              id="difficulty-select"
+              value={difficultyLevel}
+              onChange={handleDifficultyChange}
+              className="block w-full px-4 py-2 text-gray-700 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 transition duration-300 dark:text-gray-200"
+            >
+              <option value="">All</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500 dark:text-gray-400 pointer-events-none"></span>
+          </div>
         </div>
       </SkeletonWrapper>
 
@@ -87,42 +94,55 @@ const Assignments = () => {
       </div>
 
       {/* pagination buttons */}
-      <div className="text-center my-16 space-x-5">
-        <SkeletonWrapper loading={loading} width={200} height={30}>
-          <button
-            className="btn  btn-sm  bg-[#091057] text-white"
-            onClick={handlePrevPage}
-          >
-            Previous
-          </button>
-          {pages.map((page) => (
+      <div className="text-center my-8 space-y-4">
+        <SkeletonWrapper loading={loading} width={250} height={40}>
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            {/* Previous Button */}
             <button
-              className={
-                currentPage === page
-                  ? "btn  btn-sm  bg-[#091057] text-white"
-                  : "btn btn-sm btn-outline dark:badge-outline dark:bg-slate-50 dark:text-black"
-              }
-              key={page}
-              onClick={() => setCurrentPage(page)}
+              className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300"
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
             >
-              {page}
+              Previous
             </button>
-          ))}
-          <button
-            className="btn  btn-sm  bg-[#091057] text-white"
-            onClick={handleNextPage}
-          >
-            Next
-          </button>
-          <select
-            className="select text-[#091057] select-bordered bg-[#EEEEEE] select-sm"
-            value={itemsPerPage}
-            onChange={handleItemsPerPage}
-          >
-            <option value="6">6</option>
-            <option value="12">12</option>
-            <option value="18">18</option>
-          </select>
+
+            {/* Page Numbers */}
+            {pages.map((page) => (
+              <button
+                key={page}
+                className={`px-4 py-2 text-sm font-medium rounded-md shadow-md transition-colors duration-300 ${
+                  currentPage === page
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-blue-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                }`}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            ))}
+
+            {/* Next Button */}
+            <button
+              className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300"
+              onClick={handleNextPage}
+              disabled={currentPage === pages.length}
+            >
+              Next
+            </button>
+
+            {/* Items Per Page Dropdown */}
+            <div className="relative">
+              <select
+                className="px-4 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 transition duration-300"
+                value={itemsPerPage}
+                onChange={handleItemsPerPage}
+              >
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="18">18</option>
+              </select>
+            </div>
+          </div>
         </SkeletonWrapper>
       </div>
     </>
