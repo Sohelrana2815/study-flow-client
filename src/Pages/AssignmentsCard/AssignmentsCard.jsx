@@ -75,46 +75,58 @@ const AssignmentsCard = ({ assignment, onDelete }) => {
 
   return (
     <AnimatedComponent animation="flip-down">
-      <div className="card  bg-base-100 dark:shadow-green-400 dark:shadow-lg shadow-xl">
-        <figure className="px-10 pt-10 h-[280px]">
-          <SkeletonWrapper loading={loading} width={370} height={180}>
-            <img src={imageURL} alt="Shoes" className="rounded-xl" />
+      <div className="card bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg max-w-sm mx-auto">
+        {/* Card Image */}
+        <figure className="relative h-56 w-full overflow-hidden rounded-t-lg">
+          <SkeletonWrapper loading={loading} width="100%" height="100%">
+            <img
+              src={imageURL}
+              alt="Assignment"
+              className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+            />
           </SkeletonWrapper>
         </figure>
-        <div className="card-body dark:bg-black">
-          <h2 className="card-title text-[#091057] dark:text-white">
-            <SkeletonWrapper loading={loading} height={30} width={120}>
-              Title : {title}
+
+        {/* Card Content */}
+        <div className="card-body p-4">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">
+            <SkeletonWrapper loading={loading} height={30} width={150}>
+              Title: {title}
             </SkeletonWrapper>
           </h2>
-          <p className="text-[#091057] dark:text-white">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
             <SkeletonWrapper loading={loading} width={100} height={25}>
-              Author : {name}
+              Author: {name}
             </SkeletonWrapper>
           </p>
 
-          <SkeletonWrapper loading={loading} height={20} width={150}>
-            <div className="flex justify-evenly">
-              <Link to={`/assignmentDetails/${assignment._id}`}>
-                <button className="btn  bg-gradient-to-r from-[#091057] to-[#0d6efd] text-white">
-                  <FaEye />
-                </button>
-              </Link>
-
-              <button
-                onClick={() => handleDeleteAssignment(assignment)}
-                className="btn bg-gradient-to-r from-[#C62E2E] to-[#2C2C2C] text-white"
-              >
-                <FaTrashCan />
+          {/* Buttons */}
+          <div className="flex justify-between items-center mt-4">
+            {/* View Details */}
+            <Link to={`/assignmentDetails/${assignment._id}`}>
+              <button className="btn bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-blue-800 transition-colors duration-300">
+                <FaEye className="mr-2" />
+                View
               </button>
+            </Link>
 
-              <Link to={`/updateAssignment/${assignment._id}`}>
-                <button className="btn  bg-gradient-to-r from-[#A0D683] to-[#4CAF50]">
-                  <FaPen />
-                </button>
-              </Link>
-            </div>
-          </SkeletonWrapper>
+            {/* Delete Assignment */}
+            <button
+              onClick={() => handleDeleteAssignment(assignment)}
+              className="btn bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-800 transition-colors duration-300"
+            >
+              <FaTrashCan className="mr-2" />
+              Delete
+            </button>
+
+            {/* Edit Assignment */}
+            <Link to={`/updateAssignment/${assignment._id}`}>
+              <button className="btn bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-2 rounded-lg hover:from-green-600 hover:to-green-800 transition-colors duration-300">
+                <FaPen className="mr-2" />
+                Edit
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </AnimatedComponent>
