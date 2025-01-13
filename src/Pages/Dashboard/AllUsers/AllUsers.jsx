@@ -44,87 +44,57 @@ const AllUsers = () => {
     });
   };
 
-  // Delete user option or function
-  const handleDeleteUser = (user) => {
-    console.log(user._id);
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be abel to revert this",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#31511E",
-      cancelButtonColor: "#C80036",
-      confirmButtonText: "Confirm",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.delete(`/users/${user._id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Success!",
-              text: `${user.name} has been removed!`,
-              icon: "success",
-            });
-          }
-        });
-      }
-    });
-  };
-
   return (
     <>
       <Helmet>
         <title>All Users</title>
       </Helmet>
-      <div>
-        <p className="text-center py-6 font-serif text-xl">
-          Total Users : {users.length}
+
+      <div className="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">
+          Manage Users
+        </h1>
+        <p className="text-center mb-4 text-gray-600 dark:text-gray-400">
+          Total Users: <span>{users.length}</span>
         </p>
-        <div>
-          <div className="overflow-x-auto">
-            <table className="table ">
-              {/* head */}
-              <thead className="dark:text-white">
-                <tr>
-                  <th>No.</th>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Delete</th>
+        <div className="overflow-auto shadow-lg rounded-lg border border-gray-200 dark:border-gray-700">
+          <table className="table-auto w-full text-sm text-left text-gray-600">
+            <thead className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+              <tr>
+                <th className="py-3 px-4">No.</th>
+                <th className="py-3 px-4">Name</th>
+                <th className="py-3 px-4">Email</th>
+                <th className="py-3 px-4">Role</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              {users.map((user, index) => (
+                <tr
+                  key={user._id}
+                  className="hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-400"
+                >
+                  <td className="py-3 px-4">{index + 1}</td>
+                  <td className="py-3 px-4">{user.name}</td>
+                  <td className="py-3 px-4">{user.email}</td>
+                  <td className="py-3 px-4">
+                    {user.role === "admin" ? (
+                      <span className="text-green-600 font-medium">Admin</span>
+                    ) : (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="bg-blue-500 text-white py-1 px-3 rounded-full text-xs
+                        hover:bg-blue-600 transition
+                        "
+                      >
+                        <FaUser className="inline-block mr-1" />
+                        Make Admin
+                      </button>
+                    )}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {/* row 1 */}
-                {users.map((user, index) => (
-                  <tr key={user._id}>
-                    <th>{index + 1}</th>
-                    <td>{user.name}</td>
-                    <td>
-                      {user.role === "admin" ? (
-                        <span>Admin</span>
-                      ) : (
-                        <button
-                          onClick={() => handleMakeAdmin(user)}
-                          className="btn btn-sm"
-                        >
-                          <FaUser />
-                        </button>
-                      )}
-                    </td>
-                    <td>
-                      {user.role === "admin" ? null : (
-                        <button
-                          onClick={() => handleDeleteUser(user)}
-                          className="btn btn-sm bg-red-600 border-none"
-                        >
-                          <FaTrashCan className="text-white" />
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>

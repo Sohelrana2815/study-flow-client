@@ -7,41 +7,46 @@ const PendingAssignmentsCard = ({ pendingAssignment }) => {
 
   const loading = useLoading();
   return (
-    <div className="card glass  shadow-xl shadow-[#091057] p-4  ">
-      <figure>
-        <SkeletonWrapper loading={loading} width={380} height={160}>
-          <img src={imageURL} alt="car!" className="rounded-lg" />
-        </SkeletonWrapper>
-      </figure>
-      <div className="card-body">
-        <h2 className="text-[#091057] dark:text-white">
-          <SkeletonWrapper loading={loading} width={200} height={30}>
-            Examinee Name : {name}
+    <>
+      <div className="card bg-white dark:bg-gray-800 shadow-xl rounded-lg">
+        <figure className="relative overflow-hidden rounded-t-lg">
+          <SkeletonWrapper loading={loading} width={380} height={200}>
+            <img
+              src={imageURL}
+              alt="Assignment"
+              className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
           </SkeletonWrapper>
-        </h2>
-        <p className="text-[#091057] dark:text-white">
-          {" "}
-          <SkeletonWrapper loading={loading} width={300} height={30}>
-            {title}
-          </SkeletonWrapper>
-        </p>
-        <p className="text-[#091057] dark:text-white">
-          {" "}
-          <SkeletonWrapper loading={loading} width={100} height={30}>
-            Assignment Marks : {marks}
-          </SkeletonWrapper>
-        </p>
-        <Link to={`/giveMark/${_id}`}>
-          <div className="card-actions">
-            <SkeletonWrapper loading={loading} width={80} height={43}>
-              <button className="btn bg-gradient-to-r from-[#0d6efd] to-black text-white">
-                Give Mark
-              </button>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        </figure>
+        <div className="card-body p-6">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+            <SkeletonWrapper loading={loading} width={200} height={30}>
+              Examinee Name: {name}
             </SkeletonWrapper>
-          </div>
-        </Link>
+          </h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <SkeletonWrapper loading={loading} width={300} height={30}>
+              {title}
+            </SkeletonWrapper>
+          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <SkeletonWrapper loading={loading} width={100} height={30}>
+              Assignment Marks: {marks}
+            </SkeletonWrapper>
+          </p>
+          <Link to={`/giveMark/${_id}`}>
+            <div className="card-actions text-center">
+              <SkeletonWrapper loading={loading} width={100} height={43}>
+                <button className="btn w-full py-2 px-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold hover:from-blue-600 hover:to-blue-800 transition duration-300">
+                  Give Mark
+                </button>
+              </SkeletonWrapper>
+            </div>
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
