@@ -9,6 +9,7 @@ import useAuth from "../../Hooks/useAuth";
 import useTheme from "../../Hooks/useTheme";
 import useAdmin from "../../Hooks/useAdmin";
 import Swal from "sweetalert2";
+import AnimatedComponent from "../../Components/AnimatedComponent/AnimatedComponent";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -126,108 +127,114 @@ const Navbar = () => {
   return (
     <>
       {/* Top Layer */}
-      <div className="bg-[#FFB400] h-12 xl:flex items-center justify-center gap-x-8 hidden lg:flex">
-        <p className="flex items-center text-[#000957] gap-x-1">
-          <BiPhone className="text-lg" /> +8801 64587 2451
-        </p>
-        <p className="flex items-center text-[#000957] gap-x-1">
-          <BsClock /> Opening Time : 9:30am-5:30pm
-        </p>
-        <p className="flex items-center text-[#000957] gap-x-1">
-          <FaHome /> Address: Charigram, Savar, Dhaka
-        </p>
+      <AnimatedComponent animation="fade-out">
+        <div className="bg-[#FFB400] h-12 xl:flex items-center justify-center gap-x-8 hidden lg:flex">
+          <p className="flex items-center text-[#000957] gap-x-1">
+            <BiPhone className="text-lg" /> +8801 64587 2451
+          </p>
+          <p className="flex items-center text-[#000957] gap-x-1">
+            <BsClock /> Opening Time : 9:30am-5:30pm
+          </p>
+          <p className="flex items-center text-[#000957] gap-x-1">
+            <FaHome /> Address: Charigram, Savar, Dhaka
+          </p>
 
-        {user ? null : (
-          <div className="flex items-center gap-x-4">
-            <Link to="/signUp" className="text-[#000957] hover:text-gray-600">
-              <p className="flex items-center gap-x-1">
-                <FaRegistered /> Register
-              </p>
-            </Link>
-            <p>|</p>
-            <Link to="/login" className="text-[#000957] hover:text-gray-600">
-              <p className="flex items-center gap-x-1">
-                <BiLogIn /> Login
-              </p>
-            </Link>
-          </div>
-        )}
-      </div>
-
-      {/* Middleware */}
-      <div className="relative bg-[#FFF8F0] py-6">
-        <div className="top-1/2 transform -translate-y-1/2 left-4 hidden md:block">
-          <div className="flex items-center gap-2">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="border border-gray-300 rounded-lg px-3 py-1 w-64 focus:outline-none"
-            />
-            <button className="bg-[#FFB400] text-white p-2 rounded-lg">
-              <IoSearch />
-            </button>
-          </div>
-        </div>
-        <div className="flex items-center justify-center">
-          <Link to="/" className="text-3xl font-bold">
-            <p className="font-lora text-[#6C5EBF]">
-              Study <span className="text-[#FFB400]">Flow</span>
-            </p>
-          </Link>
-        </div>
-      </div>
-
-      {/* Bottom Layer */}
-      <div className="navbar bg-[#6C5EBF] font-lora text-white">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="lg:hidden text-3xl cursor-pointer"
-            >
-              <BiMenu />
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-[#6C5EBF] font-lora"
-            >
-              {navLinks}
-            </ul>
-          </div>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-4">{navLinks}</ul>
-        </div>
-        <div className="navbar-end flex items-center gap-4">
-          <button
-            onClick={toggleDarkMode}
-            className="text-2xl focus:outline-none"
-          >
-            {isDarkMode ? <GoMoon /> : <LuSun />}
-          </button>
-          {user && (
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                className="avatar cursor-pointer flex items-center gap-2"
-              >
-                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img src={user?.photoURL} alt="User Avatar" />
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#6C5EBF] rounded-box w-52"
-              >
-                <li>
-                  <button onClick={handleLogout}>Logout</button>
-                </li>
-              </ul>
+          {user ? null : (
+            <div className="flex items-center gap-x-4">
+              <Link to="/signUp" className="text-[#000957] hover:text-gray-600">
+                <p className="flex items-center gap-x-1">
+                  <FaRegistered /> Register
+                </p>
+              </Link>
+              <p>|</p>
+              <Link to="/login" className="text-[#000957] hover:text-gray-600">
+                <p className="flex items-center gap-x-1">
+                  <BiLogIn /> Login
+                </p>
+              </Link>
             </div>
           )}
         </div>
-      </div>
+      </AnimatedComponent>
+
+      {/* Middleware */}
+      <AnimatedComponent animation="fade-out">
+        <div className="relative bg-[#FFF8F0] py-6">
+          <div className="top-1/2 transform -translate-y-1/2 left-4 hidden md:block">
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="border border-gray-300 rounded-lg px-3 py-1 w-64 focus:outline-none"
+              />
+              <button className="bg-[#FFB400] text-white p-2 rounded-lg">
+                <IoSearch />
+              </button>
+            </div>
+          </div>
+          <div className="flex items-center justify-center">
+            <Link to="/" className="text-3xl font-bold">
+              <p className="font-lora text-[#6C5EBF]">
+                Study <span className="text-[#FFB400]">Flow</span>
+              </p>
+            </Link>
+          </div>
+        </div>
+      </AnimatedComponent>
+
+      {/* Bottom Layer */}
+      <AnimatedComponent animation="fade-in">
+        <div className="navbar bg-[#6C5EBF] font-lora text-white">
+          <div className="navbar-start">
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="lg:hidden text-3xl cursor-pointer"
+              >
+                <BiMenu />
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-[#6C5EBF] font-lora"
+              >
+                {navLinks}
+              </ul>
+            </div>
+          </div>
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1 gap-4">{navLinks}</ul>
+          </div>
+          <div className="navbar-end flex items-center gap-4">
+            <button
+              onClick={toggleDarkMode}
+              className="text-2xl focus:outline-none"
+            >
+              {isDarkMode ? <GoMoon /> : <LuSun />}
+            </button>
+            {user && (
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  className="avatar cursor-pointer flex items-center gap-2"
+                >
+                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img src={user?.photoURL} alt="User Avatar" />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#6C5EBF] rounded-box w-52"
+                >
+                  <li>
+                    <button onClick={handleLogout}>Logout</button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </AnimatedComponent>
     </>
   );
 };

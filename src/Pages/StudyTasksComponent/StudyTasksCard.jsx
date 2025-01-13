@@ -74,7 +74,7 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   } = singleTask;
 
   return (
-    <AnimatedComponent animation="flip-right">
+    <AnimatedComponent animation="zoom-in">
       <div className="card card-compact dark:bg-black  bg-base-100 w-full shadow-xl my-16 dark:shadow-xl dark:shadow-green-500">
         <figure className="h-48 overflow-hidden">
           <SkeletonWrapper loading={loading} height={192} width={500}>

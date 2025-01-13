@@ -7,7 +7,7 @@ const UsageGuide = () => {
       <AnimatedComponent animation="zoom-in">
         <SectionTitle2 heading="How It Works" />
       </AnimatedComponent>
-      <AnimatedComponent animation="fade-right">
+      <AnimatedComponent animation="fade-in">
         <div className="animate-fade animate-duration-[3000ms] animate-delay-100">
           <p className="leading-relaxed md:text-xl text-lg my-4">
             Study Flow offers a streamlined way to manage your study tasks and

@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router-dom";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
 import useLoading from "../../Hooks/useLoading";
 import { Helmet } from "react-helmet-async";
+import AnimatedComponent from "../../Components/AnimatedComponent/AnimatedComponent";
 
 const Assignments = () => {
   const { count } = useLoaderData();
@@ -58,30 +59,35 @@ const Assignments = () => {
       <Helmet>
         <title>All Assignments</title>
       </Helmet>
-      <SkeletonWrapper loading={loading} width={250} height={35}>
-        <div className="mb-6 mt-16 p-4">
+      <div className="mb-6 mt-16 p-4">
+        {/* Label Animation */}
+        <AnimatedComponent animation="fade-down" duration={1200}>
           <label
             htmlFor="difficulty-select"
             className="block text-lg font-semibold text-gray-800 dark:text-white mb-2 font-lora"
           >
             Filter by Difficulty Level
           </label>
-          <div className="relative">
+        </AnimatedComponent>
+
+        <div className="relative">
+          {/* Dropdown Animation */}
+          <AnimatedComponent animation="fade-up" duration={1200} delay={200}>
             <select
               id="difficulty-select"
               value={difficultyLevel}
               onChange={handleDifficultyChange}
-              className="block w-full px-4 py-2 text-gray-700 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 transition duration-300 dark:text-gray-200"
+              className="block xl:w-1/5 md:w-1/3 lg:h-1/4 w-full px-4 py-2 text-gray-700 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 transition duration-300 dark:text-gray-200"
             >
               <option value="">All</option>
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
               <option value="hard">Hard</option>
             </select>
-            <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500 dark:text-gray-400 pointer-events-none"></span>
-          </div>
+          </AnimatedComponent>
+          <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500 dark:text-gray-400 pointer-events-none"></span>
         </div>
-      </SkeletonWrapper>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">
         {assignments.map((assignment) => (

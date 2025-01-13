@@ -5,15 +5,12 @@ import banner2 from "../../../assets/Banner/banner2.png";
 import banner3 from "../../../assets/Banner/banner3.png";
 import "react-loading-skeleton/dist/skeleton.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import useLoading from "../../../Hooks/useLoading";
-import SkeletonWrapper from "../../../Utility/SkeletonWrapper";
+import AnimatedComponent from "../../../Components/AnimatedComponent/AnimatedComponent";
 
 const Banner = () => {
-  const loading = useLoading();
-
   return (
-    <div className="mt-16 pb-10">
-      <SkeletonWrapper loading={loading} width={1280} height={800}>
+    <AnimatedComponent animation="fade-out">
+      <div>
         <Carousel showThumbs={false}>
           <div>
             <img src={banner1} className="rounded-lg" />
@@ -25,8 +22,8 @@ const Banner = () => {
             <img src={banner3} className="rounded-lg" />
           </div>
         </Carousel>
-      </SkeletonWrapper>
-    </div>
+      </div>
+    </AnimatedComponent>
   );
 };
 

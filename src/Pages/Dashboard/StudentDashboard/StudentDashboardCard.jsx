@@ -43,26 +43,31 @@ const StudentDashboardCard = ({ submittedAssignment }) => {
       {status === "pending" ? (
         <>
           <AnimatedComponent animation="fade-down-right">
-            <div className="card  md:w-96 bg-base-100 shadow-xl  dark:shadow-green-500">
-              <figure className="h-48">
+            {/* Card for submitted assignments */}
+            <div className="card md:w-96 bg-base-100 shadow-xl dark:shadow-green-500 transition-transform duration-300 hover:shadow-2xl">
+              <figure className="h-48 overflow-hidden">
                 <SkeletonWrapper loading={loading} width={380} height={180}>
-                  <img src={imageURL} alt="Shoes" />
+                  <img
+                    src={imageURL}
+                    alt="Assignment Preview"
+                    className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
+                  />
                 </SkeletonWrapper>
               </figure>
               <div className="card-body dark:bg-black dark:rounded-b-lg">
-                <h2 className="card-title">
+                <h2 className="card-title text-lg font-bold text-gray-800 dark:text-white">
                   <SkeletonWrapper loading={loading} width={300} height={20}>
                     {title}
                   </SkeletonWrapper>
                 </h2>
                 <SkeletonWrapper loading={loading} width={300} height={30}>
-                  <div className="card-actions justify-between">
-                    <div className="badge badge-outline text-[#091057] dark:text-white  font-semibold  badge-lg">
-                      Assignment Marks : {marks}
+                  <div className="card-actions flex justify-between items-center mt-4">
+                    <div className="badge badge-outline text-[#091057] dark:text-white font-semibold badge-lg">
+                      Assignment Marks: {marks}
                     </div>
-                    <div className="badge badge-outline md:mt-0 mt-2 badge-lg bg-gradient-to-r  from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent ">
-                      <span className="dark:text-sky-200"> {status}</span>
-                      <span className="loading loading-ball loading-lg  text-[#EC8305] dark:text-white"></span>
+                    <div className="badge badge-outline badge-lg bg-gradient-to-r from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent">
+                      <span className="dark:text-sky-200">{status}</span>
+                      <span className="loading loading-ball loading-lg text-[#EC8305] dark:text-white ml-2"></span>
                     </div>
                   </div>
                 </SkeletonWrapper>
@@ -72,51 +77,74 @@ const StudentDashboardCard = ({ submittedAssignment }) => {
         </>
       ) : (
         <>
-          <div className="card w-80 mx-auto bg-base-100  md:w-full shadow-xl justify-center dark:bg-black dark:shadow-green-500 py-5 items-center space-y-5">
-            <p>{title.slice(0, 25)}...</p>
-            <p className="text-green-500">{status.toUpperCase()}</p>
-            <p className="text-white text-2xl">
+          {/* Card for showing the mark */}
+          <div className="card w-full max-w-md mx-auto bg-base-100 shadow-lg dark:bg-gray-900 dark:shadow-green-500 rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white truncate">
+              {title}
+            </h2>
+            <p
+              className={`text-sm font-medium ${
+                status.toLowerCase() === "completed"
+                  ? "text-green-500"
+                  : "text-red-500"
+              }`}
+            >
+              {status.toUpperCase()}
+            </p>
+            <p className="text-2xl font-bold text-gray-800 dark:text-gray-100">
               {obtainedMark}/{marks}
             </p>
-            {/*  */}
-            {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <div className="mt-10">
+
+            {/* Examiner Feedback Modal Trigger */}
+            <div className="mt-6 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span>View Examiner&apos;s Feedback</span>
-                <span
-                  onClick={() =>
-                    document.getElementById("my_modal_5").showModal()
-                  }
-                >
-                  <FaEye className="text-xl cursor-pointer" />
+                <span className="text-sm text-gray-600 dark:text-gray-300">
+                  View Examiner&apos;s Feedback
                 </span>
+                <button
+                  onClick={() =>
+                    document.getElementById("feedback_modal").showModal()
+                  }
+                  className="text-blue-500 hover:text-blue-700 transition"
+                  aria-label="View Feedback"
+                >
+                  <FaEye className="text-2xl" />
+                </button>
               </div>
-              <dialog
-                id="my_modal_5"
-                className="modal dark:text-black modal-bottom sm:modal-middle"
+              <button
+                onClick={() => handleDeleteMarkedAssignment(_id)}
+                className="btn btn-circle bg-red-600 dark:bg-red-500 hover:bg-red-700 text-white border-none"
+                aria-label="Delete Assignment"
               >
-                <div className="modal-box">
-                  <h3 className="font-bold text-lg">
-                    Examiner&apos;s Feedback
-                  </h3>
-                  <p className="py-4">{feedback}</p>
-                  <div className="modal-action">
-                    <form method="dialog">
-                      {/* if there is a button in form, it will close the modal */}
-                      <button className="btn">Close</button>
-                    </form>
-                  </div>
-                </div>
-              </dialog>
+                <IoMdClose className="text-xl" />
+              </button>
             </div>
-            <button
-              onClick={() => {
-                handleDeleteMarkedAssignment(_id);
-              }}
-              className="btn btn-circle bg-red-600 dark:border-none text-white text-lg"
+
+            {/* Modal */}
+            <dialog
+              id="feedback_modal"
+              className="modal modal-bottom sm:modal-middle dark:text-gray-900"
             >
-              <IoMdClose />
-            </button>
+              <div className="modal-box">
+                <h3 className="font-bold text-lg text-gray-800 dark:text-black">
+                  Examiner&apos;s Feedback
+                </h3>
+                <p className="py-4 text-gray-600 dark:text-gray-800">
+                  {feedback}
+                </p>
+                <div className="modal-action">
+                  {/* Close Modal */}
+                  <button
+                    className="btn bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg"
+                    onClick={() =>
+                      document.getElementById("feedback_modal").close()
+                    }
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </dialog>
           </div>
         </>
       )}

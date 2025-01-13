@@ -94,7 +94,7 @@ const GiveMark = () => {
                     type="number"
                     name="obtainedMark"
                     placeholder="Enter Marks"
-                    className="input input-primary"
+                    className="input input-primary dark:text-gray-800"
                     required
                   />
                 </div>
@@ -110,7 +110,7 @@ const GiveMark = () => {
                   <textarea
                     name="feedback"
                     placeholder="Write your feedback here"
-                    className="textarea textarea-primary"
+                    className="textarea textarea-primary dark:text-gray-800"
                     required
                   />
                 </div>
