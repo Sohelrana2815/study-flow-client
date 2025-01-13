@@ -1,14 +1,21 @@
 import { Helmet } from "react-helmet-async";
 import useSubmittedAssignment from "../../../Hooks/useSubmittedAssignment";
 import StudentDashboardCard from "./StudentDashboardCard";
-
+import studentDashboardImg from "../../../assets/student dashboard/student.jpg";
 const StudentDashboard = () => {
   const [submittedAssignments] = useSubmittedAssignment();
   if (!submittedAssignments.length) {
     return (
-      <p className="text-[#091057] text-2xl mt-5 text-center font-serif dark:text-white">
-        You don&apos;t submit any assignment.....
-      </p>
+      <div className="flex flex-col items-center justify-center mt-10 text-center">
+        <img
+          src={studentDashboardImg}
+          alt="No assignments submitted"
+          className="w-full max-w-lg h-auto rounded-lg shadow-lg mb-5"
+        />
+        <p className="text-2xl text-[#091057] font-serif font-semibold uppercase dark:text-gray-100">
+          You haven&apos;t submitted any assignments yet...
+        </p>
+      </div>
     );
   }
   return (

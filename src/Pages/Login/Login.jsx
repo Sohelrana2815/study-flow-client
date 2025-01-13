@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import loginImg from "../../assets/login/login.jpeg";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -61,67 +62,94 @@ const Login = () => {
       <Helmet>
         <title>Login</title>
       </Helmet>
+
       <AdminAccessButton />
-      <div className="flex items-center justify-center min-h-screen flex-col space-y-8">
-        <h2 className="text-center font-serif text-purple-500 text-4xl">
-          REACT FORMIK FORM
-        </h2>
-        <p className="text-center mt-10">
-          New To Study Flow ?{" "}
-          <Link to="/signUp">
-            <button className="font-serif dark:text-[#6EACDA] btn-link text-lg">
-              Sign Up
-            </button>
-          </Link>
-        </p>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-purple-200 dark:from-gray-800 dark:to-gray-900 px-4 lg:px-0">
+        <div className="flex flex-col lg:flex-row items-center max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+          {/* Image Section */}
+          <div className="hidden lg:block lg:w-1/2 pl-4">
+            <img
+              src={loginImg} // Replace with your image path
+              alt="Login Illustration"
+              className="h-full w-full object-cover rounded-md"
+            />
+          </div>
 
-        <div className="w-full dark:text-black max-w-sm p-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-          <form onSubmit={formik.handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="email" className="block mb-1 font-medium">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-                className="input text-purple-600 bg-white input-primary w-full"
-                required
-              />
-            </div>
-            <div className="mb-6">
-              <label htmlFor="password" className="block mb-1 font-medium">
-                Password
-              </label>
-              <input
-                type={passwordVisible ? "text" : "password"}
-                name="password"
-                autoComplete=""
-                onChange={formik.handleChange}
-                value={formik.values.password}
-                className="input bg-white text-purple-600 input-primary w-full"
-                required
-              />
-
-              <div className="relative">
-                <button
-                  type="button"
-                  className="absolute right-0 bottom-[13px] pr-4 text-lg"
-                  onClick={togglePasswordVisibility}
-                >
-                  {passwordVisible ? <FaEye /> : <FaEyeSlash />}
+          {/* Form Section */}
+          <div className="w-full lg:w-1/2 p-8 lg:p-12 space-y-6">
+            <h2 className="text-3xl font-bold text-center text-purple-500 dark:text-purple-300 font-serif">
+              REACT FORMIK FORM
+            </h2>
+            <p className="text-center text-gray-600 dark:text-gray-300">
+              New to Study Flow?{" "}
+              <Link to="/signUp">
+                <button className="font-serif btn-link text-purple-600 dark:text-purple-400">
+                  Sign Up
                 </button>
-              </div>
-            </div>
-            {error && <p className="text-red-500 text-center">{error}</p>}
-            <button type="submit" className="btn text-white btn-primary w-full">
-              Login
-            </button>
-          </form>
+              </Link>
+            </p>
 
-          <SocialLogin />
+            <form onSubmit={formik.handleSubmit} className="space-y-4">
+              {/* Email Field */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-1 font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                  className="input text-purple-600 dark:text-purple-300 bg-gray-50 dark:bg-gray-700 input-primary w-full"
+                  required
+                />
+              </div>
+
+              {/* Password Field */}
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block mb-1 font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={passwordVisible ? "text" : "password"}
+                    name="password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    className="input text-purple-600 dark:text-purple-300 bg-gray-50 dark:bg-gray-700 input-primary w-full"
+                    required
+                  />
+                  <button
+                    onClick={togglePasswordVisibility}
+                    type="button"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-lg text-gray-500 dark:text-gray-300"
+                  >
+                    {passwordVisible ? <FaEye /> : <FaEyeSlash />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Error Message */}
+              {error && <p className="text-red-500 text-center">{error}</p>}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="btn bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500 text-white font-semibold w-full rounded-lg py-2 transition duration-300"
+              >
+                Login
+              </button>
+            </form>
+
+            {/* Social Login */}
+            <SocialLogin />
+          </div>
         </div>
       </div>
     </>

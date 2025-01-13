@@ -131,17 +131,20 @@ const AssignmentDetails = () => {
           {/* Modal for Assignment Submission */}
           <dialog
             id="assignment_modal"
-            className="modal bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
+            className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
           >
-            <div className="modal-box">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Submit Assignment
+            <div className="modal-box bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full p-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center">
+                Submit Your Assignment
               </h3>
-              <form onSubmit={formik.handleSubmit} className="mt-4">
+              <p className="text-gray-600 dark:text-gray-400 text-sm text-center mt-2">
+                Please provide the required details to submit your assignment.
+              </p>
+              <form onSubmit={formik.handleSubmit} className="mt-6 space-y-4">
                 {/* PDF/Doc Link Input */}
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-gray-700 dark:text-gray-300">
+                    <span className="label-text font-medium text-gray-700 dark:text-gray-300">
                       PDF/Doc Link
                     </span>
                   </label>
@@ -150,15 +153,15 @@ const AssignmentDetails = () => {
                     name="pdfLink"
                     onChange={formik.handleChange}
                     value={formik.values.pdfLink}
-                    placeholder="Enter your PDF/Doc link"
-                    className="input input-bordered dark:bg-gray-700 dark:text-white"
+                    placeholder="Enter the link to your PDF/Doc"
+                    className="input input-bordered w-full bg-gray-50 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                     required
                   />
                 </div>
                 {/* Quick Note Text Area */}
-                <div className="form-control mt-4">
+                <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-gray-700 dark:text-gray-300">
+                    <span className="label-text font-medium text-gray-700 dark:text-gray-300">
                       Quick Note
                     </span>
                   </label>
@@ -166,25 +169,25 @@ const AssignmentDetails = () => {
                     name="quickNote"
                     onChange={formik.handleChange}
                     value={formik.values.quickNote}
-                    placeholder="Enter a quick note"
-                    className="textarea textarea-bordered dark:bg-gray-700 dark:text-white"
+                    placeholder="Write a quick note about your assignment"
+                    className="textarea textarea-bordered w-full bg-gray-50 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                     required
                   ></textarea>
                 </div>
                 {/* Modal Actions */}
-                <div className="modal-action flex justify-between items-center mt-6">
+                <div className="flex justify-between items-center mt-6">
                   <button
                     type="button"
-                    className="btn btn-outline rounded-lg"
+                    className="btn btn-outline border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-6 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                     onClick={() =>
                       document.getElementById("assignment_modal").close()
                     }
                   >
-                    Close
+                    Cancel
                   </button>
                   <button
                     type="submit"
-                    className="btn bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-lg hover:from-blue-500 hover:to-green-400 transition duration-300"
+                    className="btn bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-lg hover:from-blue-500 hover:to-green-400 transition"
                   >
                     Submit Assignment
                   </button>

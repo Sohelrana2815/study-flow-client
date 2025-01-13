@@ -30,9 +30,11 @@ const SocialLogin = () => {
   };
   return (
     <div>
-      <p className="text-center py-2  text-black ">---OR---</p>
+      <p className="text-center py-2  text-black dark:text-gray-100">
+        ---OR---
+      </p>
       <button
-        className="btn btn-outline hover:bg-black w-full"
+        className="btn btn-outline hover:bg-black w-full dark:border-gray-200"
         onClick={handleGoogleLogin}
       >
         <FcGoogle className="text-2xl" />

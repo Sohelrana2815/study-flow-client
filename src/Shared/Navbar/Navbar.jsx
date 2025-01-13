@@ -134,7 +134,7 @@ const Navbar = () => {
           <BsClock /> Opening Time : 9:30am-5:30pm
         </p>
         <p className="flex items-center text-[#000957] gap-x-1">
-          <FaHome /> Address: Example 1205 Dhaka
+          <FaHome /> Address: Charigram, Savar, Dhaka
         </p>
 
         {user ? null : (
