@@ -1,9 +1,7 @@
 import Swal from "sweetalert2";
-import useLoading from "../../../Hooks/useLoading";
 import useSubmittedAssignment from "../../../Hooks/useSubmittedAssignment";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { IoMdClose } from "react-icons/io";
-import SkeletonWrapper from "../../../Utility/SkeletonWrapper";
 import { FaEye } from "react-icons/fa6";
 import AnimatedComponent from "../../../Components/AnimatedComponent/AnimatedComponent";
 
@@ -13,7 +11,6 @@ const StudentDashboardCard = ({ submittedAssignment }) => {
 
   const { title, marks, status, feedback, imageURL, obtainedMark, _id } =
     submittedAssignment;
-  const loading = useLoading();
   const handleDeleteMarkedAssignment = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -42,35 +39,39 @@ const StudentDashboardCard = ({ submittedAssignment }) => {
     <>
       {status === "pending" ? (
         <>
-          <AnimatedComponent animation="fade-down-right">
-            {/* Card for submitted assignments */}
-            <div className="card md:w-96 bg-base-100 shadow-xl dark:shadow-green-500 transition-transform duration-300 hover:shadow-2xl">
-              <figure className="h-48 overflow-hidden">
-                <SkeletonWrapper loading={loading} width={380} height={180}>
+          {/* Card for submitted assignments */}
+          <AnimatedComponent animation="fade-up" duration={1000}>
+            <div className="card md:w-96 bg-base-100 shadow-md dark:shadow-green-500 transition-transform duration-300 hover:shadow-lg">
+              <AnimatedComponent animation="zoom-in" duration={1200}>
+                <figure className="h-48 overflow-hidden">
                   <img
                     src={imageURL}
                     alt="Assignment Preview"
-                    className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
+                    className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105 rounded-sm"
                   />
-                </SkeletonWrapper>
-              </figure>
+                </figure>
+              </AnimatedComponent>
               <div className="card-body dark:bg-black dark:rounded-b-lg">
-                <h2 className="card-title text-lg font-bold text-gray-800 dark:text-white">
-                  <SkeletonWrapper loading={loading} width={300} height={20}>
+                <AnimatedComponent animation="fade-right" duration={800}>
+                  <h2 className="card-title text-lg font-bold text-gray-800 dark:text-white">
                     {title}
-                  </SkeletonWrapper>
-                </h2>
-                <SkeletonWrapper loading={loading} width={300} height={30}>
+                  </h2>
+                </AnimatedComponent>
+                <AnimatedComponent
+                  animation="fade-left"
+                  duration={800}
+                  delay={200}
+                >
                   <div className="card-actions flex justify-between items-center mt-4">
                     <div className="badge badge-outline text-[#091057] dark:text-white font-semibold badge-lg">
                       Assignment Marks: {marks}
                     </div>
                     <div className="badge badge-outline badge-lg bg-gradient-to-r from-[#C62E2E] to-[#8B0000] bg-clip-text text-transparent">
                       <span className="dark:text-sky-200">{status}</span>
-                      <span className="loading loading-ball loading-lg text-[#EC8305] dark:text-white ml-2"></span>
+                      <span className="loading loading-ball loading-md text-[#EC8305] dark:text-white ml-2"></span>
                     </div>
                   </div>
-                </SkeletonWrapper>
+                </AnimatedComponent>
               </div>
             </div>
           </AnimatedComponent>

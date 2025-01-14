@@ -38,7 +38,7 @@ const PendingAssignmentsCard = ({ pendingAssignment }) => {
           <Link to={`/giveMark/${_id}`}>
             <div className="card-actions text-center">
               <SkeletonWrapper loading={loading} width={100} height={43}>
-                <button className="btn w-full py-2 px-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold hover:from-blue-600 hover:to-blue-800 transition duration-300">
+                <button className="btn w-full py-2 px-4 border-none rounded-md bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold hover:from-blue-600 hover:to-blue-800 transition duration-300">
                   Give Mark
                 </button>
               </SkeletonWrapper>
