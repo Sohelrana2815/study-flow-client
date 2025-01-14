@@ -3,6 +3,7 @@ import "./course.css";
 import { useEffect, useState } from "react";
 import { CgCalendar } from "react-icons/cg";
 import AnimatedComponent from "../../../Components/AnimatedComponent/AnimatedComponent";
+import SectionTitle2 from "../../../Components/SectionTitle2/SectionTitle2";
 const Courses = () => {
   const [courses, setCourses] = useState([]); // State to store fetched data
   const [loading, setLoading] = useState(true); // State to track loading status
@@ -39,6 +40,10 @@ const Courses = () => {
 
   return (
     <>
+      <SectionTitle2
+        heading="Explore Our Courses"
+        subheading="A curated collection of courses to help you achieve your goals."
+      />
       <div className="courses-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 max-w-screen-xl mx-auto">
         {courses.map((course, index) => (
           <div

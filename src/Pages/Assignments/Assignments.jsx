@@ -6,6 +6,7 @@ import SkeletonWrapper from "../../Utility/SkeletonWrapper";
 import useLoading from "../../Hooks/useLoading";
 import { Helmet } from "react-helmet-async";
 import AnimatedComponent from "../../Components/AnimatedComponent/AnimatedComponent";
+import SectionTitle2 from "../../Components/SectionTitle2/SectionTitle2";
 
 const Assignments = () => {
   const { count } = useLoaderData();
@@ -59,6 +60,10 @@ const Assignments = () => {
       <Helmet>
         <title>All Assignments</title>
       </Helmet>
+      <SectionTitle2
+        heading="Explore All Assignments"
+        subheading="Browse through all available assignments and manage your workload effortlessly."
+      />
       <div className="mb-6 mt-16 p-4">
         {/* Label Animation */}
         <AnimatedComponent animation="fade-down" duration={1200}>

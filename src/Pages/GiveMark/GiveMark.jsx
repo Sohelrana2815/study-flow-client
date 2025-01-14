@@ -1,17 +1,15 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import SkeletonWrapper from "../../Utility/SkeletonWrapper";
-import useLoading from "../../Hooks/useLoading";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
+import AnimatedComponent from "../../Components/AnimatedComponent/AnimatedComponent";
 
 const GiveMark = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const submittedAssignment = useLoaderData();
   const { pdfLink, quickNote, _id, marks } = submittedAssignment;
-  const loading = useLoading();
 
   // Modal state
   const [showModal, setShowModal] = useState(false);
@@ -41,6 +39,7 @@ const GiveMark = () => {
         navigate("/dashboard/academyAdmin");
       }
     } catch (error) {
+      console.error(error);
       Swal.fire({
         icon: "error",
         title: "Submission Failed",
@@ -54,36 +53,34 @@ const GiveMark = () => {
       <Helmet>
         <title>Evaluate Assignment</title>
       </Helmet>
-      <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-xl">
-        <div className="hero-content flex flex-col lg:flex-row justify-between items-center w-full gap-8">
-          {/* Assignment Details Section */}
-          <div className="w-full lg:w-1/2 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-            <SkeletonWrapper loading={loading} width={240} height={50}>
+      <AnimatedComponent animation="fade-down">
+        <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-xl">
+          <div className="hero-content flex flex-col lg:flex-row justify-between items-center w-full gap-8">
+            {/* Assignment Details Section */}
+            <div className="w-full lg:w-1/2 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
               <h2 className="text-2xl font-semibold text-center text-[#091057] dark:text-white mb-4">
                 Assignment Marks: {marks || "Not Evaluated Yet"}
               </h2>
-            </SkeletonWrapper>
 
-            <div className="text-center">
-              <p className="text-lg font-medium text-[#091057] dark:text-white mb-4">
-                Submitted Document:
-              </p>
-              <button
-                onClick={() => setShowModal(true)}
-                className="btn btn-sm bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800"
-              >
-                View Assignment
-              </button>
-              <p className="py-6 text-gray-700 dark:text-gray-300">
-                <span className="font-semibold">Quick Note:</span> {quickNote}
-              </p>
+              <div className="text-center">
+                <p className="text-lg font-medium text-[#091057] dark:text-white mb-4">
+                  Submitted Document:
+                </p>
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="btn btn-sm bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800"
+                >
+                  View Assignment
+                </button>
+                <p className="py-6 text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Quick Note:</span> {quickNote}
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* Form Section */}
-          <div className="card bg-white dark:bg-gray-900 w-full lg:w-1/3 p-6 rounded-lg shadow-lg">
-            <form onSubmit={handleScoreSubmit}>
-              <SkeletonWrapper loading={loading} width={315} height={50}>
+            {/* Form Section */}
+            <div className="card bg-white dark:bg-gray-900 w-full lg:w-1/3 p-6 rounded-lg shadow-lg">
+              <form onSubmit={handleScoreSubmit}>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text font-medium text-gray-700 dark:text-gray-300">
@@ -98,9 +95,7 @@ const GiveMark = () => {
                     required
                   />
                 </div>
-              </SkeletonWrapper>
 
-              <SkeletonWrapper loading={loading} width={315} height={90}>
                 <div className="form-control mt-4">
                   <label className="label">
                     <span className="label-text font-medium text-gray-700 dark:text-gray-300">
@@ -114,9 +109,7 @@ const GiveMark = () => {
                     required
                   />
                 </div>
-              </SkeletonWrapper>
 
-              <SkeletonWrapper loading={loading} width={315} height={50}>
                 <div className="form-control mt-6">
                   <button
                     type="submit"
@@ -125,11 +118,11 @@ const GiveMark = () => {
                     Submit Marks
                   </button>
                 </div>
-              </SkeletonWrapper>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      </AnimatedComponent>
 
       {/* Modal for Viewing Assignment */}
       {showModal && (

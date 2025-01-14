@@ -6,6 +6,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import AnimatedComponent from "../../Components/AnimatedComponent/AnimatedComponent";
+import SectionTitle2 from "../../Components/SectionTitle2/SectionTitle2";
 
 const CreateAssignments = () => {
   const axiosPublic = useAxiosPublic();
@@ -56,14 +57,14 @@ const CreateAssignments = () => {
       <Helmet>
         <title>Create Assignment</title>
       </Helmet>
+      <SectionTitle2
+        heading="Create a New Assignment"
+        subheading="Define tasks, set deadlines, and assign priorities to organize your workflow."
+      />
       <AnimatedComponent animation="fade-in">
         <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-lg">
           <div className="hero-content flex-col w-full">
-            <div className="text-center lg:text-left ">
-              <h1 className="lg:text-3xl md:text-2xl text-xl font-semibold text-[#091057] font-serif dark:text-white">
-                Create An Assignment
-              </h1>
-            </div>
+            <div className="text-center lg:text-left "></div>
             <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
               <form onSubmit={formik.handleSubmit} className="card-body">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

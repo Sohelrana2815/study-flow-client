@@ -9,6 +9,7 @@ import useLoading from "../../Hooks/useLoading";
 import "react-loading-skeleton/dist/skeleton.css";
 import SkeletonWrapper from "../../Utility/SkeletonWrapper";
 import AnimatedComponent from "../../Components/AnimatedComponent/AnimatedComponent";
+import { FaLock } from "react-icons/fa6";
 const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   const axiosPublic = useAxiosPublic();
   const loading = useLoading();
@@ -64,6 +65,7 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
   };
   const {
     taskTitle,
+    status,
     date,
     subject,
     priority,
@@ -75,8 +77,9 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
 
   return (
     <AnimatedComponent animation="zoom-in">
-      <div className="card card-compact dark:bg-black  bg-base-100 w-full shadow-xl my-16 dark:shadow-xl dark:shadow-green-500">
-        <figure className="h-48 overflow-hidden">
+      <div className="card bg-base-100 dark:bg-gray-900 shadow-xl rounded-lg w-full max-w-md mx-auto my-8 transition-transform duration-300 hover:scale-105">
+        {/* Image Section */}
+        <figure className="h-48 overflow-hidden rounded-t-lg">
           <SkeletonWrapper loading={loading} height={192} width={500}>
             <img
               src={image}
@@ -85,78 +88,86 @@ const StudyTasksCard = ({ singleTask, onDelete, onUpdate }) => {
             />
           </SkeletonWrapper>
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            <SkeletonWrapper loading={loading} width={150}>
+
+        {/* Card Body */}
+        <div className="p-6">
+          {/* Task Title */}
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
+            <SkeletonWrapper loading={loading} width={200}>
               {taskTitle}
             </SkeletonWrapper>
           </h2>
 
-          <div className="grid grid-cols-2 gap-2">
-            <SkeletonWrapper loading={loading} width={80}>
+          {/* Task Details */}
+          <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
+            <SkeletonWrapper loading={loading} width={100}>
               <p className="flex items-center gap-2">
-                <TbCategoryPlus className="text-xl text-[#1E3E62] dark:text-green-500" />{" "}
+                <TbCategoryPlus className="text-lg text-blue-600 dark:text-green-500" />
                 {subject.toUpperCase()}
               </p>
             </SkeletonWrapper>
-            <SkeletonWrapper loading={loading} width={80}>
+            <SkeletonWrapper loading={loading} width={100}>
               <p className="flex items-center gap-2">
-                <GiLevelEndFlag className="text-xl dark:text-green-500 text-[#1E3E62] " />
+                <GiLevelEndFlag className="text-lg text-blue-600 dark:text-green-500" />
                 {priority.toUpperCase()}
               </p>
             </SkeletonWrapper>
-
-            <SkeletonWrapper loading={loading} width={80}>
+            <SkeletonWrapper loading={loading} width={100}>
               <p className="flex items-center gap-2">
-                <LuClock2 className="text-xl dark:text-green-500 text-[#1E3E62] " />
+                <LuClock2 className="text-lg text-blue-600 dark:text-green-500" />
                 {estimatedTime}
               </p>
             </SkeletonWrapper>
-
-            <SkeletonWrapper loading={loading} width={80}>
+            <SkeletonWrapper loading={loading} width={100}>
               <p className="flex items-center gap-2">
-                <FaRegCalendarAlt className="text-xl dark:text-green-500 text-[#1E3E62] " />
+                <FaRegCalendarAlt className="text-lg text-blue-600 dark:text-green-500" />
                 {date}
               </p>
             </SkeletonWrapper>
           </div>
-          <SkeletonWrapper loading={loading} width={120}>
-            <p className="mt-2 text-base">
-              <span className="text-[#1E3E62] text-base font-semibold dark:text-green-500">
-                Description :{" "}
+
+          {/* Description */}
+          <SkeletonWrapper loading={loading} width={180}>
+            <p className="mt-4 text-sm">
+              <span className="font-medium text-gray-800 dark:text-green-400">
+                Description:{" "}
               </span>
               {description}
             </p>
           </SkeletonWrapper>
-          <div className="card-actions justify-center items-center my-4">
-            <SkeletonWrapper loading={loading} height={35} width={80}>
-              <button
-                onClick={() => handleDelete(_id)}
-                className="btn btn-sm bg-gradient-to-r from-[#C62E2E] to-[#2C2C2C] text-white dark:border-none"
-              >
-                Remove
-              </button>
+
+          {/* Actions */}
+          <div className="mt-6 flex justify-around items-center">
+            <SkeletonWrapper loading={loading} height={40} width={90}>
+              {status === "completed" ? (
+                <button
+                  onClick={() => handleDelete(_id)}
+                  className="px-4 btn py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-lg hover:opacity-90 focus:outline-none"
+                >
+                  Remove Task
+                </button>
+              ) : (
+                <button
+                  className="border px-6 py-2 rounded-lg flex items-center gap-x-1"
+                  disabled
+                >
+                  Remove Task <FaLock className="text-red-600" />
+                </button>
+              )}
             </SkeletonWrapper>
 
             {loading ? (
-              <SkeletonWrapper loading={loading} height={35} width={80} />
+              <SkeletonWrapper loading={loading} height={40} width={90} />
             ) : (
               <>
-                <p className="text-lg dark:text-white text-center text-[#024CAA] ">
-                  ---OR---
-                </p>
                 {singleTask.status === "completed" ? (
-                  <p className="text-[#1E3E62]  text-lg dark:text-green-500">
-                    Completed !
-                  </p>
+                  <p className="text-green-500 font-semibold">Completed!</p>
                 ) : (
                   <button
-                    onClick={() => {
-                      handleCompleted(singleTask);
-                    }}
-                    className="btn btn-sm bg-gradient-to-r from-[#091057] to-[#0d6efd] dark:border-none text-white"
+                    onClick={() => handleCompleted(singleTask)}
+                    className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:opacity-90 focus:outline-none"
                   >
-                    Pending...
+                    Mark as Complete
                   </button>
                 )}
               </>

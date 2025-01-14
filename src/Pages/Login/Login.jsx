@@ -8,6 +8,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AdminAccessButton from "../../Components/AdminAccessButton/AdminAccessButton";
 import { Helmet } from "react-helmet-async";
+import SectionTitle2 from "../../Components/SectionTitle2/SectionTitle2";
 
 const Login = () => {
   // Step 1. Define a state to control the password visibility
@@ -63,7 +64,11 @@ const Login = () => {
         <title>Login</title>
       </Helmet>
 
-      <AdminAccessButton />
+      <SectionTitle2
+        heading="Welcome Back!"
+        subheading="Log in to continue your learning journey and stay on top of your tasks."
+      />
+
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-purple-200 dark:from-gray-800 dark:to-gray-900 px-4 lg:px-0">
         <div className="flex flex-col lg:flex-row items-center max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
           {/* Image Section */}
@@ -90,6 +95,8 @@ const Login = () => {
             </p>
 
             <form onSubmit={formik.handleSubmit} className="space-y-4">
+              <AdminAccessButton />
+
               {/* Email Field */}
               <div>
                 <label

@@ -37,8 +37,11 @@ const Features = ({ onGetStartedClick }) => {
 
   return (
     <>
-      <SectionTitle2 heading="Features" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
+      <SectionTitle2
+        heading="Featured Highlights"
+        subheading="Explore the most popular and recommended features on our platform."
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-8 max-w-screen-xl mx-auto">
         {features.map((feature) => (
           <FeaturesCard
             onGetStartedClick={onGetStartedClick}

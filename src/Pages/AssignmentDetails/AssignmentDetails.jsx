@@ -5,6 +5,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast, { Toaster } from "react-hot-toast";
 import useAdmin from "../../Hooks/useAdmin";
 import { Helmet } from "react-helmet-async";
+import SectionTitle2 from "../../Components/SectionTitle2/SectionTitle2";
 const AssignmentDetails = () => {
   const assignmentData = useLoaderData();
   const navigate = useNavigate();
@@ -64,6 +65,11 @@ const AssignmentDetails = () => {
       <Helmet>
         <title>Assignment Details</title>
       </Helmet>
+
+      <SectionTitle2
+        heading="Assignment Overview"
+        subheading="Review assignment details, submission deadlines, and feedback."
+      />
       <div className="hero bg-gradient-to-b from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg min-h-screen px-5 py-10">
         <div className="hero-content flex flex-col lg:flex-row items-center gap-10">
           {/* Assignment Details */}

@@ -3,6 +3,7 @@ import useSubmittedAssignment from "../../../Hooks/useSubmittedAssignment";
 import StudentDashboardCard from "./StudentDashboardCard";
 import studentDashboardImg from "../../../assets/student dashboard/student.jpg";
 import AnimatedComponent from "../../../Components/AnimatedComponent/AnimatedComponent";
+import SectionTitle2 from "../../../Components/SectionTitle2/SectionTitle2";
 const StudentDashboard = () => {
   const [submittedAssignments] = useSubmittedAssignment();
   if (!submittedAssignments.length) {
@@ -27,6 +28,10 @@ const StudentDashboard = () => {
   }
   return (
     <>
+      <SectionTitle2
+        heading="Your Study Dashboard"
+        subheading="Track your submitted assignments, pending tasks, and teacher feedback in one place."
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
         <Helmet>
           <title>Dashboard</title>

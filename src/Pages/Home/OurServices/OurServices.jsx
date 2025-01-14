@@ -4,7 +4,7 @@ import { SlBookOpen } from "react-icons/sl";
 import AnimatedComponent from "../../../Components/AnimatedComponent/AnimatedComponent";
 const OurServices = () => {
   return (
-    <div className="py-12 px-6 bg-gray-100 dark:bg-gray-800 text-center ">
+    <div className="py-12 px-6 bg-gray-100 dark:bg-gray-800 text-center max-w-screen-2xl mx-auto ">
       <AnimatedComponent animation="fade-out">
         {/* Title and Description */}
         <div className="mb-10">

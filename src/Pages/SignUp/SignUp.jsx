@@ -10,6 +10,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import AdminAccessButton from "../../Components/AdminAccessButton/AdminAccessButton";
+import SectionTitle2 from "../../Components/SectionTitle2/SectionTitle2";
 
 const SignUp = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -26,6 +27,7 @@ const SignUp = () => {
     initialValues: {
       name: "",
       email: "",
+      photoURL: "",
       password: "",
     },
     onSubmit: async (data, { resetForm }) => {
@@ -61,7 +63,11 @@ const SignUp = () => {
       <Helmet>
         <title>Signup</title>
       </Helmet>
-      <AdminAccessButton />
+      <SectionTitle2
+        heading="Join Us Today"
+        subheading="Create your account to start managing your study flow with ease."
+      />
+
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-purple-200 dark:from-gray-800 dark:to-gray-900 px-4 lg:px-0">
         <div className="flex flex-col lg:flex-row items-center max-w-5xl bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
           {/* Image Section */}
@@ -88,6 +94,8 @@ const SignUp = () => {
             </p>
 
             <form onSubmit={formik.handleSubmit} className="space-y-4">
+              <AdminAccessButton />
+
               {/* Name Field */}
               <div>
                 <label
@@ -99,6 +107,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   name="name"
+                  placeholder="Enter Name"
                   onChange={formik.handleChange}
                   value={formik.values.name}
                   className="input text-purple-600 dark:text-purple-300 bg-gray-50 dark:bg-gray-700 input-primary w-full"
@@ -117,9 +126,27 @@ const SignUp = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="example@gmail.com"
+                  placeholder="Enter email"
                   onChange={formik.handleChange}
                   value={formik.values.email}
+                  className="input text-purple-600 dark:text-purple-300 bg-gray-50 dark:bg-gray-700 input-primary w-full"
+                  required
+                />
+              </div>
+              {/* Photo URL */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-1 font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Photo URL
+                </label>
+                <input
+                  type="text"
+                  name="photoURL"
+                  placeholder="Enter photoURL"
+                  onChange={formik.handleChange}
+                  value={formik.values.photoURL}
                   className="input text-purple-600 dark:text-purple-300 bg-gray-50 dark:bg-gray-700 input-primary w-full"
                   required
                 />
@@ -137,6 +164,7 @@ const SignUp = () => {
                   <input
                     type={passwordVisible ? "text" : "password"}
                     name="password"
+                    placeholder="Enter password"
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     className="input text-purple-600 dark:text-purple-300 bg-gray-50 dark:bg-gray-700 input-primary w-full"
@@ -155,7 +183,7 @@ const SignUp = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="btn bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500 text-white font-semibold w-full rounded-lg py-2 transition duration-300"
+                className="btn bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500 text-white font-semibold w-full rounded-lg py-2 transition duration-300 border-none"
               >
                 Sign Up
               </button>

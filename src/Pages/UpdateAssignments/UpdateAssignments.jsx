@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
+import SectionTitle2 from "../../Components/SectionTitle2/SectionTitle2";
 
 const UpdateAssignments = () => {
   const axiosPublic = useAxiosPublic();
@@ -65,13 +66,13 @@ const UpdateAssignments = () => {
       <Helmet>
         <title>Update Assignments</title>
       </Helmet>
+      <SectionTitle2
+        heading="Edit Your Assignment"
+        subheading="Update assignment details to ensure everything is accurate and up-to-date."
+      />
       <div className="hero bg-base-200 min-h-screen dark:bg-gray-800 rounded-lg">
         <div className="hero-content flex-col w-full">
-          <div className="text-center lg:text-left ">
-            <h1 className="lg:text-3xl font-serif md:text-2xl font-bold text-[#091057] dark:text-white ">
-              Update An Assignment
-            </h1>
-          </div>
+          <div className="text-center lg:text-left "></div>
           <div className="card bg-base-100 w-full max-w-sm md:max-w-screen-md lg:max-w-screen-lg shrink-0 shadow-2xl">
             <form
               onSubmit={formik.handleSubmit}
