@@ -213,21 +213,34 @@ const Navbar = () => {
               {isDarkMode ? <GoMoon /> : <LuSun />}
             </button>
             {user && (
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <div
                   tabIndex={0}
-                  className="avatar cursor-pointer flex items-center gap-2"
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
                 >
-                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src={user?.photoURL} alt="User Avatar" />
+                  <div className="w-10 rounded-full ">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    />
                   </div>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#6C5EBF] rounded-box w-52"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow dark:bg-gray-800"
                 >
                   <li>
-                    <button onClick={handleLogout}>Logout</button>
+                    <a className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <a onClick={handleLogout}>Logout</a>
                   </li>
                 </ul>
               </div>
